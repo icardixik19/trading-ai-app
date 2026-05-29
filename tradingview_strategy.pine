@@ -1,0 +1,35 @@
+//@version=6
+strategy("Trading AI Bot - EMA RSI", overlay=true, initial_capital=10000)
+
+// Parametreler
+emaFast = input.int(9, "EMA Hızlı")
+emaSlow = input.int(21, "EMA Yavaş")
+rsiLen  = input.int(14, "RSI Periyot")
+rsiOB   = input.int(70, "RSI Aşırı Alım")
+rsiOS   = input.int(30, "RSI Aşırı Satım")
+webhookSecret = input.string("degistir", "Webhook Secret")
+webhookUrl    = input.string("https://SENIN-URL.railway.app/webhook/tradingview", "Webhook URL")
+
+// Hesaplamalar
+emaF = ta.ema(close, emaFast)
+emaS = ta.ema(close, emaSlow)
+rsi  = ta.rsi(close, rsiLen)
+
+// Sinyaller
+buySignal  = ta.crossover(emaF, emaS) and rsi < rsiOB
+sellSignal = ta.crossunder(emaF, emaS) and rsi > rsiOS
+
+// Plot
+plot(emaF, "EMA Hızlı", color.green)
+plot(emaS, "EMA Yavaş", color.red)
+
+// İşlemler
+if buySignal
+    strategy.entry("Long", strategy.long)
+    buyMsg = '{"secret":"' + webhookSecret + '","action":"buy","symbol":"BTCUSDT","price":' + str.tostring(close) + ',"timeframe":"' + timeframe.period + '","sl":' + str.tostring(close * 0.98) + ',"tp":' + str.tostring(close * 1.04) + '}'
+    alert(buyMsg, alert.freq_once_per_bar_close)
+
+if sellSignal
+    strategy.close("Long")
+    sellMsg = '{"secret":"' + webhookSecret + '","action":"sell","symbol":"BTCUSDT","price":' + str.tostring(close) + ',"timeframe":"' + timeframe.period + '","sl":' + str.tostring(close * 1.02) + ',"tp":' + str.tostring(close * 0.96) + '}'
+    alert(sellMsg, alert.freq_once_per_bar_close)
