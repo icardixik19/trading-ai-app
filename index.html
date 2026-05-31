@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NexTrade AI — Professional Trading Intelligence Platform</title>
+<title>TRDAI — Premium Trading AI</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>△</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -11,15 +12,16 @@
    DESIGN TOKENS
 ═══════════════════════════════ */
 :root {
-  --bg:#030308;--bg2:#07070f;--bg3:#0c0c1a;--bg4:#101022;--bg5:#141428;
-  --border:rgba(99,102,241,.08);--border2:rgba(99,102,241,.18);--border3:rgba(99,102,241,.32);
-  --text:#eaeaf4;--text2:#9090b8;--text3:#484870;
-  --indigo:#6366f1;--indigo2:#818cf8;--indigo3:#a5b4fc;
-  --green:#10b981;--green2:#34d399;--green3:rgba(16,185,129,.12);
-  --red:#ef4444;--red2:#f87171;--red3:rgba(239,68,68,.12);
-  --yellow:#f59e0b;--yellow2:#fbbf24;--yellow3:rgba(245,158,11,.1);
-  --cyan:#06b6d4;--orange:#f97316;--purple:#8b5cf6;
-  --r8:8px;--r10:10px;--r12:12px;--r14:14px;
+  --bg:#0a0a0a;--bg2:#111111;--bg3:#1a1a1a;--bg4:#1f1f1f;--bg5:#252525;
+  --border:rgba(212,175,55,.1);--border2:rgba(212,175,55,.22);--border3:rgba(212,175,55,.4);
+  --text:#f0ede6;--text2:#9a9080;--text3:#5a5040;
+  --gold:#D4AF37;--gold2:#E8C84A;--gold3:#F5DY6D;
+  --indigo:#D4AF37;--indigo2:#E8C84A;--indigo3:#F0D870;
+  --green:#00C851;--green2:#26D96B;--green3:rgba(0,200,81,.12);
+  --red:#FF3B30;--red2:#FF6B63;--red3:rgba(255,59,48,.12);
+  --yellow:#E8A000;--yellow2:#F5B800;--yellow3:rgba(232,160,0,.1);
+  --cyan:#D4AF37;--orange:#E8A000;--purple:#C4A030;
+  --r8:6px;--r10:8px;--r12:10px;--r14:12px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:14px}
@@ -30,20 +32,20 @@ input,select,textarea,button{font-family:inherit}
 a{text-decoration:none;color:inherit}
 
 /* ═══ LAYOUT ═══ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:999;height:54px;display:flex;align-items:center;gap:12px;padding:0 20px;background:rgba(3,3,8,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-logo{font-size:15px;font-weight:800;display:flex;align-items:center;gap:7px;margin-right:8px}
-.nav-logo-text{background:linear-gradient(135deg,var(--indigo2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s infinite;flex-shrink:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;height:54px;display:flex;align-items:center;gap:12px;padding:0 20px;background:rgba(10,10,10,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-size:15px;font-weight:800;display:flex;align-items:center;gap:7px;margin-right:8px;flex-direction:row}
+.nav-logo-text{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px;font-size:16px}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);animation:pulse 2s infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .nav-tabs{display:flex;gap:1px;margin-left:4px}
 .ntab{padding:5px 13px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--text3);transition:all .18s;font-family:inherit;white-space:nowrap}
-.ntab.on{background:rgba(99,102,241,.14);color:var(--indigo2)}
+.ntab.on{background:rgba(212,175,55,.1);color:var(--gold);border-bottom:2px solid var(--gold)}
 .ntab:hover:not(.on){color:var(--text2);background:rgba(255,255,255,.04)}
 .nav-right{display:flex;align-items:center;gap:8px;margin-left:auto}
 .nav-time{font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:7px 14px;border-radius:var(--r8);font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .18s;white-space:nowrap}
-.btn-primary{background:var(--indigo);color:#fff}
-.btn-primary:hover{background:var(--indigo2);transform:translateY(-1px)}
+.btn-primary{background:var(--gold);color:#0a0a0a;font-weight:700}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(212,175,55,.3)}
 .btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text2)}
 .btn-ghost:hover{border-color:var(--indigo);color:var(--text)}
 .btn-sm{padding:5px 10px;font-size:11px}
@@ -53,7 +55,7 @@ a{text-decoration:none;color:inherit}
 @media(max-width:768px){.nav-tabs{display:none}}
 
 /* ═══ TICKER ═══ */
-.ticker{margin-top:54px;background:var(--bg2);border-bottom:1px solid var(--border);padding:7px 0;overflow:hidden;position:sticky;top:54px;z-index:90}
+.ticker{margin-top:54px;background:var(--bg2);border-bottom:1px solid rgba(212,175,55,.15);border-top:1px solid rgba(212,175,55,.08);padding:7px 0;overflow:hidden;position:sticky;top:54px;z-index:90}
 .ticker-inner{display:flex;gap:24px;white-space:nowrap;animation:ticker 35s linear infinite}
 .ticker-inner:hover{animation-play-state:paused}
 .t-item{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11px}
@@ -76,13 +78,13 @@ a{text-decoration:none;color:inherit}
 .sb-inp:focus{border-color:var(--indigo)}
 .sb-filters{display:flex;gap:4px;padding:6px 10px;border-bottom:1px solid var(--border);flex-wrap:wrap}
 .sbf{padding:3px 9px;border-radius:12px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text3);transition:all .15s}
-.sbf.on{background:rgba(99,102,241,.12);border-color:var(--indigo);color:var(--indigo2)}
+.sbf.on{background:rgba(212,175,55,.1);border-color:var(--gold);color:var(--gold)}
 .asset-list{flex:1;overflow-y:auto}
 .asset-list::-webkit-scrollbar{width:2px}
-.cat-hdr{padding:6px 12px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);background:rgba(0,0,0,.3);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1}
+.cat-hdr{padding:8px 12px;font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(212,175,55,.6);background:rgba(10,10,10,.97);border-bottom:1px solid rgba(212,175,55,.08);position:sticky;top:0;z-index:1}
 .a-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid rgba(99,102,241,.04);cursor:pointer;transition:background .12s}
 .a-item:hover{background:rgba(99,102,241,.04)}
-.a-item.sel{background:rgba(99,102,241,.08);border-right:2px solid var(--indigo)}
+.a-item.sel{background:rgba(212,175,55,.06);border-right:2px solid var(--gold)}
 .a-item-l{display:flex;align-items:center;gap:8px}
 .a-ico{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
 .a-sym{font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace}
@@ -109,7 +111,7 @@ a{text-decoration:none;color:inherit}
 @media(max-width:700px){.analysis-grid{grid-template-columns:1fr}}
 .ap{padding:14px;border-right:1px solid var(--border)}
 .ap:last-child{border-right:none}
-.ap-title{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.ap-title{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 
 /* ═══ TRADE IDEA CARD ═══ */
 .tic{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r12);padding:14px;margin-bottom:10px}
@@ -141,15 +143,15 @@ a{text-decoration:none;color:inherit}
 .sb-row{display:flex;align-items:center;gap:8px;font-size:10px}
 .sb-label{color:var(--text3);width:100px;flex-shrink:0;font-family:'JetBrains Mono',monospace}
 .sb-track{flex:1;height:3px;background:var(--bg4);border-radius:2px}
-.sb-fill{height:3px;border-radius:2px;transition:width .6s}
+.sb-fill{height:3px;border-radius:2px;transition:width .6s;background:var(--gold)}
 .sb-val{color:var(--text2);width:28px;text-align:right;font-family:'JetBrains Mono',monospace}
 
 /* EXPLAIN */
-.explain-box{border-left:2px solid var(--indigo);padding:8px 10px;background:rgba(99,102,241,.04);border-radius:0 var(--r8) var(--r8) 0;margin-bottom:8px}
+.explain-box{border-left:2px solid var(--gold);padding:8px 10px;background:rgba(99,102,241,.04);border-radius:0 var(--r8) var(--r8) 0;margin-bottom:8px}
 .explain-box p{font-size:11px;color:var(--text2);line-height:1.65;display:flex;gap:6px;margin-bottom:3px}
 .explain-box p:last-child{margin-bottom:0}
-.explain-dot{color:var(--indigo2);flex-shrink:0;margin-top:1px}
-.warn-box{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:var(--yellow2);padding:6px 9px;background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.12);border-radius:6px;margin-bottom:5px;line-height:1.5}
+.explain-dot{color:var(--gold);flex-shrink:0;margin-top:1px}
+.warn-box{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:rgba(212,175,55,.8);padding:6px 9px;background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.12);border-radius:6px;margin-bottom:5px;line-height:1.5}
 
 /* SCENARIOS */
 .scenario-item{padding:9px 11px;border-radius:var(--r8);margin-bottom:6px}
@@ -182,9 +184,9 @@ a{text-decoration:none;color:inherit}
 .scanner-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
 .scanner-filters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
 .sf{padding:5px 12px;border-radius:16px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text3);transition:all .18s;font-family:inherit}
-.sf.on{background:rgba(99,102,241,.12);border-color:var(--indigo);color:var(--indigo2)}
-.grp-title{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);padding:12px 0 8px;display:flex;align-items:center;gap:8px}
-.grp-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.sf.on{background:rgba(212,175,55,.1);border-color:var(--gold);color:var(--gold)}
+.grp-title{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);padding:16px 0 10px;display:flex;align-items:center;gap:10px;opacity:.8}
+.grp-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,.3),transparent)}
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px;margin-bottom:8px}
 
 /* ASSET CARD */
@@ -207,7 +209,7 @@ a{text-decoration:none;color:inherit}
 .s-sell{background:var(--red3);color:var(--red2);border:1px solid rgba(239,68,68,.22)}
 .s-hold{background:var(--yellow3);color:var(--yellow2);border:1px solid rgba(245,158,11,.18)}
 .s-watch{background:rgba(99,102,241,.08);color:var(--indigo2);border:1px solid rgba(99,102,241,.18)}
-.btag{display:inline-flex;align-items:center;gap:3px;font-size:9px;font-weight:700;color:var(--orange);padding:2px 6px;background:rgba(249,115,22,.07);border:1px solid rgba(249,115,22,.16);border-radius:4px}
+.btag{display:inline-flex;align-items:center;gap:3px;font-size:9px;font-weight:700;color:var(--gold);padding:2px 6px;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:4px}
 .ac-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;padding:0 14px 10px}
 .ac-stat{background:var(--bg3);border-radius:6px;padding:6px 8px}
 .ac-sl{font-size:9px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-bottom:2px}
@@ -235,7 +237,7 @@ a{text-decoration:none;color:inherit}
 @media(max-width:900px){.bot-page{grid-template-columns:1fr;overflow:auto}}
 .summary-col{overflow-y:auto;padding:16px;border-right:1px solid var(--border)}
 .sum-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r12);padding:14px;margin-bottom:10px}
-.sum-card-t{font-size:13px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.sum-card-t{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:10px;opacity:.85}
 .sum-body{font-size:12px;color:var(--text2);line-height:1.75}
 .sum-body b{color:var(--text)}
 .chat-col{display:flex;flex-direction:column;overflow:hidden}
@@ -255,11 +257,11 @@ a{text-decoration:none;color:inherit}
 .chat-inp{padding:8px 10px;border-top:1px solid var(--border);display:flex;gap:6px;align-items:flex-end}
 .chat-ta{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:7px 10px;color:var(--text);font-size:12px;resize:none;max-height:70px;outline:none;transition:border-color .18s}
 .chat-ta:focus{border-color:var(--indigo)}
-.chat-send{width:30px;height:30px;border-radius:6px;background:var(--indigo);border:none;color:#fff;font-size:13px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .15s}
-.chat-send:hover{background:var(--indigo2)}
+.chat-send{width:30px;height:30px;border-radius:6px;background:var(--gold);border:none;color:#0a0a0a;font-size:13px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .15s;font-weight:700}
+.chat-send:hover{background:var(--gold2)}
 .chat-send:disabled{opacity:.4;cursor:not-allowed}
 .typing-ind{display:flex;gap:3px;align-items:center;padding:8px 11px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;border-top-left-radius:2px;width:fit-content}
-.td{width:4px;height:4px;border-radius:50%;background:var(--indigo2);animation:td 1.4s infinite}
+.td{width:4px;height:4px;border-radius:50%;background:var(--gold);animation:td 1.4s infinite}
 .td:nth-child(2){animation-delay:.2s}.td:nth-child(3){animation-delay:.4s}
 @keyframes td{0%,60%,100%{opacity:.35}30%{opacity:1;transform:translateY(-3px)}}
 
@@ -278,14 +280,14 @@ a{text-decoration:none;color:inherit}
 /* ═══ PREMIUM LOCK ═══ */
 .prem-block{position:relative;border-radius:var(--r12);overflow:hidden}
 .prem-blur{filter:blur(5px);pointer-events:none;user-select:none;opacity:.45}
-.prem-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(3,3,8,.8);backdrop-filter:blur(3px);border-radius:var(--r12);border:1px solid var(--border2);padding:20px;text-align:center;gap:6px}
+.prem-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,10,.88);backdrop-filter:blur(3px);border-radius:var(--r12);border:1px solid var(--border2);padding:20px;text-align:center;gap:6px}
 .prem-icon{font-size:24px;margin-bottom:4px}
 .prem-title{font-size:14px;font-weight:700}
 .prem-sub{font-size:12px;color:var(--text2);line-height:1.6;max-width:240px}
 .prem-feats{display:flex;flex-direction:column;gap:4px;margin:4px 0}
 .pf-item{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:5px}
 .pf-check{color:var(--green2)}
-.btn-upgrade{background:linear-gradient(135deg,var(--indigo),var(--purple));color:#fff;padding:9px 20px;border-radius:var(--r8);font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all .2s;margin-top:4px}
+.btn-upgrade{background:linear-gradient(135deg,var(--gold),#8B7320);color:#fff;padding:9px 20px;border-radius:var(--r8);font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all .2s;margin-top:4px}
 .btn-upgrade:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(99,102,241,.3)}
 
 /* ═══ UTILS ═══ */
@@ -295,7 +297,41 @@ a{text-decoration:none;color:inherit}
 .loading-anim{animation:lp 1.5s infinite}
 @keyframes lp{0%,100%{opacity:.3}50%{opacity:.7}}
 .divider{border:none;border-top:1px solid var(--border);margin:10px 0}
-.badge-delay{display:inline-flex;align-items:center;gap:3px;font-size:9px;color:var(--yellow2);padding:2px 6px;background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.14);border-radius:4px}
+.badge-delay{display:inline-flex;align-items:center;gap:3px;font-size:9px;color:var(--gold);padding:2px 6px;background:rgba(212,175,55,.07);border:1px solid rgba(212,175,55,.14);border-radius:4px}
+
+/* ═══ CHART CONTROLS ═══ */
+.ind-toggle{display:flex;align-items:center;gap:7px;padding:4px 0;cursor:pointer;font-size:11px;color:var(--text2);transition:color .15s;width:100%}
+.ind-toggle:hover{color:var(--text)}
+.ind-toggle input{width:13px;height:13px;accent-color:var(--gold);cursor:pointer;flex-shrink:0}
+.ind-toggle span{flex:1}
+
+/* ═══ CHART EXPAND ═══ */
+.chart-expanded #tv-wrap{height:calc(100vh - 110px) !important}
+.chart-expanded .analysis-grid{display:none}
+.chart-expanded #chart-expand-btn{color:var(--gold)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:960px){
+  .markets-wrap{grid-template-columns:1fr;height:auto;overflow:auto}
+  .sb{height:auto;max-height:200px}
+  .mc{overflow:visible}
+  #tv-wrap{height:280px !important}
+  .analysis-grid{grid-template-columns:1fr !important;overflow:visible}
+  .chart-hdr{padding:8px 12px;gap:6px}
+  .tf-tabs{gap:1px}
+  .tftab{padding:3px 7px;font-size:10px}
+  .chart-expanded #tv-wrap{height:60vh !important}
+}
+@media(max-width:640px){
+  #tv-wrap{height:240px !important}
+  .ch-sym{font-size:15px}
+  .ch-price{font-size:13px}
+  .tf-tabs .tftab:nth-child(1){display:none}
+  .tf-tabs .tftab:nth-child(2){display:none}
+}
+
+/* ═══ TOUCH RESIZE ═══ */
+#chart-drag{touch-action:none}
 </style>
 </head>
 <body>
@@ -304,13 +340,27 @@ a{text-decoration:none;color:inherit}
 <nav class="nav">
   <div class="nav-logo">
     <div class="live-dot"></div>
-    <span class="nav-logo-text">NexTrade AI</span>
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+  <polygon points="14,2 26,24 2,24" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+  <polygon points="14,8 22,22 6,22" fill="none" stroke="#D4AF37" stroke-width="1"/>
+  <line x1="14" y1="8" x2="14" y2="16" stroke="#D4AF37" stroke-width="1"/>
+  <line x1="10" y1="16" x2="18" y2="16" stroke="#D4AF37" stroke-width="1"/>
+  <circle cx="10" cy="16" r="1.2" fill="#D4AF37"/>
+  <circle cx="18" cy="16" r="1.2" fill="#D4AF37"/>
+  <circle cx="14" cy="8" r="1.2" fill="#D4AF37"/>
+  <line x1="10" y1="16" x2="7" y2="20" stroke="#D4AF37" stroke-width="0.8"/>
+  <line x1="18" y1="16" x2="21" y2="20" stroke="#D4AF37" stroke-width="0.8"/>
+  <circle cx="7" cy="20" r="1" fill="#D4AF37"/>
+  <circle cx="21" cy="20" r="1" fill="#D4AF37"/>
+</svg>
+<span class="nav-logo-text">TRDAI</span>
   </div>
   <div class="nav-tabs">
-    <button class="ntab on" onclick="goPage('markets',this)">📊 Piyasalar</button>
-    <button class="ntab" onclick="goPage('scanner',this)">🔍 Tarayıcı</button>
-    <button class="ntab" onclick="goPage('aibot',this)">🤖 AI Asistan</button>
-    <button class="ntab" onclick="goPage('settings',this)">⚙️ Ayarlar</button>
+    <button class="ntab on" onclick="goPage('markets',this)">Piyasalar</button>
+    <button class="ntab" onclick="goPage('scanner',this)">Tarayıcı</button>
+    <button class="ntab" onclick="goPage('aibot',this)">AI Asistan</button>
+    <button class="ntab" onclick="document.getElementById('method-modal').style.display='flex'">Metodoloji</button>
+    <button class="ntab" onclick="goPage('settings',this)">Ayarlar</button>
   </div>
   <div class="nav-right">
     <span class="nav-time" id="nav-clock">--:--:--</span>
@@ -322,7 +372,7 @@ a{text-decoration:none;color:inherit}
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner" id="ticker-inner">
-    <span class="t-item loading-anim dim">Fiyatlar yükleniyor...</span>
+    <span class="t-item dim" style="font-size:11px;letter-spacing:1px;font-family:'JetBrains Mono',monospace">TRDAI · FİYATLAR YÜKLENİYOR...</span>
   </div>
 </div>
 
@@ -338,10 +388,10 @@ a{text-decoration:none;color:inherit}
         <input class="sb-inp" type="text" placeholder="🔍 Coin, hisse veya emtia ara..." id="sb-search" oninput="filterSidebar(this.value)">
       </div>
       <div class="sb-filters">
-        <button class="sbf on" onclick="sbFlt('all',this)">Tümü</button>
-        <button class="sbf" onclick="sbFlt('crypto',this)">Kripto</button>
+        <button class="sbf on" onclick="sbFlt('all',this)">TÜMÜ</button>
+        <button class="sbf" onclick="sbFlt('crypto',this)">KRİPTO</button>
         <button class="sbf" onclick="sbFlt('stock',this)">BIST</button>
-        <button class="sbf" onclick="sbFlt('gold',this)">Altın</button>
+        <button class="sbf" onclick="sbFlt('gold',this)">ALTIN</button>
       </div>
       <div class="asset-list" id="asset-list"></div>
     </div>
@@ -350,39 +400,63 @@ a{text-decoration:none;color:inherit}
     <div class="mc">
       <!-- CHART HEADER -->
       <div class="chart-hdr">
-        <div>
-          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
             <span class="ch-sym" id="ch-sym">BTC/USDT</span>
             <span class="ch-price" id="ch-price">$—</span>
             <span class="ch-chg" id="ch-chg">—</span>
-            <span class="badge-delay" id="bist-delay-badge" style="display:none">⏱ 15dk gecikmeli</span>
+            <span class="badge-delay" id="bist-delay-badge" style="display:none">15dk</span>
           </div>
           <div class="ch-name" id="ch-name">Bitcoin</div>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
           <div class="tf-tabs">
-            <button class="tftab" onclick="setTf('1',this)">1dk</button>
-            <button class="tftab" onclick="setTf('5',this)">5dk</button>
-            <button class="tftab" onclick="setTf('15',this)">15dk</button>
-            <button class="tftab" onclick="setTf('60',this)">1S</button>
-            <button class="tftab on" onclick="setTf('240',this)">4S</button>
-            <button class="tftab" onclick="setTf('D',this)">1G</button>
-            <button class="tftab" onclick="setTf('W',this)">1H</button>
+            <button class="tftab" onclick="setTf('1',this)">1m</button>
+            <button class="tftab" onclick="setTf('5',this)">5m</button>
+            <button class="tftab" onclick="setTf('15',this)">15m</button>
+            <button class="tftab" onclick="setTf('60',this)">1H</button>
+            <button class="tftab on" onclick="setTf('240',this)">4H</button>
+            <button class="tftab" onclick="setTf('D',this)">1D</button>
+            <button class="tftab" onclick="setTf('W',this)">1W</button>
           </div>
-          <button class="btn btn-ghost btn-sm" onclick="sendSignalTG()">📨 Telegram</button>
+          <!-- GÖSTERGELer -->
+          <div style="position:relative">
+            <button class="btn btn-ghost btn-sm" onclick="toggleIndicators()" id="ind-btn" style="font-size:10px;padding:4px 9px">Göstergeler ▾</button>
+            <div id="ind-dropdown" style="display:none;position:absolute;right:0;top:calc(100% + 4px);background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:10px;z-index:100;min-width:200px;box-shadow:0 8px 24px rgba(0,0,0,.5)">
+              <div style="font-size:9px;color:var(--gold);letter-spacing:1.5px;margin-bottom:8px;font-weight:700">GÖSTERGELER</div>
+              <label class="ind-toggle"><input type="checkbox" id="tog-rsi" checked onchange="reloadTV()"><span>RSI (14)</span></label>
+              <label class="ind-toggle"><input type="checkbox" id="tog-macd" checked onchange="reloadTV()"><span>MACD</span></label>
+              <label class="ind-toggle"><input type="checkbox" id="tog-bb" checked onchange="reloadTV()"><span>Bollinger Bands</span></label>
+              <label class="ind-toggle"><input type="checkbox" id="tog-ema" onchange="reloadTV()"><span>EMA 9/21</span></label>
+              <label class="ind-toggle"><input type="checkbox" id="tog-vol" onchange="reloadTV()"><span>Volume</span></label>
+              <label class="ind-toggle"><input type="checkbox" id="tog-vwap" onchange="reloadTV()"><span>VWAP</span></label>
+              <div style="border-top:1px solid var(--border);margin:8px 0"></div>
+              <div style="font-size:9px;color:var(--gold);letter-spacing:1.5px;margin-bottom:6px;font-weight:700">GRAFIK STILI</div>
+              <label class="ind-toggle"><input type="radio" name="chart-style" value="1" checked onchange="reloadTV()"><span>Mum Grafik</span></label>
+              <label class="ind-toggle"><input type="radio" name="chart-style" value="2" onchange="reloadTV()"><span>Bar Grafik</span></label>
+              <label class="ind-toggle"><input type="radio" name="chart-style" value="3" onchange="reloadTV()"><span>Çizgi Grafik</span></label>
+            </div>
+          </div>
+          <!-- BÜYÜTME -->
+          <button class="btn btn-ghost btn-sm" onclick="toggleChart()" id="chart-expand-btn" title="Büyüt/Küçült" style="font-size:12px;padding:4px 8px;width:28px">⤢</button>
+          <button class="btn btn-ghost btn-sm" onclick="sendSignalTG()" style="font-size:10px;padding:4px 9px">TG</button>
         </div>
       </div>
 
       <!-- TRADINGVIEW -->
-      <div id="tv-widget" style="height:360px;background:var(--bg)">
+      <div id="tv-wrap" style="height:360px;background:var(--bg);transition:height .3s ease;position:relative">
         <div id="tv-container" style="width:100%;height:100%"></div>
+        <!-- MOBİL DRAG HANDLE -->
+        <div id="chart-drag" style="position:absolute;bottom:0;left:0;right:0;height:6px;background:linear-gradient(transparent,rgba(212,175,55,.15));cursor:ns-resize;display:flex;align-items:center;justify-content:center;z-index:10">
+          <div style="width:32px;height:3px;border-radius:2px;background:rgba(212,175,55,.3)"></div>
+        </div>
       </div>
 
       <!-- ANALYSIS PANELS -->
       <div class="analysis-grid">
         <!-- Panel 1: Trade Setup -->
         <div class="ap">
-          <div class="ap-title">Trade Setup</div>
+          <div class="ap-title">TRADE SETUP</div>
           <div class="tic">
             <div class="tic-top">
               <div class="sig-badge sig-hold" id="m-sig-badge">⬜ ANALYSING</div>
@@ -390,7 +464,7 @@ a{text-decoration:none;color:inherit}
                 <div class="conf-circle">
                   <svg width="48" height="48" viewBox="0 0 48 48">
                     <circle cx="24" cy="24" r="20" fill="none" stroke="var(--bg4)" stroke-width="4"/>
-                    <circle cx="24" cy="24" r="20" fill="none" stroke="var(--indigo)" stroke-width="4"
+                    <circle cx="24" cy="24" r="20" fill="none" stroke="var(--gold)" stroke-width="4"
                       stroke-linecap="round" stroke-dasharray="125.66" id="m-conf-circle"
                       stroke-dashoffset="125.66" style="transition:stroke-dashoffset .8s"/>
                   </svg>
@@ -421,7 +495,7 @@ a{text-decoration:none;color:inherit}
 
         <!-- Panel 2: Indicators + News -->
         <div class="ap">
-          <div class="ap-title">Teknik İndikatörler</div>
+          <div class="ap-title">TEKNİK GÖSTERGELER</div>
           <div class="ind-grid" id="m-ind-grid">
             <div class="ind-item loading-anim"><div class="ind-name">RSI (14)</div><div class="ind-val dim">—</div></div>
             <div class="ind-item loading-anim"><div class="ind-name">MACD</div><div class="ind-val dim">—</div></div>
@@ -431,7 +505,7 @@ a{text-decoration:none;color:inherit}
             <div class="ind-item loading-anim"><div class="ind-name">Momentum</div><div class="ind-val dim">—</div></div>
           </div>
           <div class="divider"></div>
-          <div class="ap-title">Canlı Haberler</div>
+          <div class="ap-title">HABERLer</div>
           <div id="m-news">
             <div class="loading-anim dim" style="font-size:11px;padding:8px">Haberler yükleniyor...</div>
           </div>
@@ -439,12 +513,12 @@ a{text-decoration:none;color:inherit}
 
         <!-- Panel 3: Scenarios + Quick Ask -->
         <div class="ap">
-          <div class="ap-title">Scenario Outlook</div>
+          <div class="ap-title">SENARYO ANALİZİ</div>
           <div id="m-scenarios">
             <div class="loading-anim dim" style="font-size:11px;padding:8px">Analiz bekleniyor...</div>
           </div>
           <div class="divider"></div>
-          <div class="ap-title">Backtest Özeti</div>
+          <div class="ap-title">BACKTEST ÖZETİ</div>
           <div class="prem-block">
             <div class="prem-blur">
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
@@ -466,7 +540,7 @@ a{text-decoration:none;color:inherit}
             </div>
           </div>
           <div style="margin-top:10px">
-            <div class="ap-title">Hızlı Sor</div>
+            <div class="ap-title">HIZLI SORGULA</div>
             <div style="display:flex;flex-direction:column;gap:4px">
               <button class="cq" style="text-align:left;width:100%;font-size:11px;padding:6px 10px" onclick="goPage('aibot');botQ('Seçili varlığı detaylı analiz et')">🔍 Bu varlığı analiz et</button>
               <button class="cq" style="text-align:left;width:100%;font-size:11px;padding:6px 10px" onclick="goPage('aibot');botQ('Bugün piyasalarda neler oldu?')">📰 Günlük özet</button>
@@ -486,7 +560,7 @@ a{text-decoration:none;color:inherit}
   <div class="scanner-wrap">
     <div class="scanner-hdr">
       <div>
-        <div style="font-size:18px;font-weight:800;letter-spacing:-.5px">Piyasa Tarayıcı</div>
+        <div style="font-size:14px;font-weight:800;letter-spacing:3px;color:var(--text)">PİYASA TARAYICI</div>
         <div style="font-size:12px;color:var(--text2);margin-top:2px">Breakout adayları ve yüksek fırsat potansiyelli varlıklar</div>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
@@ -496,13 +570,13 @@ a{text-decoration:none;color:inherit}
     </div>
     <div class="scanner-filters">
       <button class="sf on" onclick="setScanFilter('all',this)">Tümü</button>
-      <button class="sf" onclick="setScanFilter('crypto',this)">🪙 Kripto</button>
-      <button class="sf" onclick="setScanFilter('stock',this)">📈 BIST</button>
-      <button class="sf" onclick="setScanFilter('gold',this)">🥇 Altın</button>
-      <button class="sf" onclick="setScanFilter('buy',this)">🟢 AL Sinyali</button>
-      <button class="sf" onclick="setScanFilter('watch',this)">👁 İzle</button>
-      <button class="sf" onclick="setScanFilter('breakout',this)">⚡ Breakout</button>
-      <button class="sf" onclick="setScanFilter('highconf',this)">⭐ Yüksek Güven 65+</button>
+      <button class="sf" onclick="setScanFilter('crypto',this)">Kripto</button>
+      <button class="sf" onclick="setScanFilter('stock',this)">BIST</button>
+      <button class="sf" onclick="setScanFilter('gold',this)">Altın</button>
+      <button class="sf" onclick="setScanFilter('buy',this)">AL Sinyali</button>
+      <button class="sf" onclick="setScanFilter('watch',this)">İzle</button>
+      <button class="sf" onclick="setScanFilter('breakout',this)">Breakout</button>
+      <button class="sf" onclick="setScanFilter('highconf',this)">Güven 65+</button>
     </div>
     <div id="scanner-out"></div>
   </div>
@@ -514,21 +588,21 @@ a{text-decoration:none;color:inherit}
 <div id="page-aibot" class="page">
   <div class="bot-page">
     <div class="summary-col">
-      <div style="font-size:16px;font-weight:800;letter-spacing:-.3px;margin-bottom:12px">📋 Günlük Piyasa Özeti</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:3px;color:var(--gold);margin-bottom:12px">GÜNLÜK PİYASA ÖZETİ</div>
       <div class="sum-card">
-        <div class="sum-card-t">📊 Kripto Piyasası</div>
+        <div class="sum-card-t">KRİPTO PİYASASI</div>
         <div class="sum-body" id="sum-crypto"><span class="loading-anim dim">AI analiz yapıyor...</span></div>
       </div>
       <div class="sum-card">
-        <div class="sum-card-t">🏭 BIST Piyasası</div>
+        <div class="sum-card-t">BIST PİYASASI</div>
         <div class="sum-body" id="sum-bist"><span class="loading-anim dim">AI analiz yapıyor...</span></div>
       </div>
       <div class="sum-card">
-        <div class="sum-card-t">🥇 Altın & Emtia</div>
+        <div class="sum-card-t">Altın & Emtia</div>
         <div class="sum-body" id="sum-gold"><span class="loading-anim dim">AI analiz yapıyor...</span></div>
       </div>
       <div class="sum-card">
-        <div class="sum-card-t">📰 Öne Çıkan Gelişmeler</div>
+        <div class="sum-card-t">ÖNE ÇIKAN GELİŞMELER</div>
         <div class="sum-body" id="sum-news"><span class="loading-anim dim">Haberler analiz ediliyor...</span></div>
       </div>
       <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="genSummary()">🔄 Özeti Yenile</button>
@@ -543,17 +617,34 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="chat-msgs" id="bot-msgs">
         <div id="bot-welcome" style="text-align:center;padding:24px 12px">
-          <div style="font-size:32px;margin-bottom:8px">🤖</div>
-          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Trading AI Asistanı</div>
-          <div style="font-size:11px;color:var(--text2);line-height:1.65">Günlük piyasa özeti, teknik analiz, breakout adayları ve tüm borsa sorularınız için.<br>Sadece finans ve borsa konularında yanıt veririm.</div>
+          <svg width="40" height="40" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:10px">
+  <polygon points="14,2 26,24 2,24" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+  <polygon points="14,8 22,22 6,22" fill="none" stroke="#D4AF37" stroke-width="1"/>
+  <line x1="14" y1="8" x2="14" y2="16" stroke="#D4AF37" stroke-width="1"/>
+  <line x1="10" y1="16" x2="18" y2="16" stroke="#D4AF37" stroke-width="1"/>
+  <circle cx="10" cy="16" r="1.2" fill="#D4AF37"/>
+  <circle cx="18" cy="16" r="1.2" fill="#D4AF37"/>
+  <circle cx="14" cy="8" r="1.2" fill="#D4AF37"/>
+</svg>
+          <div style="font-size:13px;font-weight:800;letter-spacing:2px;color:var(--gold);margin-bottom:6px">TRDAI v2.0</div>
+          <div style="font-size:10px;color:var(--text3);letter-spacing:1px;margin-bottom:10px">PREMIUM TRADING INTELLIGENCE</div>
+          <div style="font-size:11px;color:var(--text2);line-height:1.75;text-align:left;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px">
+            Her setup için:<br>
+            ✓ Entry / Stop / Target seviyeleri<br>
+            ✓ Risk yönetimi + position sizing<br>
+            ✓ Makro bağlam + haber uyarıları<br>
+            ✓ Şeffaf metodoloji + backtest<br><br>
+            <span style="color:var(--gold);font-weight:600">Ne yapmak istiyorsun?</span><br>
+            <span style="color:var(--text3)">"BTC analizi" · "Risk hesapla" · "Günlük özet" · "Trade journal"</span>
+          </div>
         </div>
       </div>
       <div class="chat-qs">
-        <button class="cq" onclick="botQ('Bugün kripto piyasasında neler oldu?')">Günlük özet</button>
-        <button class="cq" onclick="botQ('En güçlü breakout adayı hangi coin?')">Breakout</button>
-        <button class="cq" onclick="botQ('BTC için RSI MACD EMA analizi yap')">BTC analiz</button>
-        <button class="cq" onclick="botQ('BIST bugün nasıl seyretti?')">BIST</button>
-        <button class="cq" onclick="botQ('Altın için makro görünüm nedir?')">Altın</button>
+        <button class="cq" onclick="botQ('Günlük piyasa özeti ver, BTC BIST ve Altın dahil')">Günlük Özet</button>
+        <button class="cq" onclick="botQ('En güçlü 3 breakout adayını listele ve gerekçelerini açıkla')">Top 3 Setup</button>
+        <button class="cq" onclick="botQ('BTC için 4 bölüm format ile tam analiz: Bulgu, Gerekçe, Risk, Setup')">BTC Analiz</button>
+        <button class="cq" onclick="botQ('BIST bugün ne yaptı? THYAO ASELS GARAN gibi hisselerde durum nedir?')">BIST</button>
+        <button class="cq" onclick="botQ('Risk yönetimi coaching ver, position sizing formülü açıkla')">Risk Coaching</button>
       </div>
       <div class="chat-inp">
         <textarea class="chat-ta" id="bot-inp" placeholder="Piyasa sorusu sor..." rows="1" onkeydown="bKey(event)" oninput="bResize(this)"></textarea>
@@ -568,7 +659,7 @@ a{text-decoration:none;color:inherit}
 ══════════════════════════════════════ -->
 <div id="page-settings" class="page">
   <div class="settings-wrap">
-    <div style="font-size:18px;font-weight:800;margin-bottom:16px">⚙️ Platform Ayarları</div>
+    <div style="font-size:14px;font-weight:800;letter-spacing:2px;margin-bottom:16px;color:var(--gold)">PLATFORM AYARLARI</div>
     <div class="set-card">
       <div class="set-title">Telegram Bildirimleri</div>
       <div class="inp-row">
@@ -591,12 +682,70 @@ a{text-decoration:none;color:inherit}
       <div style="font-size:10px;color:var(--text3);margin-top:6px">console.groq.com → ücretsiz kayıt → API Keys → Create Key</div>
     </div>
     <div class="set-card">
+      <div class="set-title">💰 Position Sizing Hesaplayıcı</div>
+      <div style="font-size:11px;color:var(--text2);margin-bottom:12px;line-height:1.6">Portföyünüzün kaç birimini riske atmanız gerektiğini hesaplar. (Risk: maks %2-3)</div>
+      <div class="inp-row">
+        <div class="inp-g"><label class="inp-lbl">Portföy Değeri ($)</label><input class="inp" id="ps-portfolio" placeholder="10000" type="number"></div>
+        <div class="inp-g"><label class="inp-lbl">Risk Yüzdesi (%)</label><input class="inp" id="ps-risk" placeholder="2" type="number" step="0.5" value="2"></div>
+      </div>
+      <div class="inp-row">
+        <div class="inp-g"><label class="inp-lbl">Giriş Fiyatı ($)</label><input class="inp" id="ps-entry" placeholder="72000" type="number"></div>
+        <div class="inp-g"><label class="inp-lbl">Stop Loss ($)</label><input class="inp" id="ps-stop" placeholder="70000" type="number"></div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="calcPosition()" style="margin-bottom:10px">📐 Hesapla</button>
+      <div id="ps-result" style="display:none;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r8);padding:12px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div class="d-item"><div class="d-lbl">Risk Tutarı</div><div class="d-val red" id="ps-risk-amt">—</div></div>
+          <div class="d-item"><div class="d-lbl">Pozisyon Büyüklüğü</div><div class="d-val green" id="ps-size">—</div></div>
+          <div class="d-item"><div class="d-lbl">Lot Miktarı</div><div class="d-val indigo" id="ps-lots">—</div></div>
+          <div class="d-item"><div class="d-lbl">Risk/Ödül</div><div class="d-val" id="ps-rr">—</div></div>
+        </div>
+        <div style="font-size:10px;color:var(--text3);margin-top:8px">⚠️ Bu hesaplama bilgilendirme amaçlıdır. Yatırım tavsiyesi değildir.</div>
+      </div>
+    </div>
+    <div class="set-card">
       <div class="set-title">Güncelleme Ayarları</div>
       <div class="inp-row">
         <div class="inp-g"><label class="inp-lbl">Kripto güncelleme (sn)</label><input class="inp" id="crypto-interval" value="60" type="number" min="30" max="300"></div>
         <div class="inp-g"><label class="inp-lbl">Haber yenileme (dk)</label><input class="inp" id="news-interval" value="5" type="number" min="1" max="60"></div>
       </div>
       <button class="btn btn-primary btn-sm" onclick="saveSettings()">💾 Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<!-- METHODOLOGY MODAL -->
+<div id="method-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);padding:20px;overflow-y:auto">
+  <div style="max-width:700px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:28px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <div style="font-size:18px;font-weight:800;color:var(--gold)">△ TRDAI — Analiz Metodolojisi</div>
+      <button onclick="document.getElementById('method-modal').style.display='none'" style="background:transparent;border:none;color:var(--text2);font-size:20px;cursor:pointer">✕</button>
+    </div>
+    <div style="font-size:12px;color:var(--text2);line-height:1.8">
+      <div style="margin-bottom:16px"><div style="color:var(--gold);font-weight:700;margin-bottom:6px">📊 Confidence Score Hesabı</div>
+      <div>Her sinyal 6 faktörün ağırlıklı ortalamasıyla hesaplanır:</div>
+      <div style="background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:11px">
+        Trend Gücü      → %25 ağırlık<br>
+        Momentum        → %20 ağırlık<br>
+        Hacim Onayı     → %15 ağırlık<br>
+        Destek/Direnç   → %15 ağırlık<br>
+        Volatilite      → %10 ağırlık<br>
+        MTF Uyumu       → %15 ağırlık
+      </div></div>
+      <div style="margin-bottom:16px"><div style="color:var(--gold);font-weight:700;margin-bottom:6px">🎯 Sinyal Üretim Mantığı</div>
+      <div>• Güçlü trend + momentum + hacim + uygun R/R → 🟢 AL<br>
+      • Zayıf trend + direnç bölgesi + düşen momentum → 🔴 SAT<br>
+      • BB sıkışması + düşük volatilite → Breakout Adayı<br>
+      • R/R 1.5 altında kalırsa sinyal BEKLE'ye çekilir</div></div>
+      <div style="margin-bottom:16px"><div style="color:var(--gold);font-weight:700;margin-bottom:6px">📡 Veri Kaynakları</div>
+      <div>• Kripto: CoinGecko API (gerçek zamanlı)<br>
+      • BIST: Yahoo Finance (15 dakika gecikmeli)<br>
+      • Altın: Yahoo Finance (gerçek zamanlı)<br>
+      • Haberler: CoinGecko News API (5dk yenileme)</div></div>
+      <div style="background:rgba(255,59,48,.05);border:1px solid rgba(255,59,48,.15);border-radius:8px;padding:12px">
+        <div style="color:var(--red2);font-weight:700;margin-bottom:4px">⚠️ Yasal Uyarı</div>
+        <div style="font-size:11px">TRDAI yatırım tavsiyesi vermez. Üretilen sinyaller bilgilendirme amaçlıdır. Geçmiş performans gelecekteki sonuçları garanti etmez. Tüm yatırım kararları kullanıcıya aittir.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -1014,40 +1163,55 @@ const engine = {
 // ═══════════════════════════════════════════════════════════
 // TRADINGVIEW WIDGET
 // ═══════════════════════════════════════════════════════════
-function loadTV(sym, type, tf) {
-  const container = document.getElementById("tv-container");
-  if(!container) return;
-  container.innerHTML = "";
-  let tvSym;
-  if(type==="crypto") tvSym = "BINANCE:" + sym + "USDT";
-  else if(type==="stock") tvSym = "BIST:" + sym;
-  else if(type==="gold") tvSym = sym==="XAU"||sym==="ALTIN" ? "OANDA:XAUUSD" : sym==="XAG"||sym==="GUMUS" ? "OANDA:XAGUSD" : "OANDA:XAUUSD";
-  else tvSym = "BINANCE:BTCUSDT";
+function getTVSymbol(sym,type){
+  if(type==="crypto") return "BINANCE:"+sym+"USDT";
+  if(type==="stock")  return "BIST:"+sym;
+  if(type==="gold")   return sym==="XAU"||sym==="ALTIN"?"OANDA:XAUUSD":sym==="XAG"||sym==="GUMUS"?"OANDA:XAGUSD":"OANDA:XAUUSD";
+  return "BINANCE:BTCUSDT";
+}
 
-  try {
+function loadTV(sym,type,tf){
+  const studies=[];
+  if(document.getElementById('tog-rsi')?.checked)  studies.push('RSI@tv-basicstudies');
+  if(document.getElementById('tog-macd')?.checked) studies.push('MACD@tv-basicstudies');
+  if(document.getElementById('tog-bb')?.checked)   studies.push('BB@tv-basicstudies');
+  if(document.getElementById('tog-ema')?.checked)  studies.push('MAExp@tv-basicstudies');
+  if(document.getElementById('tog-vol')?.checked)  studies.push('Volume@tv-basicstudies');
+  if(document.getElementById('tog-vwap')?.checked) studies.push('VWAP@tv-basicstudies');
+  if(!studies.length) studies.push('RSI@tv-basicstudies','MACD@tv-basicstudies','BB@tv-basicstudies');
+  const styleEl=document.querySelector('input[name="chart-style"]:checked');
+  const style=styleEl?parseInt(styleEl.value):1;
+  loadTVWithStudies(sym,type,tf,studies,style);
+}
+
+function loadTVWithStudies(sym,type,tf,studies,style){
+  const container=document.getElementById("tv-container");
+  if(!container) return;
+  container.innerHTML="";
+  const tvSym=getTVSymbol(sym,type);
+  try{
     new TradingView.widget({
       autosize:true, symbol:tvSym, interval:tf,
-      timezone:"Europe/Istanbul", theme:"dark", style:"1", locale:"tr",
-      toolbar_bg:"#07070f", enable_publishing:false,
+      timezone:"Europe/Istanbul", theme:"dark", style:String(style||1), locale:"tr",
+      toolbar_bg:"#0a0a0a", enable_publishing:false,
       hide_side_toolbar:false, allow_symbol_change:false,
       container_id:"tv-container",
-      studies:["RSI@tv-basicstudies","MACD@tv-basicstudies","BB@tv-basicstudies"],
+      studies:studies,
       overrides:{
-        "paneProperties.background":"#030308",
-        "paneProperties.vertGridProperties.color":"rgba(99,102,241,0.04)",
-        "paneProperties.horzGridProperties.color":"rgba(99,102,241,0.04)",
-        "mainSeriesProperties.candleStyle.upColor":"#10b981",
-        "mainSeriesProperties.candleStyle.downColor":"#ef4444",
-        "mainSeriesProperties.candleStyle.wickUpColor":"#10b981",
-        "mainSeriesProperties.candleStyle.wickDownColor":"#ef4444",
-        "mainSeriesProperties.candleStyle.borderUpColor":"#10b981",
-        "mainSeriesProperties.candleStyle.borderDownColor":"#ef4444",
-        "scalesProperties.textColor":"#484870",
+        "paneProperties.background":"#0a0a0a",
+        "paneProperties.vertGridProperties.color":"rgba(212,175,55,0.03)",
+        "paneProperties.horzGridProperties.color":"rgba(212,175,55,0.03)",
+        "mainSeriesProperties.candleStyle.upColor":"#00C851",
+        "mainSeriesProperties.candleStyle.downColor":"#FF3B30",
+        "mainSeriesProperties.candleStyle.wickUpColor":"#00C851",
+        "mainSeriesProperties.candleStyle.wickDownColor":"#FF3B30",
+        "mainSeriesProperties.candleStyle.borderUpColor":"#00C851",
+        "mainSeriesProperties.candleStyle.borderDownColor":"#FF3B30",
+        "scalesProperties.textColor":"#5a5040",
+        "paneProperties.legendProperties.showSeriesTitle":true,
       },
     });
-  } catch(e) {
-    setTimeout(()=>loadTV(sym,type,tf), 2500);
-  }
+  }catch(e){setTimeout(()=>loadTVWithStudies(sym,type,tf,studies,style),2500);}
 }
 
 function setTf(tf, btn) {
@@ -1148,11 +1312,11 @@ function renderSidebar() {
     filtered.forEach(a => {
       const price = S.coinData[a.id]?.usd || S.bistData[a.id]?.price || S.goldData[a.id]?.price || S.priceHist[a.id]?.[S.priceHist[a.id].length-1] || 0;
       const chg = S.coinData[a.id]?.usd_24h_change || S.bistData[a.id]?.chg || S.goldData[a.id]?.chg || 0;
-      const icon = type==="crypto"?"🪙":type==="stock"?"📈":"🥇";
+      const icon = type==="crypto"?"◈":type==="stock"?"▣":"◆";
       const bgCol = MARKET_COLORS[type]||MARKET_COLORS.crypto;
       html += `<div class="a-item ${S.selected.id===a.id?"sel":""}" onclick="selectAsset({id:'${a.id}',sym:'${a.sym}',name:'${a.name.replace(/'/g,"\'")}',type:'${type}'})">
         <div class="a-item-l">
-          <div class="a-ico" style="background:${bgCol}">${icon}</div>
+          <div class="a-ico" style="background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.12);color:var(--gold);font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace">${icon}</div>
           <div><div class="a-sym">${a.sym}</div><div class="a-name">${a.name}</div></div>
         </div>
         <div class="a-item-r">
@@ -1163,9 +1327,9 @@ function renderSidebar() {
     });
   };
 
-  addGroup("🪙 KRİPTO", CRYPTO_ASSETS, "crypto");
-  addGroup("📈 BIST HİSSELERİ", BIST_ASSETS, "stock");
-  addGroup("🥇 ALTIN & EMTİA", GOLD_ASSETS, "gold");
+  addGroup("KRİPTO", CRYPTO_ASSETS, "crypto");
+  addGroup("BIST HİSSELERİ", BIST_ASSETS, "stock");
+  addGroup("ALTIN & EMTİA", GOLD_ASSETS, "gold");
   el.innerHTML = html;
 }
 
@@ -1186,20 +1350,20 @@ function buildCard(asset, res, price, chg) {
   const mCls={crypto:"mt-crypto",stock:"mt-stock",gold:"mt-gold"};
   const sLabels={buy:"AL",sell:"SAT",hold:"BEKLE",watch:"İZLE"};
   const sCls={buy:"s-buy",sell:"s-sell",hold:"s-hold",watch:"s-watch"};
-  const sIcon={buy:"🟢",sell:"🔴",hold:"🟡",watch:"👁"};
+  const sIcon={buy:"▲",sell:"▼",hold:"—",watch:"◎"};
   const confColor=res.conf>=65?"var(--green2)":res.conf>=45?"var(--yellow2)":"var(--red2)";
   const bgCol=MARKET_COLORS[asset.type||"crypto"]||MARKET_COLORS.crypto;
-  const icon=asset.type==="crypto"?"🪙":asset.type==="stock"?"📈":"🥇";
+  const icon=asset.type==="crypto"?"◈":asset.type==="stock"?"▣":"◆";
   const cid="c-"+asset.id;
 
   return `<div class="ac" id="${cid}">
     <div class="ac-hdr">
-      <div class="ac-ico" style="background:${bgCol}">${icon}</div>
+      <div class="ac-ico" style="background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.12);color:var(--gold);font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace">${icon}</div>
       <div class="ac-inf">
         <div class="ac-r1">
           <div style="display:flex;align-items:center;gap:5px">
             <span class="ac-sym">${asset.sym}</span>
-            ${res.isBreakout?`<span class="btag">⚡ Breakout</span>`:""}
+            ${res.isBreakout?`<span class="btag">Breakout</span>`:""}
           </div>
           <span class="stag ${sCls[res.sig]}">${sIcon[res.sig]} ${sLabels[res.sig]}</span>
         </div>
@@ -1463,7 +1627,36 @@ function saveSettings(){localStorage.setItem("crypto-interval",document.getEleme
 function loadSettings(){const m={"tg_token":"tg-token","tg_chat":"tg-chat","groq_key":"groq-key","crypto-interval":"crypto-interval","news-interval":"news-interval"};Object.entries(m).forEach(([k,id])=>{const v=localStorage.getItem(k),el=document.getElementById(id);if(v&&el)el.value=v;});}
 async function testGroq(){const key=document.getElementById("groq-key").value||localStorage.getItem("groq_key")||"";if(!key){alert("Önce key gir!");return;}try{const r=await fetch(PROXY,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({system:"Trading uzmanısın.",messages:[{role:"user",content:"Merhaba"}],apiKey:key})});const d=await r.json();if(d.error)throw new Error(d.error.message);alert("✅ Bağlantı başarılı!");localStorage.setItem("groq_key",key);}catch(e){alert("❌ Hata: "+e.message);}}
 
-const BOT_SYS=`Sen ileri seviye bir kripto, BIST hisse ve emtia piyasaları analiz uzmanısın. SADECE finans ve borsa konularında yardım et. Türkçe, profesyonel, net yaz. "potansiyel", "olası", "teknik olarak" gibi ifadeler kullan. 🟢 AL, 🔴 SAT, 🟡 BEKLE kullan. Risk uyarısı ekle.`;
+const BOT_SYS=`Sen TRDAI, premium trading intelligence asistanısın. Versiyon 2.0.
+
+KİMLİĞİN: Profesyonel piyasa analisti ve trading koçu. Borsa (BIST) + Kripto + Altın uzmanı. Risk yönetimi danışmanı.
+
+SADECE finans ve borsa konularında yardım et. Borsa dışı konularda: "Bu konu uzmanlık alanımın dışında." de.
+
+ZORUNLU ANALİZ FORMATI — Her analizde bu 4 bölüm zorunlu:
+
+📍 BULGU: Tek cümle. Net gözlem. Şu an ne görüyorum? (Spesifik fiyat ve indikatör değerleri ile)
+
+📊 GEREKÇELERİ: 2-3 madde, data-backed. RSI/MACD/EMA/hacim/BB değerleri ile. Her madde neden önemli olduğunu açıklasın.
+
+⚖️ RİSK VE GÜVENİLİRLİK: Güven % (DÜŞÜK 40-49 / ORTA 50-69 / YÜKSEK 70+). En az 2 risk faktörü. Invalidation level (hangi fiyatta setup geçersiz). Geçerlilik süresi.
+
+🎯 SENARYO ANALİZİ: Yükseliş (X%) / Yatay (X%) / Düşüş (X%) - koşul ve hedef ile. Setup detayları (entry/stop/TP) sadece güven >50% ise.
+
+ÖZEL MODLAR:
+- "Trade journal: [entry/exit bilgileri]" yazarsa → geçmiş trade analizi + coaching
+- "Risk hesapla: [portföy/risk%/entry/stop]" yazarsa → position sizing hesapla
+- "Multi-timeframe: [varlık]" yazarsa → 5m/1h/4h/1g karşılaştırmalı analiz
+- "En iyi fırsat" yazarsa → Top 3 setup önerisi ile gerekçe
+
+DİL KURALLARI:
+✅ Kullan: potansiyel, olası, en muhtemel senaryo, tarihsel olarak, data gösteriyor, teknik olarak güçlü
+❌ YASAK: kesin çıkar, garanti, al hemen, fırsat kaçacak, uçacak, herkes kazanıyor
+✅ Her analizde: Güven yüzdesi + invalidation level + risk uyarısı
+
+KİŞİLİK: Expertise ile konuş kibir değil. Belirsizliği açıkça kabul et. Açıkla ikna etme. Trader güvenliğini hype'tan önce tut. Türkçe birincil. Max 3 paragraf (derin analiz istenmedikçe).
+
+Her analizin sonunda: Bu bilgilendirme amaçlıdır yatırım tavsiyesi değildir.`
 async function botCall(msg){const key=localStorage.getItem("groq_key")||"";const btc=S.coinData["bitcoin"]?.usd;const ctx=btc?` [${S.selected.sym} seçili, BTC $${btc}, ${fmt.time()}]`:"";S.botHist.push({role:"user",content:msg+ctx});try{const r=await fetch(PROXY,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({system:BOT_SYS,messages:S.botHist,apiKey:key})});const d=await r.json();if(d.error)throw new Error(d.error.message||JSON.stringify(d.error));const reply=d.choices?.[0]?.message?.content||"Yanıt alınamadı.";S.botHist.push({role:"assistant",content:reply});if(S.botHist.length>20)S.botHist=S.botHist.slice(-20);return reply;}catch(e){S.botHist.pop();return "⚠️ "+e.message;}}
 function botFmt(t){return t.replace(/\*\*(.*?)\*\*/g,'<b>$1</b>').replace(/🟢(.*?)(\n|$)/g,'<span class="bull-t">🟢$1</span><br>').replace(/🔴(.*?)(\n|$)/g,'<span class="bear-t">🔴$1</span><br>').replace(/`(.*?)`/g,'<code style="font-family:\'JetBrains Mono\',monospace;font-size:10px;background:var(--bg3);padding:1px 4px;border-radius:3px">$1</code>').replace(/\n/g,'<br>');}
 function botAdd(role,text,isHtml){const w=document.getElementById("bot-welcome");if(w)w.remove();const msgs=document.getElementById("bot-msgs");if(!msgs)return;const div=document.createElement("div");div.className="cmsg "+role;const av=document.createElement("div");av.className="cav "+(role==="bot"?"bot":"usr");av.textContent=role==="bot"?"🤖":"👤";const bbl=document.createElement("div");bbl.className="cbbl";if(isHtml)bbl.innerHTML=text;else bbl.textContent=text;div.appendChild(av);div.appendChild(bbl);msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;}
@@ -1479,6 +1672,88 @@ function sbFlt(t,btn){S.sbFilter=t;document.querySelectorAll(".sbf").forEach(b=>
 function filterSidebar(q){S.searchQ=q;renderSidebar();}
 function togglePremium(){S.isPremium=!S.isPremium;document.querySelectorAll(".prem-overlay").forEach(el=>el.style.display=S.isPremium?"none":"flex");document.querySelectorAll(".prem-blur").forEach(el=>el.style.filter=S.isPremium?"none":"blur(5px)");const btn=document.getElementById("prem-btn");if(btn)btn.textContent=S.isPremium?"🔓 Pro":"🔒 Demo";}
 function startClock(){const el=document.getElementById("nav-clock");setInterval(()=>{if(el)el.textContent=fmt.time();},1000);}
+
+function calcPosition(){
+  const port=parseFloat(document.getElementById('ps-portfolio').value)||0;
+  const riskPct=parseFloat(document.getElementById('ps-risk').value)||2;
+  const entry=parseFloat(document.getElementById('ps-entry').value)||0;
+  const stop=parseFloat(document.getElementById('ps-stop').value)||0;
+  if(!port||!entry||!stop){alert('Tüm alanları doldur!');return;}
+  const riskAmt=port*(riskPct/100);
+  const diff=Math.abs(entry-stop);
+  const lots=diff>0?riskAmt/diff:0;
+  const posSize=lots*entry;
+  const el=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  el('ps-risk-amt','$'+riskAmt.toFixed(2));
+  el('ps-size','$'+posSize.toFixed(2));
+  el('ps-lots',lots.toFixed(4)+' birim');
+  el('ps-rr','1:'+(diff>0?(Math.abs(entry-stop)*1.5/diff).toFixed(1):'—'));
+  document.getElementById('ps-result').style.display='block';
+}
+
+// ── Chart expand toggle ──
+function toggleChart(){
+  const mc = document.querySelector('.mc');
+  const wrap = document.getElementById('tv-wrap');
+  const btn = document.getElementById('chart-expand-btn');
+  if(!mc||!wrap) return;
+  const isExp = mc.classList.toggle('chart-expanded');
+  btn.textContent = isExp ? '⤡' : '⤢';
+  btn.title = isExp ? 'Küçült' : 'Büyüt';
+}
+
+// ── Indicator dropdown toggle ──
+function toggleIndicators(){
+  const dd = document.getElementById('ind-dropdown');
+  if(!dd) return;
+  dd.style.display = dd.style.display==='none'?'block':'none';
+}
+// Dışarı tıklayınca kapat
+document.addEventListener('click', e=>{
+  const dd=document.getElementById('ind-dropdown');
+  const btn=document.getElementById('ind-btn');
+  if(dd&&btn&&!dd.contains(e.target)&&!btn.contains(e.target)){dd.style.display='none';}
+});
+
+// ── Reload TV with selected indicators ──
+function reloadTV(){
+  const studies=[];
+  if(document.getElementById('tog-rsi')?.checked)   studies.push('RSI@tv-basicstudies');
+  if(document.getElementById('tog-macd')?.checked)  studies.push('MACD@tv-basicstudies');
+  if(document.getElementById('tog-bb')?.checked)    studies.push('BB@tv-basicstudies');
+  if(document.getElementById('tog-ema')?.checked)   studies.push('MAExp@tv-basicstudies');
+  if(document.getElementById('tog-vol')?.checked)   studies.push('Volume@tv-basicstudies');
+  if(document.getElementById('tog-vwap')?.checked)  studies.push('VWAP@tv-basicstudies');
+  const styleEl=document.querySelector('input[name="chart-style"]:checked');
+  const style=styleEl?parseInt(styleEl.value):1;
+  loadTVWithStudies(S.selected.sym,S.selected.type,S.tf,studies,style);
+  document.getElementById('ind-dropdown').style.display='none';
+}
+
+// ── Touch/mouse drag resize ──
+(function(){
+  let dragging=false, startY=0, startH=0;
+  const handle=document.getElementById('chart-drag');
+  const wrap=document.getElementById('tv-wrap');
+  if(!handle||!wrap) return;
+  const onStart=e=>{
+    dragging=true;startY=e.touches?e.touches[0].clientY:e.clientY;
+    startH=wrap.offsetHeight;e.preventDefault();
+  };
+  const onMove=e=>{
+    if(!dragging) return;
+    const y=e.touches?e.touches[0].clientY:e.clientY;
+    const h=Math.max(180,Math.min(window.innerHeight*.85,startH+(y-startY)));
+    wrap.style.height=h+'px';
+  };
+  const onEnd=()=>{dragging=false;};
+  handle.addEventListener('mousedown',onStart);
+  handle.addEventListener('touchstart',onStart,{passive:false});
+  document.addEventListener('mousemove',onMove);
+  document.addEventListener('touchmove',onMove,{passive:true});
+  document.addEventListener('mouseup',onEnd);
+  document.addEventListener('touchend',onEnd);
+})();
 
 async function init(){
   loadSettings();startClock();renderSidebar();
