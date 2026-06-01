@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>CryptoBlast</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#1a1a2e;--bg2:#16213e;--panel:#0f3460;
+  --gold:#ffd700;--gold2:#ffaa00;
+  --text:#ffffff;--text2:rgba(255,255,255,.65);--text3:rgba(255,255,255,.35);
+}
+html,body{height:100%;width:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;touch-action:none}
+
+/* BG GRADIENT — changes with combo */
+#bg-layer{position:fixed;inset:0;z-index:0;transition:background 1.2s ease}
+.bg-0{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)}
+.bg-1{background:linear-gradient(135deg,#0d2137 0%,#1a4a1a 50%,#0d3d0d 100%)}
+.bg-2{background:linear-gradient(135deg,#2d1b00 0%,#4a2800 50%,#1a0d00 100%)}
+.bg-3{background:linear-gradient(135deg,#2a0040 0%,#1a0066 50%,#000066 100%)}
+.bg-4{background:linear-gradient(135deg,#400020 0%,#800000 40%,#400000 100%)}
+.bg-5{background:linear-gradient(135deg,#001a40 0%,#003380 50%,#001a40 100%)}
+
+/* PARTICLES BG */
+.star{position:fixed;border-radius:50%;pointer-events:none;animation:twinkle var(--d,3s) var(--dl,0s) infinite alternate}
+@keyframes twinkle{0%{opacity:.2;transform:scale(.8)}100%{opacity:.8;transform:scale(1.2)}}
+
+/* LAYOUT */
+#app{position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;padding:10px 8px 6px;gap:6px;max-width:440px;margin:0 auto}
+
+/* HEADER */
+.hdr{width:100%;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.logo{font-size:20px;font-weight:900;letter-spacing:-.5px}
+.logo .c1{color:#ffd700}.logo .c2{color:#00d4ff}
+.best-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:4px 10px;text-align:center}
+.best-lbl{font-size:8px;color:var(--text3);letter-spacing:1px;text-transform:uppercase}
+.best-val{font-size:14px;font-weight:800;color:var(--gold);font-family:'JetBrains Mono',monospace}
+
+/* SCORE PANEL */
+.score-panel{width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;flex-shrink:0}
+.sp{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:7px 8px;text-align:center;transition:all .3s}
+.sp.combo-glow{background:rgba(255,215,0,.15);border-color:rgba(255,215,0,.5);box-shadow:0 0 16px rgba(255,215,0,.3)}
+.sp-l{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:2px}
+.sp-v{font-size:20px;font-weight:900;color:var(--gold);font-family:'JetBrains Mono',monospace;line-height:1}
+.sp-v.flash{animation:flash-num .3s ease}
+@keyframes flash-num{0%{transform:scale(1.4);color:#fff}100%{transform:scale(1);color:var(--gold)}}
+
+/* STREAK BAR */
+.streak-wrap{width:100%;flex-shrink:0}
+.streak-bar{width:100%;height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.streak-fill{height:100%;border-radius:3px;transition:width .5s,background .5s;background:linear-gradient(90deg,#22c55e,#ffd700)}
+.streak-label{font-size:9px;color:var(--text3);text-align:right;margin-top:2px}
+
+/* GAME GRID */
+.grid-container{width:100%;flex-shrink:0;position:relative}
+#grid{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:3px;
+  background:rgba(0,0,0,.4);
+  border:2px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  padding:5px;
+  width:100%;
+  aspect-ratio:1;
+}
+.cell{
+  border-radius:5px;
+  aspect-ratio:1;
+  display:flex;align-items:center;justify-content:center;
+  font-size:clamp(9px,2.2vw,14px);
+  font-weight:700;
+  border:1.5px solid transparent;
+  transition:transform .08s,box-shadow .08s;
+  position:relative;
+  cursor:default;
+}
+.cell.empty{
+  background:rgba(255,255,255,.05);
+  border-color:rgba(255,255,255,.06);
+}
+.cell.filled{
+  background:var(--cc);
+  border-color:var(--cb);
+  box-shadow:0 1px 4px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.cell.ghost{
+  background:var(--cc);
+  opacity:.4;
+  border-color:var(--cb);
+  border-style:dashed;
+}
+.cell.invalid-ghost{
+  background:rgba(239,68,68,.3);
+  border-color:rgba(239,68,68,.6);
+  border-style:dashed;
+}
+.cell.clearing{animation:cell-clear .4s ease forwards}
+@keyframes cell-clear{
+  0%{transform:scale(1);opacity:1}
+  30%{transform:scale(1.3);box-shadow:0 0 20px var(--cc),0 0 40px var(--cc)}
+  100%{transform:scale(0);opacity:0}
+}
+.cell.land{animation:cell-land .2s ease}
+@keyframes cell-land{0%{transform:scale(.7);opacity:.6}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+
+/* PIECE TRAY */
+.tray{
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+  flex-shrink:0;
+}
+.piece-slot{
+  background:rgba(255,255,255,.06);
+  border:2px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  padding:8px 4px;
+  min-height:72px;
+  cursor:pointer;
+  transition:all .15s;
+  position:relative;
+}
+.piece-slot:active{transform:scale(.95)}
+.piece-slot.sel{
+  border-color:var(--gold)!important;
+  background:rgba(255,215,0,.1)!important;
+  box-shadow:0 0 16px rgba(255,215,0,.25);
+}
+.piece-slot.used{opacity:.25;cursor:default;filter:grayscale(.8)}
+.piece-slot.no-place{
+  border-color:rgba(239,68,68,.5)!important;
+  background:rgba(239,68,68,.08)!important;
+}
+.p-inner{display:inline-grid;gap:2.5px}
+.p-cell{border-radius:3.5px;width:clamp(10px,3.8vw,17px);height:clamp(10px,3.8vw,17px);background:var(--cc);border:1px solid var(--cb);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+.p-cell.p-empty{background:transparent;border:none;box-shadow:none}
+
+/* DRAGGING PIECE */
+#drag-piece{
+  position:fixed;z-index:9000;pointer-events:none;
+  display:none;
+  transition:none;
+  filter:drop-shadow(0 8px 24px rgba(0,0,0,.6));
+  transform-origin:top left;
+}
+#drag-piece .p-inner{gap:3px}
+#drag-piece .p-cell{
+  width:clamp(12px,4.5vw,20px);
+  height:clamp(12px,4.5vw,20px);
+  border-radius:5px;
+}
+
+/* TRDAI BAR */
+.trdai{
+  width:100%;
+  background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(0,212,255,.08));
+  border:1px solid rgba(255,215,0,.25);
+  border-radius:9px;padding:7px 12px;
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;flex-shrink:0;
+  transition:border-color .2s;
+}
+.trdai:hover{border-color:rgba(255,215,0,.5)}
+.trdai-t{font-size:11px;font-weight:700;color:var(--gold)}
+.trdai-s{font-size:9px;color:var(--text3);margin-top:1px}
+.trdai-btn{font-size:9px;font-weight:900;color:#000;background:var(--gold);padding:4px 10px;border-radius:5px;white-space:nowrap}
+
+/* OVERLAYS */
+.ov{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.85);backdrop-filter:blur(16px);padding:16px}
+.ov.hide{display:none}
+.ov-card{background:linear-gradient(145deg,#1e2a4a,#0f1a30);border:2px solid rgba(255,215,0,.3);border-radius:20px;padding:26px 22px;text-align:center;max-width:340px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)}
+.ov-icon{font-size:48px;margin-bottom:12px;display:block}
+.ov-title{font-size:22px;font-weight:900;margin-bottom:8px}
+.ov-sub{font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:18px}
+.big-sc{font-size:44px;font-weight:900;color:var(--gold);font-family:'JetBrains Mono',monospace;line-height:1}
+.big-lbl{font-size:9px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.stats-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 8px}
+.stat-v{font-size:22px;font-weight:900;color:var(--gold);font-family:'JetBrains Mono',monospace}
+.stat-l{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-top:2px}
+.ov-btns{display:flex;flex-direction:column;gap:8px}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;padding:13px;border-radius:10px;font-size:14px;font-weight:900;border:none;cursor:pointer;font-family:'Nunito',sans-serif;letter-spacing:.5px;transition:all .18s;width:100%}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,215,0,.35)}
+.btn-outline{background:transparent;border:2px solid rgba(255,255,255,.15);color:var(--text2);padding:11px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .18s;width:100%}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.reward-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);border-radius:100px;padding:5px 14px;font-size:10px;font-weight:800;color:#22c55e;margin-bottom:10px;letter-spacing:.5px}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.how-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 8px;text-align:center}
+.how-icon{font-size:22px;margin-bottom:5px}
+.how-t{font-size:11px;font-weight:700;color:var(--text)}
+.how-d{font-size:9px;color:var(--text3);margin-top:2px;line-height:1.4}
+
+/* COMBO FLASH */
+.combo-splash{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9998;pointer-events:none;animation:splash .7s ease forwards;text-align:center;white-space:nowrap}
+@keyframes splash{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}30%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}65%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.05)}}
+.splash-text{font-size:clamp(28px,8vw,52px);font-weight:900;text-shadow:0 0 30px currentColor,0 0 60px currentColor;font-family:'Nunito',sans-serif}
+
+/* SCORE POPUP */
+.sc-pop{position:absolute;font-size:15px;font-weight:900;pointer-events:none;animation:pop-fly .9s ease forwards;z-index:100;font-family:'JetBrains Mono',monospace;text-shadow:0 0 8px currentColor;white-space:nowrap}
+@keyframes pop-fly{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-65px) scale(.7);opacity:0}}
+
+/* PARTICLES */
+.pt{position:absolute;border-radius:50%;pointer-events:none;animation:pt-fly var(--d,.7s) ease forwards}
+@keyframes pt-fly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--x,0),var(--y,-60px)) scale(0);opacity:0}}
+
+/* LEVEL UP */
+.lvup-banner{position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:9997;background:linear-gradient(135deg,rgba(255,215,0,.2),rgba(139,92,246,.2));border:2px solid var(--gold);border-radius:12px;padding:8px 22px;font-size:14px;font-weight:900;color:var(--gold);pointer-events:none;animation:banner-anim 2.5s ease forwards;white-space:nowrap;box-shadow:0 0 24px rgba(255,215,0,.3)}
+@keyframes banner-anim{0%{opacity:0;transform:translateX(-50%) translateY(-15px)}15%{opacity:1;transform:translateX(-50%) translateY(0)}80%{opacity:1}100%{opacity:0;transform:translateX(-50%) translateY(-8px)}}
+</style>
+</head>
+<body>
+
+<div id="bg-layer" class="bg-0"></div>
+
+<!-- Stars -->
+<div id="stars"></div>
+
+<div id="app">
+  <div class="hdr">
+    <div class="logo"><span class="c1">Crypto</span><span class="c2">Blast</span></div>
+    <div class="best-box">
+      <div class="best-lbl">EN İYİ</div>
+      <div class="best-val" id="best-v">0</div>
+    </div>
+  </div>
+
+  <div class="score-panel">
+    <div class="sp" id="sp-score"><div class="sp-l">PUAN</div><div class="sp-v" id="sv-score">0</div></div>
+    <div class="sp" id="sp-level"><div class="sp-l">LEVEL</div><div class="sp-v" id="sv-level">1</div></div>
+    <div class="sp" id="sp-streak"><div class="sp-l">STREAK</div><div class="sp-v" id="sv-streak">0</div></div>
+  </div>
+
+  <div class="streak-wrap">
+    <div class="streak-bar"><div class="streak-fill" id="streak-fill" style="width:0%"></div></div>
+    <div class="streak-label" id="streak-label">Streak için satır temizle!</div>
+  </div>
+
+  <div class="grid-container">
+    <div id="grid"></div>
+  </div>
+
+  <div class="tray" id="tray"></div>
+
+  <div class="trdai" onclick="window.open('https://icardixik19.github.io/trading-ai-app/','_blank')">
+    <div><div class="trdai-t">△ TRDAI — Gerçek Kripto Analizi</div><div class="trdai-s">AI sinyal • RSI • MACD • Entry/Stop/TP</div></div>
+    <div class="trdai-btn">ÜCRETSİZ</div>
+  </div>
+</div>
+
+<!-- Drag piece -->
+<div id="drag-piece"><div class="p-inner" id="drag-inner"></div></div>
+
+<!-- START -->
+<div class="ov" id="ov-start">
+  <div class="ov-card">
+    <span class="ov-icon">🚀</span>
+    <div class="ov-title" style="background:linear-gradient(135deg,#ffd700,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">CryptoBlast</div>
+    <div class="how-grid">
+      <div class="how-item"><div class="how-icon">👆</div><div class="how-t">Sürükle</div><div class="how-d">Parçayı seç ve grida sürükle</div></div>
+      <div class="how-item"><div class="how-icon">📦</div><div class="how-t">Yerleştir</div><div class="how-d">Boş yere bırak</div></div>
+      <div class="how-item"><div class="how-icon">💥</div><div class="how-t">Patlat</div><div class="how-d">Tam satır/sütun dolunca</div></div>
+      <div class="how-item"><div class="how-icon">🔥</div><div class="how-t">Combo</div><div class="how-d">Aynı anda birden fazla temizle</div></div>
+    </div>
+    <div class="ov-btns">
+      <button class="btn-gold" onclick="startGame()">OYNA →</button>
+      <button class="btn-outline" onclick="window.open('https://icardixik19.github.io/trading-ai-app/','_blank')">△ TRDAI Trading Platformu</button>
+    </div>
+  </div>
+</div>
+
+<!-- GAME OVER -->
+<div class="ov hide" id="ov-go">
+  <div class="ov-card">
+    <span class="ov-icon">💀</span>
+    <div class="ov-title">Oyun Bitti!</div>
+    <div class="big-sc" id="go-sc">0</div>
+    <div class="big-lbl">TOPLAM PUAN</div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-v" id="go-lv">1</div><div class="stat-l">Level</div></div>
+      <div class="stat"><div class="stat-v" id="go-lines">0</div><div class="stat-l">Satır</div></div>
+      <div class="stat"><div class="stat-v" id="go-best">0</div><div class="stat-l">En İyi</div></div>
+      <div class="stat"><div class="stat-v" id="go-str">0</div><div class="stat-l">Max Streak</div></div>
+    </div>
+    <div id="go-reward" style="display:none;margin-bottom:12px">
+      <div class="reward-tag">🎁 ÖDÜL KAZANDIN!</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.65);line-height:1.6;margin-top:4px">TRDAI'da ücretsiz analiz kodu:<br><span id="go-promo" style="color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800">BLAST500</span></div>
+    </div>
+    <div class="ov-btns">
+      <button class="btn-gold" onclick="startGame()">TEKRAR OYNA</button>
+      <button class="btn-outline" onclick="window.open('https://icardixik19.github.io/trading-ai-app/','_blank')">△ TRDAI Analiz Platformu</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+// ═══════════════════════════════
+// COIN DEFINITIONS
+// ═══════════════════════════════
+const COINS=[
+  {s:'BTC',e:'₿',  c:'#f7931a',bg:'rgba(247,147,26,.9)',bd:'rgba(255,180,80,.7)'},
+  {s:'ETH',e:'Ξ',  c:'#8c9eff',bg:'rgba(98,126,234,.9)',bd:'rgba(140,158,255,.7)'},
+  {s:'SOL',e:'◎',  c:'#c77dff',bg:'rgba(153,69,255,.9)',bd:'rgba(199,125,255,.7)'},
+  {s:'BNB',e:'⬡',  c:'#f3ba2f',bg:'rgba(243,186,47,.9)',bd:'rgba(255,210,80,.7)'},
+  {s:'XRP',e:'✦',  c:'#00c2e0',bg:'rgba(0,170,228,.9)', bd:'rgba(0,210,240,.7)'},
+  {s:'ADA',e:'◈',  c:'#44b3ff',bg:'rgba(68,179,255,.9)',bd:'rgba(100,210,255,.7)'},
+  {s:'DOGE',e:'Ð', c:'#c8b400',bg:'rgba(200,180,40,.9)',bd:'rgba(240,220,60,.7)'},
+  {s:'AVAX',e:'▲', c:'#ff4444',bg:'rgba(232,65,66,.9)', bd:'rgba(255,100,100,.7)'},
+];
+
+// ═══════════════════════════════
+// PIECE SHAPES
+// ═══════════════════════════════
+// Each shape: array of [row,col] offsets from top-left
+const PIECE_DEFS=[
+  // Tiny (level 1-2)
+  {cells:[[0,0]],size:1},
+  {cells:[[0,0],[0,1]],size:1},
+  {cells:[[0,0],[1,0]],size:1},
+  {cells:[[0,0],[0,1],[0,2]],size:1},
+  {cells:[[0,0],[1,0],[2,0]],size:1},
+  {cells:[[0,0],[0,1],[1,0],[1,1]],size:2},
+  // Medium (level 2+)
+  {cells:[[0,0],[1,0],[2,0],[2,1]],size:2},
+  {cells:[[0,0],[1,0],[2,0],[0,1]],size:2},
+  {cells:[[0,0],[0,1],[0,2],[1,0]],size:2},
+  {cells:[[0,0],[0,1],[0,2],[1,2]],size:2},
+  {cells:[[0,0],[0,1],[1,1],[2,1]],size:2},
+  {cells:[[0,1],[1,0],[1,1],[2,0]],size:2},
+  {cells:[[0,0],[1,0],[1,1],[2,1]],size:2},
+  {cells:[[0,0],[0,1],[0,2],[1,1]],size:2},
+  {cells:[[0,1],[1,0],[1,1],[1,2]],size:2},
+  // Large (level 4+)
+  {cells:[[0,0],[0,1],[0,2],[1,0],[2,0]],size:3},
+  {cells:[[0,0],[0,1],[0,2],[1,2],[2,2]],size:3},
+  {cells:[[0,0],[1,0],[2,0],[2,1],[2,2]],size:3},
+  {cells:[[0,2],[1,2],[2,0],[2,1],[2,2]],size:3},
+  {cells:[[0,0],[0,1],[1,0],[1,1],[2,0],[2,1]],size:3},
+  {cells:[[0,0],[0,1],[0,2],[1,0],[1,1],[1,2]],size:3},
+  {cells:[[0,0],[1,0],[2,0],[0,1],[1,1],[2,1]],size:3},
+  {cells:[[0,0],[0,1],[0,2],[0,3]],size:3},
+  {cells:[[0,0],[1,0],[2,0],[3,0]],size:3},
+  {cells:[[0,0],[0,1],[0,2],[1,0],[1,1],[1,2],[2,0],[2,1],[2,2]],size:4},
+  // Plus
+  {cells:[[0,1],[1,0],[1,1],[1,2],[2,1]],size:3},
+  // T
+  {cells:[[0,0],[0,1],[0,2],[1,1],[2,1]],size:3},
+  {cells:[[0,1],[1,0],[1,1],[1,2],[2,1]],size:3},
+];
+
+function piecesForLevel(lvl){
+  if(lvl<=2) return PIECE_DEFS.slice(0,6);
+  if(lvl<=4) return PIECE_DEFS.slice(0,15);
+  if(lvl<=7) return PIECE_DEFS.slice(0,22);
+  return PIECE_DEFS;
+}
+function coinsForLevel(lvl){return Math.min(2+Math.floor(lvl/2),COINS.length);}
+
+// ═══════════════════════════════
+// GAME STATE
+// ═══════════════════════════════
+const GS=8;
+let G={
+  grid:null,score:0,best:0,level:1,streak:0,maxStreak:0,
+  lines:0,levelScore:0,gameOver:false,
+  pieces:[],selIdx:null,busy:false,
+};
+const LEVEL_THRESH=1200;
+
+function loadBest(){
+  try{G.best=parseInt(localStorage.getItem('cb2_best'))||0;}catch(e){}
+  document.getElementById('best-v').textContent=G.best.toLocaleString();
+}
+function saveBest(){
+  if(G.score>G.best){G.best=G.score;try{localStorage.setItem('cb2_best',G.best);}catch(e){}}
+  document.getElementById('best-v').textContent=G.best.toLocaleString();
+}
+
+// ═══════════════════════════════
+// STARS BACKGROUND
+// ═══════════════════════════════
+function buildStars(){
+  const c=document.getElementById('stars');c.innerHTML='';
+  for(let i=0;i<40;i++){
+    const s=document.createElement('div');s.className='star';
+    const sz=1+Math.random()*2;
+    s.style.cssText=`width:${sz}px;height:${sz}px;background:rgba(255,255,255,${.2+Math.random()*.5});left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--dl:${Math.random()*3}s`;
+    c.appendChild(s);
+  }
+}
+
+// ═══════════════════════════════
+// INIT
+// ═══════════════════════════════
+function startGame(){
+  document.getElementById('ov-start').classList.add('hide');
+  document.getElementById('ov-go').classList.add('hide');
+  G.grid=Array.from({length:GS},()=>Array(GS).fill(0));
+  G.score=0;G.level=1;G.streak=0;G.maxStreak=0;
+  G.lines=0;G.levelScore=0;G.gameOver=false;G.selIdx=null;G.busy=false;
+  setBG(0);
+  renderGrid([],[]);
+  dealPieces();
+  updateUI();
+}
+
+// ═══════════════════════════════
+// RENDER GRID
+// ═══════════════════════════════
+function renderGrid(ghostValid=[], ghostInvalid=[]){
+  const el=document.getElementById('grid');
+  el.innerHTML='';
+  const gvSet=new Set(ghostValid.map(([r,c])=>r+','+c));
+  const giSet=new Set(ghostInvalid.map(([r,c])=>r+','+c));
+  for(let r=0;r<GS;r++){
+    for(let c=0;c<GS;c++){
+      const cell=document.createElement('div');
+      cell.className='cell';
+      const key=r+','+c;
+      if(giSet.has(key)){
+        cell.classList.add('invalid-ghost');
+      } else if(gvSet.has(key)){
+        cell.classList.add('ghost');
+        if(G.selIdx!==null){
+          const coin=COINS[G.pieces[G.selIdx].coinIdx];
+          cell.style.setProperty('--cc',coin.bg);
+          cell.style.setProperty('--cb',coin.bd);
+        }
+      } else if(G.grid[r][c]){
+        cell.classList.add('filled');
+        const coin=COINS[G.grid[r][c]-1];
+        cell.style.setProperty('--cc',coin.bg);
+        cell.style.setProperty('--cb',coin.bd);
+        cell.textContent=coin.e;
+      } else {
+        cell.classList.add('empty');
+      }
+      cell.dataset.r=r;cell.dataset.c=c;
+      el.appendChild(cell);
+    }
+  }
+}
+
+function getCellEl(r,c){
+  return document.getElementById('grid').children[r*GS+c];
+}
+
+// ═══════════════════════════════
+// PIECES
+// ═══════════════════════════════
+function randPiece(){
+  const defs=piecesForLevel(G.level);
+  const def=defs[Math.floor(Math.random()*defs.length)];
+  const coinIdx=Math.floor(Math.random()*coinsForLevel(G.level));
+  // Get bounding box
+  const rows=def.cells.map(c=>c[0]),cols=def.cells.map(c=>c[1]);
+  const maxR=Math.max(...rows),maxC=Math.max(...cols);
+  return{cells:def.cells,coinIdx,used:false,rows:maxR+1,cols:maxC+1};
+}
+
+function dealPieces(){
+  G.pieces=[randPiece(),randPiece(),randPiece()];
+  G.selIdx=null;
+  renderTray();
+  checkAnyPlaceable();
+}
+
+function renderTray(){
+  const tray=document.getElementById('tray');
+  tray.innerHTML='';
+  G.pieces.forEach((p,i)=>{
+    const slot=document.createElement('div');
+    slot.className='piece-slot'+(p.used?' used':'')+(G.selIdx===i&&!p.used?' sel':'');
+    if(!p.used&&!canPlaceAnywhere(p)) slot.classList.add('no-place');
+
+    if(!p.used){
+      const coin=COINS[p.coinIdx];
+      const inner=document.createElement('div');
+      inner.className='p-inner';
+      inner.style.gridTemplateColumns=`repeat(${p.cols},1fr)`;
+      // Build 2D grid
+      const grid2=Array.from({length:p.rows},()=>Array(p.cols).fill(0));
+      p.cells.forEach(([r,c])=>grid2[r][c]=1);
+      grid2.forEach(row=>{
+        row.forEach(cell=>{
+          const pc=document.createElement('div');
+          if(cell){
+            pc.className='p-cell';
+            pc.style.setProperty('--cc',coin.bg);
+            pc.style.setProperty('--cb',coin.bd);
+          } else {
+            pc.className='p-cell p-empty';
+          }
+          inner.appendChild(pc);
+        });
+      });
+      slot.appendChild(inner);
+      // Touch+click events
+      slot.addEventListener('pointerdown',e=>onPieceDown(e,i));
+    }
+    tray.appendChild(slot);
+  });
+}
+
+// ═══════════════════════════════
+// DRAG & DROP
+// ═══════════════════════════════
+let drag={active:false,pieceIdx:-1,offsetX:0,offsetY:0};
+
+function onPieceDown(e,i){
+  if(G.pieces[i].used||G.gameOver||G.busy) return;
+  e.preventDefault();
+  G.selIdx=i;
+  renderTray();
+  drag.active=true;drag.pieceIdx=i;
+
+  // Build drag piece visual
+  const p=G.pieces[i];const coin=COINS[p.coinIdx];
+  const inner=document.getElementById('drag-inner');
+  inner.innerHTML='';
+  inner.style.gridTemplateColumns=`repeat(${p.cols},1fr)`;
+  const grid2=Array.from({length:p.rows},()=>Array(p.cols).fill(0));
+  p.cells.forEach(([r,c])=>grid2[r][c]=1);
+  grid2.forEach(row=>{
+    row.forEach(cell=>{
+      const pc=document.createElement('div');
+      if(cell){
+        pc.className='p-cell';
+        pc.style.setProperty('--cc',coin.bg);
+        pc.style.setProperty('--cb',coin.bd);
+      } else {
+        pc.className='p-cell p-empty';
+      }
+      inner.appendChild(pc);
+    });
+  });
+  const dp=document.getElementById('drag-piece');
+  dp.style.display='block';
+  moveDrag(e);
+}
+
+function moveDrag(e){
+  const dp=document.getElementById('drag-piece');
+  const x=(e.touches?e.touches[0].clientX:e.clientX);
+  const y=(e.touches?e.touches[0].clientY:e.clientY);
+  // Offset so finger is above piece
+  dp.style.left=(x-dp.offsetWidth/2-4)+'px';
+  dp.style.top=(y-dp.offsetHeight-20)+'px';
+  // Show ghost on grid
+  const cell=getGridCellAt(x,y);
+  if(cell&&G.selIdx!==null){
+    const {r,c}=cell;
+    const p=G.pieces[G.selIdx];
+    if(canPlace(p,r,c)){
+      const gv=p.cells.map(([dr,dc])=>[r+dr,c+dc]);
+      renderGrid(gv,[]);
+    } else {
+      // Show red ghost at closest valid or just red
+      const gv=[],gi=[];
+      p.cells.forEach(([dr,dc])=>{
+        const nr=r+dr,nc=c+dc;
+        if(nr>=0&&nr<GS&&nc>=0&&nc<GS) gi.push([nr,nc]);
+      });
+      renderGrid(gv,gi);
+    }
+  } else {
+    renderGrid([],[]);
+  }
+}
+
+function getGridCellAt(x,y){
+  const g=document.getElementById('grid');
+  const rect=g.getBoundingClientRect();
+  const cellW=rect.width/GS,cellH=rect.height/GS;
+  const lx=x-rect.left,ly=y-rect.top;
+  if(lx<0||ly<0||lx>rect.width||ly>rect.height) return null;
+  return{r:Math.floor(ly/cellH),c:Math.floor(lx/cellW)};
+}
+
+document.addEventListener('pointermove',e=>{
+  if(!drag.active)return;
+  e.preventDefault();
+  moveDrag(e);
+},{passive:false});
+
+document.addEventListener('pointerup',async e=>{
+  if(!drag.active)return;
+  drag.active=false;
+  const dp=document.getElementById('drag-piece');
+  dp.style.display='none';
+  if(G.selIdx===null||G.busy){renderGrid([],[]);return;}
+
+  const x=(e.clientX);const y=(e.clientY);
+  const cell=getGridCellAt(x,y);
+  if(cell){
+    const {r,c}=cell;
+    const p=G.pieces[G.selIdx];
+    if(canPlace(p,r,c)){
+      await doPlace(G.selIdx,r,c);
+    } else {
+      renderGrid([],[]);
+    }
+  } else {
+    renderGrid([],[]);
+  }
+  renderTray();
+},{passive:false});
+
+// Fallback: click on grid cell
+document.getElementById('grid').addEventListener('click',async e=>{
+  if(G.selIdx===null||G.busy||G.gameOver) return;
+  const cell=e.target.closest('.cell');
+  if(!cell)return;
+  const r=parseInt(cell.dataset.r),c=parseInt(cell.dataset.c);
+  const p=G.pieces[G.selIdx];
+  if(canPlace(p,r,c)){await doPlace(G.selIdx,r,c);renderTray();}
+});
+
+document.getElementById('grid').addEventListener('mousemove',e=>{
+  if(G.selIdx===null||G.gameOver||drag.active) return;
+  const cell=e.target.closest('.cell');
+  if(!cell){renderGrid([],[]);return;}
+  const r=parseInt(cell.dataset.r),c=parseInt(cell.dataset.c);
+  const p=G.pieces[G.selIdx];
+  if(canPlace(p,r,c)){
+    renderGrid(p.cells.map(([dr,dc])=>[r+dr,c+dc]),[]);
+  } else {
+    const gi=[];
+    p.cells.forEach(([dr,dc])=>{const nr=r+dr,nc=c+dc;if(nr>=0&&nr<GS&&nc>=0&&nc<GS)gi.push([nr,nc]);});
+    renderGrid([],gi);
+  }
+});
+document.getElementById('grid').addEventListener('mouseleave',()=>{if(!drag.active)renderGrid([],[]);});
+
+// ═══════════════════════════════
+// PLACEMENT
+// ═══════════════════════════════
+function canPlace(p,r,c){
+  return p.cells.every(([dr,dc])=>{
+    const nr=r+dr,nc=c+dc;
+    return nr>=0&&nr<GS&&nc>=0&&nc<GS&&!G.grid[nr][nc];
+  });
+}
+function canPlaceAnywhere(p){
+  for(let r=0;r<GS;r++)for(let c=0;c<GS;c++)if(canPlace(p,r,c))return true;
+  return false;
+}
+
+async function doPlace(idx,r,c){
+  G.busy=true;G.pieces[idx].used=true;
+  const p=G.pieces[idx];const coin=COINS[p.coinIdx];
+  // Place cells
+  p.cells.forEach(([dr,dc])=>{G.grid[r+dr][c+dc]=p.coinIdx+1;});
+  renderGrid([],[]);
+  // Land animation
+  p.cells.forEach(([dr,dc])=>{
+    const el=getCellEl(r+dr,c+dc);if(el)el.classList.add('land');
+  });
+  await sleep(90);
+  await checkClear();
+  // If all used, deal new
+  if(G.pieces.every(p=>p.used)){await sleep(120);dealPieces();}
+  else{
+    // Check placeable
+    const anyLeft=G.pieces.some(p=>!p.used&&canPlaceAnywhere(p));
+    if(!anyLeft){
+      G.busy=false;
+      await sleep(200);
+      showGameOver();
+      return;
+    }
+  }
+  G.selIdx=null;
+  G.busy=false;
+  renderTray();
+  renderGrid([],[]);
+  updateUI();
+}
+
+// ═══════════════════════════════
+// CLEAR ENGINE
+// ═══════════════════════════════
+async function checkClear(){
+  const fullRows=[],fullCols=[];
+  for(let r=0;r<GS;r++)if(G.grid[r].every(v=>v>0))fullRows.push(r);
+  for(let c=0;c<GS;c++)if(G.grid.every(row=>row[c]>0))fullCols.push(c);
+  const cleared=fullRows.length+fullCols.length;
+  if(!cleared){G.streak=0;updateStreakUI();return;}
+
+  const clearSet=new Set();
+  fullRows.forEach(r=>{for(let c=0;c<GS;c++)clearSet.add(r+','+c);});
+  fullCols.forEach(c=>{for(let r=0;r<GS;r++)clearSet.add(r+','+c);});
+
+  // Animate
+  clearSet.forEach(key=>{
+    const [r,c]=key.split(',').map(Number);
+    const el=getCellEl(r,c);
+    if(el){
+      el.classList.add('clearing');
+      const coin=COINS[G.grid[r][c]-1]||COINS[0];
+      el.style.setProperty('--cc',coin.bg);
+      spawnPt(el,coin.c);
+    }
+  });
+  await sleep(380);
+
+  // Clear grid
+  clearSet.forEach(key=>{const [r,c]=key.split(',').map(Number);G.grid[r][c]=0;});
+
+  // Scoring
+  G.streak++;
+  if(G.streak>G.maxStreak)G.maxStreak=G.streak;
+  const multi=G.streak>=6?5:G.streak>=4?4:G.streak>=3?3:G.streak>=2?2:1;
+  const base=cleared*120*(cleared>=3?cleared:cleared>=2?1.5:1);
+  const pts=Math.round(base*multi);
+  G.lines+=cleared;
+  addScore(pts);
+  G.levelScore+=pts;
+
+  // Combo flash
+  if(cleared>=2||G.streak>=2){
+    showComboSplash(cleared,G.streak,multi);
+  }
+
+  // BG change with streak
+  setBG(Math.min(Math.floor(G.streak/2),5));
+
+  // Level up
+  if(G.levelScore>=LEVEL_THRESH*G.level){
+    G.level++;
+    showLevelBanner();
+    setBG(G.level%6);
+  }
+  updateStreakUI();
+  renderGrid([],[]);
+}
+
+// ═══════════════════════════════
+// COMBO SPLASH
+// ═══════════════════════════════
+function showComboSplash(cleared,streak,multi){
+  const old=document.querySelector('.combo-splash');if(old)old.remove();
+  const msgs={};
+  if(cleared>=4)msgs.txt='QUAD PATLAMA! 💎',msgs.col='#00d4ff';
+  else if(cleared>=3)msgs.txt='TRIPLE PATLAMA! ⚡',msgs.col='#c77dff';
+  else if(cleared>=2)msgs.txt='DOUBLE PATLAMA! 🔥',msgs.col='#f7931a';
+  else if(streak>=5)msgs.txt=streak+'x COMBO! 🚀',msgs.col='#ffd700';
+  else if(streak>=3)msgs.txt=streak+'x COMBO! 🔥',msgs.col='#22c55e';
+  else if(streak>=2)msgs.txt='STREAK! ×2',msgs.col='#ffd700';
+  if(!msgs.txt)return;
+  const el=document.createElement('div');el.className='combo-splash';
+  el.innerHTML=`<div class="splash-text" style="color:${msgs.col}">${msgs.txt}</div><div style="font-size:16px;color:rgba(255,255,255,.7);margin-top:4px;font-weight:800">+${multi}x PUAN!</div>`;
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),700);
+  // Pulse score panel
+  document.getElementById('sp-streak').classList.add('combo-glow');
+  setTimeout(()=>document.getElementById('sp-streak').classList.remove('combo-glow'),1500);
+}
+
+function showLevelBanner(){
+  const old=document.querySelector('.lvup-banner');if(old)old.remove();
+  const el=document.createElement('div');el.className='lvup-banner';
+  el.textContent=`⚡ LEVEL ${G.level}! Parçalar zorlaşıyor!`;
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),2500);
+}
+
+// ═══════════════════════════════
+// BACKGROUND CHANGE
+// ═══════════════════════════════
+function setBG(idx){
+  const bg=document.getElementById('bg-layer');
+  bg.className='bg-'+idx;
+}
+
+// ═══════════════════════════════
+// SCORE & UI
+// ═══════════════════════════════
+function addScore(pts){
+  G.score+=pts;saveBest();
+  const el=document.getElementById('sv-score');
+  el.textContent=G.score.toLocaleString();
+  el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');
+  // Popup
+  const gw=document.querySelector('.grid-container');
+  const pop=document.createElement('div');
+  pop.className='sc-pop';
+  pop.textContent='+'+pts;
+  pop.style.color=G.streak>=3?'#00d4ff':G.streak>=2?'#22c55e':'#ffd700';
+  pop.style.left=(10+Math.random()*75)+'%';
+  pop.style.top=(10+Math.random()*55)+'%';
+  pop.style.position='absolute';
+  gw.appendChild(pop);setTimeout(()=>pop.remove(),900);
+}
+
+function updateUI(){
+  document.getElementById('sv-score').textContent=G.score.toLocaleString();
+  document.getElementById('sv-level').textContent=G.level;
+  document.getElementById('sv-streak').textContent=G.streak;
+  document.getElementById('best-v').textContent=G.best.toLocaleString();
+  updateStreakUI();
+}
+
+function updateStreakUI(){
+  document.getElementById('sv-streak').textContent=G.streak;
+  const pct=Math.min(G.streak/10*100,100);
+  document.getElementById('streak-fill').style.width=pct+'%';
+  const msgs=['Streak için satır temizle!','2x puan aktif! 🔥','3x puan! Harika! ⚡','4x puan!! Muhteşem! 💎','5x PUAN!!! EFSANE! 🚀'];
+  document.getElementById('streak-label').textContent=msgs[Math.min(G.streak,4)];
+}
+
+// ═══════════════════════════════
+// GAME OVER
+// ═══════════════════════════════
+function checkAnyPlaceable(){
+  if(G.pieces.every(p=>p.used))return;
+  const any=G.pieces.some(p=>!p.used&&canPlaceAnywhere(p));
+  if(!any&&!G.busy&&!G.gameOver) setTimeout(showGameOver,300);
+}
+
+function showGameOver(){
+  G.gameOver=true;saveBest();
+  setBG(0);
+  document.getElementById('go-sc').textContent=G.score.toLocaleString();
+  document.getElementById('go-lv').textContent=G.level;
+  document.getElementById('go-lines').textContent=G.lines;
+  document.getElementById('go-best').textContent=G.best.toLocaleString();
+  document.getElementById('go-str').textContent=G.maxStreak;
+  const r=document.getElementById('go-reward');
+  const codes=['BLAST100','BLAST250','BLAST500','BLAST1K','BLAST5K'];
+  if(G.score>=500){r.style.display='block';document.getElementById('go-promo').textContent=codes[Math.min(Math.floor(G.score/2000),4)];}
+  else r.style.display='none';
+  setTimeout(()=>document.getElementById('ov-go').classList.remove('hide'),500);
+}
+
+// ═══════════════════════════════
+// PARTICLES
+// ═══════════════════════════════
+function spawnPt(el,color){
+  const gc=document.querySelector('.grid-container');
+  const r1=el.getBoundingClientRect(),r2=gc.getBoundingClientRect();
+  for(let i=0;i<6;i++){
+    const p=document.createElement('div');p.className='pt';
+    const x=(Math.random()-0.5)*90,y=-30-Math.random()*60;
+    p.style.cssText=`width:5px;height:5px;background:${color};position:absolute;left:${r1.left-r2.left+r1.width/2}px;top:${r1.top-r2.top+r1.height/2}px;--d:${.4+Math.random()*.35}s;--x:${x}px;--y:${y}px`;
+    gc.appendChild(p);setTimeout(()=>p.remove(),800);
+  }
+}
+
+// ═══════════════════════════════
+// UTILS
+// ═══════════════════════════════
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+
+// ═══════════════════════════════
+// BOOT
+// ═══════════════════════════════
+buildStars();
+loadBest();
+renderGrid([],[]);
+</script>
+</body>
+</html>
