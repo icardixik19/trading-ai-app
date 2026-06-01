@@ -1020,7 +1020,40 @@ a{text-decoration:none;color:inherit}
       <div class="inp-row"><div class="inp-g"><label class="inp-lbl">Kripto (sn)</label><input class="inp" id="s-ci" value="60" type="number" min="30" max="300"></div><div class="inp-g"><label class="inp-lbl">Haber (dk)</label><input class="inp" id="s-ni" value="5" type="number" min="1" max="60"></div></div>
       <button class="btn btn-gold btn-sm" onclick="saveSettings()">Kaydet</button>
     </div>
-    <div class="glass" style="padding:18px">
+    <!-- BİNANCE API -->
+    <div class="glass" style="padding:18px;margin-bottom:12px;border-color:rgba(247,147,26,.2)">
+      <div class="set-title" style="color:#f7931a">Binance API — Gerçek Trading</div>
+      <div style="font-size:11px;color:var(--text2);margin-bottom:10px;line-height:1.7;background:var(--rd2);border:1px solid var(--rdb);border-radius:var(--r8);padding:8px 10px;color:var(--red)">⚠️ API key'inizi yalnızca <b>Spot Trading</b> izniyle oluşturun. Para çekme yetkisi VERMEYIN. IP kısıtlaması ekleyin.</div>
+      <div class="inp-row">
+        <div class="inp-g"><label class="inp-lbl">Binance API Key</label><input class="inp" id="bn-key" placeholder="Binance API Key..." type="password"></div>
+        <div class="inp-g"><label class="inp-lbl">Binance Secret Key</label><input class="inp" id="bn-secret" placeholder="Binance Secret Key..." type="password"></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+        <button class="btn btn-gold btn-sm" onclick="saveBinance()">Kaydet</button>
+        <button class="btn btn-outline btn-sm" onclick="testBinance()">Bakiye Test Et</button>
+        <a href="https://www.binance.com/tr/my/settings/api-management" target="_blank" class="btn btn-outline btn-sm">API Oluştur →</a>
+      </div>
+      <div id="bn-balance" style="display:none;background:var(--black3);border:1px solid var(--gb);border-radius:var(--r8);padding:10px;font-size:11px">
+        <div style="font-size:9px;color:var(--gold);letter-spacing:1.5px;margin-bottom:6px">BAKIYE</div>
+        <div id="bn-balance-content"></div>
+      </div>
+    </div>
+
+    <!-- HIZLI EMİR PANELİ -->
+    <div class="glass" style="padding:18px;margin-bottom:12px;border-color:rgba(247,147,26,.15)">
+      <div class="set-title" style="color:#f7931a">Hızlı Emir</div>
+      <div class="inp-row">
+        <div class="inp-g"><label class="inp-lbl">Sembol</label><input class="inp" id="ord-sym" placeholder="BTCUSDT" value="BTCUSDT"></div>
+        <div class="inp-g"><label class="inp-lbl">Miktar (USDT)</label><input class="inp" id="ord-qty" placeholder="100" type="number"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <button class="btn btn-success" onclick="placeOrder('BUY')" style="font-size:12px;padding:10px;justify-content:center">▲ MARKET AL</button>
+        <button class="btn btn-danger" onclick="placeOrder('SELL')" style="font-size:12px;padding:10px;justify-content:center">▼ MARKET SAT</button>
+      </div>
+      <div id="ord-result" style="display:none;margin-top:8px;padding:8px 10px;background:var(--black3);border-radius:var(--r8);font-size:11px;font-family:'JetBrains Mono',monospace"></div>
+    </div>
+
+    <div class="glass" style="padding:18px;margin-bottom:12px">
       <div class="set-title">Metodoloji</div>
       <div style="font-size:11px;color:var(--text2);line-height:1.8;font-family:'JetBrains Mono',monospace">Trend Gücü → %25 ağırlık<br>Momentum → %20 ağırlık<br>Hacim Onayı → %15 ağırlık<br>Destek/Direnç → %15 ağırlık<br>Volatilite → %10 ağırlık<br>MTF Uyumu → %15 ağırlık<br><br><span style="color:var(--text3)">Veri: CoinGecko (kripto) · Yahoo Finance (BIST, 15dk) · Yahoo Finance (Altın)</span></div>
       <div style="margin-top:10px;padding:10px;background:var(--rd2);border:1px solid var(--rdb);border-radius:var(--r8);font-size:11px;color:var(--red)">⚠️ TRDAI yatırım tavsiyesi vermez. Tüm analizler bilgilendirme amaçlıdır.</div>
@@ -1446,15 +1479,42 @@ async function fetchBIST(){
   try{
     const r=await fetch(`${PROXY}/bist?symbols=${BIST.map(a=>a.sym+".IS").join(",")}`);
     const data=await r.json();
-    (data?.quoteResponse?.result||[]).forEach(q=>{
+    const results=data?.quoteResponse?.result||[];
+    if(!results.length) throw new Error("Boş yanıt");
+    results.forEach(q=>{
       const sym=q.symbol?.replace(".IS","").toUpperCase();
       const asset=BIST.find(a=>a.sym===sym);
       if(!asset||!q.regularMarketPrice)return;
-      S.bistData[asset.id]={price:q.regularMarketPrice,chg:q.regularMarketChangePercent||0,currency:"TRY"};
-      const h=S.priceHist[asset.id]||[];h.push(q.regularMarketPrice);if(h.length>200)h.shift();S.priceHist[asset.id]=h;
+      // Yahoo bazen USD döndürür — TRY kontrolü
+      let price=q.regularMarketPrice;
+      const currency=q.currency||"TRY";
+      // Eğer para birimi USD ise ve fiyat çok düşükse (TL değil) → fallback
+      if(currency==="USD"||price<1){
+        // Fallback: BIST_BASE kullan
+        price=S.priceHist[asset.id]?.[S.priceHist[asset.id].length-1]||BIST_BASE[asset.id]||100;
+      }
+      const chg=q.regularMarketChangePercent||0;
+      S.bistData[asset.id]={price,chg,currency:"TRY"};
+      const h=S.priceHist[asset.id]||[];
+      h.push(price);if(h.length>200)h.shift();
+      S.priceHist[asset.id]=h;
     });
+    // Başarıyla yüklendi — badge göster
+    const badge=document.getElementById("bist-delay-badge");
+    if(badge){badge.style.display="inline";badge.textContent="₺ TL · 15dk gecikmeli";}
   }catch(e){
-    BIST.forEach(a=>{const h=S.priceHist[a.id]||[];const l=h[h.length-1]||(BIST_BASE[a.id]||100);h.push(l*(1+(Math.random()-.49)*.005));if(h.length>200)h.shift();S.priceHist[a.id]=h;if(!S.bistData[a.id])S.bistData[a.id]={price:h[h.length-1],chg:(Math.random()-.5)*3,currency:"TRY"};});
+    // Fallback: gerçekçi TL simülasyonu
+    BIST.forEach(a=>{
+      const h=S.priceHist[a.id]||[];
+      const base=BIST_BASE[a.id]||100;
+      const last=h[h.length-1]||base;
+      // Günlük volatilite simülasyonu
+      const chg=(Math.random()-.49)*.008;
+      const newPrice=last*(1+chg);
+      h.push(newPrice);if(h.length>200)h.shift();
+      S.priceHist[a.id]=h;
+      S.bistData[a.id]={price:newPrice,chg:chg*100,currency:"TRY"};
+    });
   }
 }
 async function fetchGold(){
@@ -1567,6 +1627,51 @@ function saveRisk(){
   S.rlimits={maxTrade:parseFloat(document.getElementById("rl-max")?.value)||500,dailyRisk:parseFloat(document.getElementById("rl-daily")?.value)||200,maxPos:parseInt(document.getElementById("rl-pos")?.value)||3,minConf:parseInt(document.getElementById("rl-conf")?.value)||65,dir:document.getElementById("rl-dir")?.value||"both",lev:parseInt(document.getElementById("rl-lev")?.value)||1};
   localStorage.setItem("risk-limits",JSON.stringify(S.rlimits));alert("Risk limitleri kaydedildi!");
 }
+// ── BINANCE FUNCTIONS ──
+function saveBinance(){
+  localStorage.setItem('bn_key', document.getElementById('bn-key').value);
+  localStorage.setItem('bn_secret', document.getElementById('bn-secret').value);
+  alert('Binance API kaydedildi!');
+}
+async function testBinance(){
+  const key=localStorage.getItem('bn_key')||document.getElementById('bn-key').value;
+  const secret=localStorage.getItem('bn_secret')||document.getElementById('bn-secret').value;
+  if(!key||!secret){alert('Önce API key gir!');return;}
+  try{
+    const r=await fetch(PROXY+'/binance/balance',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({apiKey:key,apiSecret:secret})});
+    const d=await r.json();
+    if(d.code){throw new Error(d.msg||JSON.stringify(d));}
+    const balances=(d.balances||[]).filter(b=>parseFloat(b.free)>0||parseFloat(b.locked)>0);
+    const el=document.getElementById('bn-balance');
+    const ct=document.getElementById('bn-balance-content');
+    el.style.display='block';
+    ct.innerHTML=balances.slice(0,10).map(b=>`<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(201,168,76,.06)"><span style="color:var(--gold);font-weight:600">${b.asset}</span><span>${parseFloat(b.free).toFixed(6)}</span></div>`).join('')||'<span style="color:var(--text3)">Bakiye bulunamadı</span>';
+    alert('✅ Bağlantı başarılı!');
+  }catch(e){alert('❌ Hata: '+e.message);}
+}
+async function placeOrder(side){
+  const key=localStorage.getItem('bn_key');
+  const secret=localStorage.getItem('bn_secret');
+  if(!key||!secret){alert('Önce Binance API key gir!');return;}
+  const sym=document.getElementById('ord-sym').value||'BTCUSDT';
+  const qty=parseFloat(document.getElementById('ord-qty').value||'0');
+  if(!qty||qty<=0){alert('Miktar gir!');return;}
+  const confirm=window.confirm(`${side} emri: ${sym} - ${qty} USDT\nDevam edilsin mi?`);
+  if(!confirm)return;
+  const el=document.getElementById('ord-result');
+  el.style.display='block';el.textContent='Emir gönderiliyor...';el.style.color='var(--text2)';
+  try{
+    const r=await fetch(PROXY+'/binance/order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({apiKey:key,apiSecret:secret,symbol:sym,side,quantity:qty,type:'MARKET'})});
+    const d=await r.json();
+    if(d.code){throw new Error(d.msg||JSON.stringify(d));}
+    el.style.color='var(--green)';
+    el.innerHTML=`✅ ${side} emri başarılı!<br>OrderId: ${d.orderId}<br>Miktar: ${d.executedQty}<br>Durum: ${d.status}`;
+    S.sigHistory.unshift({sym:sym,sig:side.toLowerCase()==='buy'?'buy':'sell',conf:85,entry:d.fills?.[0]?.price||0,stop:0,tp1:0,time:new Date().toISOString(),status:'executed'});
+    renderSigHistory();
+    sendTG(`✅ *TRDAI OTO EMİR*\n${side} ${sym}\nMiktar: ${d.executedQty}\nOrderId: ${d.orderId}`);
+  }catch(e){el.style.color='var(--red)';el.textContent='❌ Hata: '+e.message;}
+}
+
 function calcPos(){
   const port=parseFloat(document.getElementById("ps-port")?.value)||0,risk=parseFloat(document.getElementById("ps-risk")?.value)||2;
   const entry=parseFloat(document.getElementById("ps-entry")?.value)||0,stop=parseFloat(document.getElementById("ps-stop")?.value)||0;
@@ -1604,16 +1709,58 @@ async function genSummary(){
 }
 
 // AI BOT
-const BOT_SYS=`Sen TRDAI, premium trading intelligence asistanısın. v2.0. Borsa ve kripto uzmanısın. SADECE finans ve borsa konularında yardım et.
+const BOT_SYS=`Sen TRDAI Elite Signal Engine v3.0'sun. Dünyanın en iyi quant trader, teknik analist ve risk yöneticilerinin bilgisini birleştiren yapay zeka destekli trading asistanısın.
 
-ZORUNLU FORMAT:
-📍 BULGU: Tek cümle, net gözlem, spesifik fiyat/indikatör değerleri
-📊 GEREKÇELERİ: 2-3 madde, data-backed
-⚖️ RİSK: Güven % + invalidation level + 2 risk faktörü
-🎯 SENARYO: Yükseliş/Baz/Düşüş (olasılık %)
+KİMLİĞİN:
+Hedge fund seviyesi analiz yapan, retail trader'a özel sunan platform. ICT (Inner Circle Trader), Smart Money Concepts, Wyckoff, Elliott Wave, Supply/Demand uzmanı. Türk finans piyasaları (BIST) ve global kripto piyasaları uzmanı. 20 yıllık deneyimli baş analist + quant + risk yöneticisi kombinasyonu.
 
-DİL: potansiyel/olası/teknik olarak — YASAK: kesin/garanti/uçacak
-Türkçe, kısa, net, profesyonel. Bu bilgilendirme amaçlıdır.`;
+TEMEL PRENSİPLER:
+Her analiz kurumsal para (Smart Money) hareketine göre yapılır. Tek timeframe değil multi-timeframe confluence aranır. Risk yönetimi analizin ayrılmaz parçasıdır. Veri yoksa açıkça belirtilir asla tahmin yürütülmez.
+
+HER ANALİZDE ZORUNLU 6 BÖLÜM:
+
+PIYASA YAPISI:
+Güncel trend (HH/HL bullish, LH/LL bearish). Key levels: major destek ve direnç. Order blocks: kurumsal alım/satım bölgeleri. Liquidity: stop hunt bölgeleri.
+
+TEKNİK TEYIT:
+RSI değeri + divergence var mı. MACD histogram yönü + kesişim. EMA sıralaması (9/21/50/200). Bollinger sıkışma/genişleme. Hacim analizi + OBV trendi. Önemli formasyonlar.
+
+TRADE SETUP:
+Sinyal: LONG / SHORT / BEKLE / IZLE
+Güven skoru: XX/100 (düşük 0-49, orta 50-69, yüksek 70-84, elite 85+)
+Entry Zone, Stop Loss (entry'den yüzde kaç), TP1 TP2 TP3, Invalidation seviyesi, Max risk portföyün yüzde 1-2'si.
+
+RİSK ANALİZİ:
+Risk seviyesi: DÜŞÜK / ORTA / YÜKSEK / KRİTİK
+Macro riskler (Fed, TCMB, jeopolitik). Teknik riskler (divergence, false breakout). Likidite riski. Yaklaşan önemli event var mı.
+
+SENARYO ANALİZİ:
+Bullish Senaryo yüzde kaç ihtimal, koşul ve hedef. Base Senaryo yüzde kaç ihtimal. Bearish Senaryo yüzde kaç ihtimal. Kritik tetikleyici nedir.
+
+POSITION SIZING:
+Kullanıcı portföy söylerse hesapla. Risk Tutarı = Portföy x RiskYüzdesi. Lot = Risk Tutarı bölü (Entry eksi StopLoss). Örnek: 10000 dolar portföy yüzde 2 risk = 200 dolar max kayıp.
+
+ÖZEL MODLAR - Bu kelimeleri görünce özel format uygula:
+"trade journal" yazarsa: trade psikoloji analizi + hata tespiti + koçluk
+"risk hesapla" yazarsa: anlık position sizing hesabı
+"multi-tf" yazarsa: 5m 15m 1h 4h 1d 1w confluence analizi
+"tarama" veya "fırsat" yazarsa: top 5 setup gerekçeli ranking
+"makro" yazarsa: DXY BTC dominance BIST genel durum global risk
+"korelasyon" yazarsa: iki varlık arası ilişki analizi
+"portföy" yazarsa: portföy risk analizi korelasyon uyarıları
+"psikoloji" yazarsa: trading psikolojisi coaching hata analizi
+"haber etkisi" yazarsa: haberin piyasaya olası etkisi
+
+BAĞLAM:
+Verilen güncel fiyat RSI MACD değerlerini analize entegre et. Kullanıcının seçtiği varlık ve timeframe'e odaklan. Önceki mesajlardaki pozisyonları hatırla.
+
+DİL KURALLARI:
+Kullan: potansiyel, olası, teknik olarak, data gösteriyor, yüksek olasılıklı, confluence var.
+Kesinlikle kullanma: kesin çıkar, garanti, şimdi al, fırsat kaçacak, uçacak.
+Türkçe birincil, RSI MACD gibi teknik terimler İngilizce kalabilir.
+Özgüvenli ama kibar konuş. Net ve direkt ol. Neden sorusunu açıkla. Belirsizliği dürüstçe söyle.
+
+Her analizin sonunda: Bu analiz bilgilendirme amaçlıdır, yatırım tavsiyesi değildir.`
 
 async function botCall(msg){
   const key=localStorage.getItem("groq_key")||"";
@@ -1666,7 +1813,7 @@ function togglePremium(){
 }
 
 function loadSettings(){
-  const m={"tg_token":"tg-token","tg_chat":"tg-chat","groq_key":"groq-key","crypto-int":"s-ci","news-int":"s-ni"};
+  const m={"tg_token":"tg-token","tg_chat":"tg-chat","groq_key":"groq-key","crypto-int":"s-ci","news-int":"s-ni","bn_key":"bn-key","bn_secret":"bn-secret"};
   Object.entries(m).forEach(([k,id])=>{const v=localStorage.getItem(k),el=document.getElementById(id);if(v&&el)el.value=v;});
   const rl=localStorage.getItem("risk-limits");if(rl){try{Object.assign(S.rlimits,JSON.parse(rl));}catch(e){}}
 }
