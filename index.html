@@ -612,6 +612,10 @@ img{max-width:100%}
 .chart-expanded .analysis-grid{display:none}
 .chart-expanded .tv-wrap{height:calc(100vh - 116px)!important}
 
+.page.active[style*="overflow-y:auto"]{display:block!important}
+#page-aibot.active{display:grid!important;grid-template-columns:1fr 360px}
+@media(max-width:900px){#page-aibot.active{display:flex!important;flex-direction:column}}
+#page-markets.active{display:flex!important;flex-direction:column}
 /* SCROLLBAR in sidebar */
 .asset-list::-webkit-scrollbar,.chat-messages::-webkit-scrollbar,.rs-content::-webkit-scrollbar,.ai-summaries::-webkit-scrollbar{width:3px}
 </style>
@@ -632,9 +636,13 @@ img{max-width:100%}
   </div>
   <div class="tb-divider"></div>
   <nav style="display:flex;gap:1px" aria-label="Ana navigasyon">
-    <button class="tb-btn" id="nav-landing" onclick="goPage('landing',this)" title="Ana Sayfa" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Ana Sayfa</button>
+    <button class="tb-btn" id="nav-landing" onclick="goPage('landing',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Ana Sayfa</button>
     <button class="tb-btn" id="nav-markets" onclick="goPage('markets',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Piyasalar</button>
-    <button class="tb-btn" id="nav-scanner" onclick="goPage('scanner',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;display:none" id="nav-scanner">Tarayıcı</button>
+    <button class="tb-btn" id="nav-scanner" onclick="goPage('scanner',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Tarayıcı</button>
+    <button class="tb-btn" id="nav-portfolio" onclick="goPage('portfolio',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Portföy</button>
+    <button class="tb-btn" id="nav-auto" onclick="goPage('auto',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Oto Trading</button>
+    <button class="tb-btn" id="nav-aibot" onclick="goPage('aibot',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">AI Asistan</button>
+    <button class="tb-btn" id="nav-settings" onclick="goPage('settings',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Ayarlar</button>
   </nav>
   <div class="tb-right">
     <span class="t-mono" style="font-size:11px;color:var(--tx3)" id="clock">--:--:--</span>
@@ -652,7 +660,7 @@ img{max-width:100%}
 </div>
 
 <!-- PAGE: LANDING -->
-<div id="page-landing" class="page active" style="overflow-y:auto">
+<div id="page-landing" class="page active" style="overflow-y:auto;flex-direction:column">
   <section class="lp-hero" role="main">
     <div class="lp-badge"><div class="live-dot"></div>Canlı · AI Destekli Platform</div>
     <h1 class="lp-h1 t-h1">Trading kararlarını<br><em>yapay zekaya bırak.</em></h1>
@@ -1055,7 +1063,7 @@ img{max-width:100%}
 </div>
 
 <!-- PAGE: PORTFOLIO -->
-<div id="page-portfolio" class="page" style="overflow-y:auto">
+<div id="page-portfolio" class="page" style="overflow-y:auto;flex-direction:column">
   <div class="portfolio-page">
     <div class="port-header">
       <div class="t-h3">PORTFÖY & İZLEME</div>
@@ -1082,7 +1090,7 @@ img{max-width:100%}
 </div>
 
 <!-- PAGE: AUTO TRADING -->
-<div id="page-auto" class="page" style="overflow-y:auto">
+<div id="page-auto" class="page" style="overflow-y:auto;flex-direction:column">
   <div class="auto-page">
     <div class="t-h3" style="margin-bottom:4px">OTO TRADİNG SİSTEMİ</div>
     <div class="t-body" style="margin-bottom:16px">Otomatik işlem modu yalnızca deneyimli kullanıcılar için. Her mod tam risk yönetimi gerektirir.</div>
@@ -1143,7 +1151,7 @@ img{max-width:100%}
 </div>
 
 <!-- PAGE: AI BOT -->
-<div id="page-aibot" class="page">
+<div id="page-aibot" class="page" style="flex-direction:row">
   <div class="ai-page">
     <div class="ai-summaries">
       <div class="t-label" style="margin-bottom:12px">Günlük Piyasa Özeti</div>
@@ -1184,7 +1192,7 @@ img{max-width:100%}
 </div>
 
 <!-- PAGE: SETTINGS -->
-<div id="page-settings" class="page" style="overflow-y:auto">
+<div id="page-settings" class="page" style="overflow-y:auto;flex-direction:column">
   <div class="settings-page">
     <div class="t-h3" style="margin-bottom:16px">PLATFORM AYARLARI</div>
     <div class="settings-section">
@@ -1269,7 +1277,8 @@ img{max-width:100%}
   <div class="mn-item on" id="mn-landing" onclick="goPage('landing',this)"><div class="mn-icon">⌂</div>Ana</div>
   <div class="mn-item" id="mn-markets" onclick="goPage('markets',this)"><div class="mn-icon">◈</div>Piyasa</div>
   <div class="mn-item" id="mn-scanner" onclick="goPage('scanner',this)"><div class="mn-icon">◉</div>Tara</div>
-  <div class="mn-item" id="mn-aibot" onclick="goPage('aibot',this)"><div class="mn-icon">△</div>AI</div>
+  <div class="mn-item" id="mn-aibot" onclick="goPage('aibot',this)"><div class="mn-icon">△</div>AI Bot</div>
+  <div class="mn-item" id="mn-auto" onclick="goPage('auto',this)"><div class="mn-icon">⚡</div>Oto</div>
   <div class="mn-item" id="mn-settings" onclick="goPage('settings',this)"><div class="mn-icon">⚙</div>Ayar</div>
 </nav>
 
@@ -2239,29 +2248,50 @@ function loadTheme(){
 // NAVIGATION
 // ═══════════════════════════════════════
 function goPage(name,btn){
+  // Tüm sayfaları kapat
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  // Desktop nav
+  
+  // Desktop nav reset
   document.querySelectorAll('[id^="nav-"]').forEach(b=>{
     b.style.color='';b.style.background='';b.style.borderColor='';
   });
-  // Mobile nav
+  
+  // Mobile nav reset
   document.querySelectorAll('.mn-item').forEach(b=>b.classList.remove('on'));
   
+  // Sayfayı aç
   const page=document.getElementById('page-'+name);
-  if(page) page.classList.add('active');
+  if(page){
+    page.classList.add('active');
+  } else {
+    console.warn('Sayfa bulunamadı: page-'+name);
+    return;
+  }
   
-  // Active state desktop
+  // Desktop aktif buton
   const navBtn=document.getElementById('nav-'+name);
-  if(navBtn){navBtn.style.color='var(--primary)';navBtn.style.background='var(--tint-blue)';}
+  if(navBtn){
+    navBtn.style.color='var(--primary)';
+    navBtn.style.background='rgba(59,130,246,0.12)';
+    navBtn.style.borderColor='rgba(59,130,246,0.25)';
+  }
   
-  // Active state mobile
+  // Mobile aktif
   const mnBtn=document.getElementById('mn-'+name);
   if(mnBtn) mnBtn.classList.add('on');
   
   window.scrollTo(0,0);
-  if(name==='scanner') runScanner();
-  if(name==='aibot') genSummary();
-  if(name==='portfolio') renderSigHistory();
+  
+  // Sayfa özel aksiyonlar
+  if(name==='scanner') setTimeout(runScanner,100);
+  if(name==='aibot') setTimeout(genSummary,100);
+  if(name==='portfolio') setTimeout(renderSigHistory,100);
+  if(name==='markets'){
+    setTimeout(()=>{
+      renderSB();
+      if(!S.analyses[S.sel.id]) runAnalysis();
+    },100);
+  }
 }
 
 // RIGHT SIDEBAR TABS
