@@ -488,6 +488,12 @@ a{text-decoration:none;color:inherit}
 <!-- LANDING PAGE -->
 <div id="page-landing" class="page">
 
+  <!-- GOOGLE ADSENSE - Üst Banner -->
+  <div id="adsense-top" style="width:100%;max-width:728px;margin:0 auto;padding:8px 0;display:none">
+    <!-- Google AdSense kodu buraya gelecek -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+  </div>
+
   <!-- HERO -->
   <section class="lp-hero" role="banner">
     <div class="lp-badge">
@@ -718,6 +724,48 @@ a{text-decoration:none;color:inherit}
           <div class="faq-a">Evet. Platform mobil uyumlu tasarlanmıştır. Grafik alanı sürükleyerek yeniden boyutlandırılabilir. Tüm özellikler telefon ve tablet üzerinde erişilebilir.</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- AFFİLİATE BÖLÜMÜ -->
+  <section class="lp-section" id="exchanges" style="background:var(--black2)">
+    <div class="lp-section-inner">
+      <span class="lp-tag">Önerilen Borsalar</span>
+      <h2 class="lp-sh">Güvenilir platformlarda işlem yap.</h2>
+      <p class="lp-ss">TRDAI analizlerini bu borsalarda kullan. Aşağıdaki linklerden kayıt olursan komisyon indirimi kazanırsın.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:28px">
+        <a href="https://accounts.binance.com/register?ref=TRDAI" target="_blank" rel="noopener" style="text-decoration:none">
+          <div style="background:var(--black3);border:1px solid rgba(247,147,26,.2);border-radius:var(--r12);padding:20px;transition:all .18s;cursor:pointer" onmouseover="this.style.borderColor='rgba(247,147,26,.5)'" onmouseout="this.style.borderColor='rgba(247,147,26,.2)'">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div style="width:36px;height:36px;background:rgba(247,147,26,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px">₿</div>
+              <div style="font-size:15px;font-weight:800;color:#f7931a">Binance</div>
+            </div>
+            <div style="font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:12px">Dünyanın en büyük kripto borsası. 600+ coin, düşük komisyon.</div>
+            <div style="font-size:10px;font-weight:700;color:#f7931a;background:rgba(247,147,26,.1);border:1px solid rgba(247,147,26,.2);padding:5px 10px;border-radius:5px;display:inline-block">%20 Komisyon İndirimi →</div>
+          </div>
+        </a>
+        <a href="https://www.btcturk.com/referans/TRDAI" target="_blank" rel="noopener" style="text-decoration:none">
+          <div style="background:var(--black3);border:1px solid rgba(0,212,255,.2);border-radius:var(--r12);padding:20px;transition:all .18s;cursor:pointer" onmouseover="this.style.borderColor='rgba(0,212,255,.5)'" onmouseout="this.style.borderColor='rgba(0,212,255,.2)'">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div style="width:36px;height:36px;background:rgba(0,212,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#00d4ff">BT</div>
+              <div style="font-size:15px;font-weight:800;color:#00d4ff">BTCTurk</div>
+            </div>
+            <div style="font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:12px">Türkiye'nin lider kripto borsası. TL ile kolay alım-satım.</div>
+            <div style="font-size:10px;font-weight:700;color:#00d4ff;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);padding:5px 10px;border-radius:5px;display:inline-block">Ücretsiz Kayıt + Bonus →</div>
+          </div>
+        </a>
+        <a href="https://www.paribu.com/referans/TRDAI" target="_blank" rel="noopener" style="text-decoration:none">
+          <div style="background:var(--black3);border:1px solid rgba(139,92,246,.2);border-radius:var(--r12);padding:20px;transition:all .18s;cursor:pointer" onmouseover="this.style.borderColor='rgba(139,92,246,.5)'" onmouseout="this.style.borderColor='rgba(139,92,246,.2)'">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div style="width:36px;height:36px;background:rgba(139,92,246,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#8b5cf6">P</div>
+              <div style="font-size:15px;font-weight:800;color:#8b5cf6">Paribu</div>
+            </div>
+            <div style="font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:12px">Türk kripto borsası. IBAN ile anlık para transferi.</div>
+            <div style="font-size:10px;font-weight:700;color:#8b5cf6;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);padding:5px 10px;border-radius:5px;display:inline-block">Kayıt Ol + Bonus →</div>
+          </div>
+        </a>
+      </div>
+      <div style="font-size:10px;color:var(--text3);margin-top:12px;text-align:center">* Affiliate linkler içerir. Kayıt olursan TRDAI küçük komisyon kazanır, sana ekstra maliyet yoktur.</div>
     </div>
   </section>
 
@@ -1832,6 +1880,93 @@ function goPage(name,btn){
   if(name==="portfolio")renderSigHistory();
   window.scrollTo(0,0);
 }
+// ── SHOPIER PRO ──
+function goProShopier(){
+  // Shopier ödeme linki — kurulduktan sonra buraya gerçek link gelecek
+  const shopierUrl = 'https://www.shopier.com/trdai-pro'; // Shopier'da ürün oluşturduktan sonra güncelle
+  window.open(shopierUrl, '_blank');
+}
+
+// ── OTO TELEGRAM SİNYAL ──
+let tgAutoConfig = {enabled:false, minConf:65, sigType:'all', market:'all', cooldown:4};
+let tgLastSent = {}; // cooldown takibi
+
+function saveTGAuto(){
+  tgAutoConfig = {
+    enabled: document.getElementById('tg-auto-enabled')?.checked || false,
+    minConf: parseInt(document.getElementById('tg-min-conf')?.value) || 65,
+    sigType: document.getElementById('tg-sig-type')?.value || 'all',
+    market: document.getElementById('tg-market')?.value || 'all',
+    cooldown: parseInt(document.getElementById('tg-cooldown')?.value) || 4,
+  };
+  localStorage.setItem('tg_auto', JSON.stringify(tgAutoConfig));
+  alert('✅ Oto sinyal ayarları kaydedildi!\nAktif: ' + (tgAutoConfig.enabled ? 'EVET' : 'HAYIR'));
+}
+
+function loadTGAuto(){
+  try {
+    const s = localStorage.getItem('tg_auto');
+    if(s) Object.assign(tgAutoConfig, JSON.parse(s));
+    if(document.getElementById('tg-auto-enabled')) 
+      document.getElementById('tg-auto-enabled').checked = tgAutoConfig.enabled;
+    if(document.getElementById('tg-min-conf')) 
+      document.getElementById('tg-min-conf').value = tgAutoConfig.minConf;
+    if(document.getElementById('tg-sig-type')) 
+      document.getElementById('tg-sig-type').value = tgAutoConfig.sigType;
+    if(document.getElementById('tg-market')) 
+      document.getElementById('tg-market').value = tgAutoConfig.market;
+    if(document.getElementById('tg-cooldown')) 
+      document.getElementById('tg-cooldown').value = tgAutoConfig.cooldown;
+  } catch(e){}
+}
+
+function checkAutoSignal(asset, res){
+  if(!tgAutoConfig.enabled) return;
+  const tk = localStorage.getItem('tg_token');
+  const ch = localStorage.getItem('tg_chat');
+  if(!tk || !ch) return;
+  if(res.conf < tgAutoConfig.minConf) return;
+  // Sinyal türü filtresi
+  if(tgAutoConfig.sigType === 'buy' && res.sig !== 'buy') return;
+  if(tgAutoConfig.sigType === 'buysell' && res.sig !== 'buy' && res.sig !== 'sell') return;
+  if(res.sig === 'hold') return;
+  // Market filtresi
+  if(tgAutoConfig.market === 'crypto' && asset.type !== 'crypto') return;
+  if(tgAutoConfig.market === 'stock' && asset.type !== 'stock') return;
+  // Cooldown kontrolü
+  const lastKey = asset.id + '_' + res.sig;
+  const lastTime = tgLastSent[lastKey] || 0;
+  const cooldownMs = tgAutoConfig.cooldown * 60 * 60 * 1000;
+  if(Date.now() - lastTime < cooldownMs) return;
+  // Gönder
+  tgLastSent[lastKey] = Date.now();
+  const price = S.coinData[asset.id]?.usd || S.bistData[asset.id]?.price || 0;
+  const cur = asset.type === 'stock' ? 'TRY' : 'USD';
+  const msg = buildSigMsg(asset, res, price, cur);
+  sendTG(msg);
+}
+
+function testAutoSignal(){
+  const tk = localStorage.getItem('tg_token');
+  const ch = localStorage.getItem('tg_chat');
+  if(!tk || !ch){alert('Önce Ayarlar sekmesinden Telegram bot token ve chat ID gir!'); return;}
+  const testMsg = `🧪 *TRDAI Test Sinyali*\n\n*BTC/USDT* · 4H\n\n📊 Güven: \`78/100\`\n💰 Entry: \`$68.500 – $69.200\`\n🛑 Stop: \`$67.100\`\n🎯 TP1: \`$71.000\` · TP2: \`$74.500\`\n⚖️ R/R: \`1:2.4\`\n\n_TRDAI oto sinyal sistemi aktif ve çalışıyor._\n⚠️ Yatırım tavsiyesi değildir.`;
+  sendTG(testMsg);
+  alert('Test sinyali Telegram kanalına gönderildi!');
+}
+
+// ── ADSENSE ──
+function initAdsense(publisherId){
+  if(!publisherId) return;
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisherId}`;
+  script.crossOrigin = 'anonymous';
+  document.head.appendChild(script);
+  document.getElementById('adsense-top').style.display = 'block';
+  localStorage.setItem('adsense_id', publisherId);
+}
+
 function togglePremium(){
   S.isPremium=!S.isPremium;
   document.querySelectorAll(".prem-gate").forEach(el=>el.style.display=S.isPremium?"none":"flex");
@@ -1843,6 +1978,7 @@ function loadSettings(){
   const m={"tg_token":"tg-token","tg_chat":"tg-chat","groq_key":"groq-key","crypto-int":"s-ci","news-int":"s-ni","bn_key":"bn-key","bn_secret":"bn-secret"};
   Object.entries(m).forEach(([k,id])=>{const v=localStorage.getItem(k),el=document.getElementById(id);if(v&&el)el.value=v;});
   const rl=localStorage.getItem("risk-limits");if(rl){try{Object.assign(S.rlimits,JSON.parse(rl));}catch(e){}}
+  loadTGAuto();
 }
 function startClock(){setInterval(()=>{const el=document.getElementById("nav-clock");if(el)el.textContent=fmt.time();},1000);}
 
