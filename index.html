@@ -1,1116 +1,1282 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TRDAI — AI Destekli Trading Analiz Platformu | Kripto, BIST, Altın</title>
-<meta name="description" content="TRDAI, kripto para, BIST hisse senetleri ve altın piyasaları için yapay zeka destekli teknik analiz ve trading sinyalleri sunar. RSI, MACD, Bollinger Bands ile otomatik sinyal üretimi. Ücretsiz deneyin.">
-<meta name="keywords" content="yapay zeka trading, kripto analiz, BIST teknik analiz, trading sinyalleri, AI borsa, bitcoin analiz, otomatik sinyal, breakout detection, RSI MACD analiz">
-<meta name="author" content="TRDAI">
-<meta name="robots" content="index, follow">
-<meta name="language" content="Turkish">
-<meta property="og:title" content="TRDAI — AI Destekli Premium Trading Platformu">
-<meta property="og:description" content="Kripto, BIST ve Altın piyasaları için yapay zeka destekli teknik analiz. Entry/Stop/TP seviyeleri, güven skoru ve senaryo analizi ile profesyonel trading kararları alın.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://icardixik19.github.io/trading-ai-app/">
-<meta property="og:image" content="https://icardixik19.github.io/trading-ai-app/og-image.png">
-<meta property="og:locale" content="tr_TR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TRDAI — AI Trading Intelligence">
-<meta name="twitter:description" content="Kripto, BIST ve Altın için AI destekli trading analizi. Ücretsiz deneyin.">
-<link rel="sitemap" type="application/xml" href="/trading-ai-app/sitemap.xml">
-<link rel="canonical" href="https://icardixik19.github.io/trading-ai-app/">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "TRDAI",
-  "description": "Kripto para, BIST hisse senetleri ve altın piyasaları için yapay zeka destekli teknik analiz ve trading sinyal platformu.",
-  "applicationCategory": "FinanceApplication",
-  "operatingSystem": "Web",
-  "url": "https://icardixik19.github.io/trading-ai-app/",
-  "offers": [
-    {
-      "@type": "Offer",
-      "name": "Ücretsiz Plan",
-      "price": "0",
-      "priceCurrency": "TRY",
-      "description": "Temel analiz ve sinyaller"
-    },
-    {
-      "@type": "Offer",
-      "name": "Pro Plan",
-      "price": "299",
-      "priceCurrency": "TRY",
-      "billingPeriod": "P1M",
-      "description": "Tam özellikli premium analiz"
-    }
-  ],
-  "featureList": [
-    "AI destekli teknik analiz",
-    "RSI, MACD, Bollinger Bands göstergeleri",
-    "Kripto, BIST ve Altın piyasaları",
-    "Otomatik sinyal üretimi",
-    "Telegram bildirimleri",
-    "Position sizing hesaplayıcı"
-  ],
-  "inLanguage": "tr"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "TRDAI",
-  "description": "AI destekli trading analiz platformu",
-  "url": "https://icardixik19.github.io/trading-ai-app/",
-  "foundingDate": "2024",
-  "areaServed": "TR",
-  "serviceType": "Trading Intelligence Platform"
-}
-</script>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TRDAI — Premium Trading Intelligence</title>
+<meta name="description" content="TRDAI, kripto para, BIST ve altın piyasaları için yapay zeka destekli analiz platformu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --black:#0a0a0a;--black2:#111;--black3:#181818;--black4:#1f1f1f;--black5:#262626;
-  --gold:#c9a84c;--gold2:#e0be6e;--gold3:#f0d48a;
-  --gd:rgba(201,168,76,.12);--gb:rgba(201,168,76,.2);--gb2:rgba(201,168,76,.35);
-  --text:#f0ede6;--text2:#9a9080;--text3:#5a5448;
-  --green:#22c55e;--gn2:rgba(34,197,94,.12);--gnb:rgba(34,197,94,.25);
-  --red:#ef4444;--rd2:rgba(239,68,68,.12);--rdb:rgba(239,68,68,.25);
-  --amber:#f59e0b;--am2:rgba(245,158,11,.1);--amb:rgba(245,158,11,.2);
-  --blue:#3b82f6;--r6:6px;--r8:8px;--r10:10px;--r12:12px;--r16:16px;
+/* ════════════════════════════════════════
+   DESIGN TOKENS
+════════════════════════════════════════ */
+:root,[data-theme="dark"]{
+  /* Backgrounds */
+  --bg:         #0a1628;
+  --surface:    #0f2040;
+  --surface-alt:#162a52;
+  --surface-3:  #1c3460;
+  /* Borders */
+  --border:     rgba(255,255,255,0.07);
+  --border-md:  rgba(255,255,255,0.12);
+  --border-lg:  rgba(255,255,255,0.18);
+  /* Brand */
+  --primary:    #3B82F6;
+  --primary-h:  #2563EB;
+  --accent:     #22C55E;
+  --warn:       #F59E0B;
+  --danger:     #EF4444;
+  --gold:       #F0B429;
+  --gold-dim:   rgba(240,180,41,0.12);
+  --gold-b:     rgba(240,180,41,0.22);
+  /* Text */
+  --tx:         #F8FAFC;
+  --tx2:        #94A3B8;
+  --tx3:        #64748B;
+  --tx4:        #3E5068;
+  /* Tints */
+  --tint-green: rgba(34,197,94,0.12);
+  --tint-red:   rgba(239,68,68,0.12);
+  --tint-blue:  rgba(59,130,246,0.12);
+  --tint-warn:  rgba(245,158,11,0.12);
+  --tint-gold:  rgba(240,180,41,0.1);
+  /* Borders colored */
+  --b-green:    rgba(34,197,94,0.22);
+  --b-red:      rgba(239,68,68,0.22);
+  --b-blue:     rgba(59,130,246,0.22);
+  --b-gold:     rgba(240,180,41,0.22);
+  /* Radius */
+  --r4:4px;--r6:6px;--r8:8px;--r10:10px;--r12:12px;--r16:16px;--r20:20px;
+  /* Shadow */
+  --shadow-sm:0 1px 3px rgba(0,0,0,.3);
+  --shadow:0 4px 16px rgba(0,0,0,.4);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.5);
+  /* Transitions */
+  --t:all .18s ease;
 }
+[data-theme="light"]{
+  --bg:#F6F8FC;--surface:#FFFFFF;--surface-alt:#EEF2F7;--surface-3:#E5EBF3;
+  --border:rgba(15,23,42,0.07);--border-md:rgba(15,23,42,0.12);--border-lg:rgba(15,23,42,0.18);
+  --primary:#2563EB;--primary-h:#1D4ED8;--accent:#16A34A;--warn:#D97706;--danger:#DC2626;
+  --gold:#B8860B;--gold-dim:rgba(184,134,11,.1);--gold-b:rgba(184,134,11,.2);
+  --tx:#0F172A;--tx2:#475569;--tx3:#64748B;--tx4:#94A3B8;
+  --tint-green:rgba(22,163,74,0.1);--tint-red:rgba(220,38,38,0.1);
+  --tint-blue:rgba(37,99,235,0.1);--tint-warn:rgba(217,119,6,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow:0 4px 16px rgba(0,0,0,.1);--shadow-lg:0 8px 32px rgba(0,0,0,.15);
+}
+
+/* ════════════════════════════════════════
+   RESET
+════════════════════════════════════════ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;font-size:14px}
-body{background:var(--black);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.5}
-::-webkit-scrollbar{width:3px;height:3px}
-::-webkit-scrollbar-thumb{background:rgba(201,168,76,.2);border-radius:2px}
-button,input,select,textarea{font-family:inherit}
+html{font-size:14px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5;transition:background .3s,color .3s}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--border-md);border-radius:2px}
+::-webkit-scrollbar-track{background:transparent}
+button,input,select,textarea{font-family:'DM Sans',sans-serif;outline:none}
 a{text-decoration:none;color:inherit}
-.mono{font-family:'JetBrains Mono',monospace}
-.glass{background:rgba(17,17,17,.85);backdrop-filter:blur(12px);border:1px solid var(--gb);border-radius:var(--r12)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:7px 14px;border-radius:var(--r8);font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .18s;white-space:nowrap}
-.btn-gold{background:var(--gold);color:var(--black)}
-.btn-gold:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,168,76,.3)}
-.btn-outline{background:transparent;border:1px solid var(--gb);color:var(--text2)}
-.btn-outline:hover{border-color:var(--gold);color:var(--text)}
-.btn-ghost{background:transparent;color:var(--text3)}
-.btn-ghost:hover{background:rgba(255,255,255,.04);color:var(--text2)}
-.btn-sm{padding:5px 10px;font-size:11px;border-radius:var(--r6)}
-.btn-xs{padding:3px 7px;font-size:10px;border-radius:5px}
-.btn-success{background:var(--gn2);border:1px solid var(--gnb);color:var(--green)}
-.btn-danger{background:var(--rd2);border:1px solid var(--rdb);color:var(--red)}
-.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
-.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
-.badge-buy{background:var(--gn2);color:var(--green);border:1px solid var(--gnb)}
-.badge-sell{background:var(--rd2);color:var(--red);border:1px solid var(--rdb)}
-.badge-hold{background:var(--am2);color:var(--amber);border:1px solid var(--amb)}
-.badge-watch{background:var(--gd);color:var(--gold2);border:1px solid var(--gb)}
-.inp{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.12);border-radius:var(--r8);padding:8px 12px;color:var(--text);font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;transition:border-color .18s}
-.inp:focus{border-color:rgba(201,168,76,.35)}
-.inp-lbl{display:block;font-size:10px;color:var(--text3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px}
-.inp-g{margin-bottom:10px}
-.inp-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:480px){.inp-row{grid-template-columns:1fr}}
-.div{border:none;border-top:1px solid rgba(201,168,76,.08);margin:12px 0}
-.section-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,.6)}
-.loading-pulse{animation:lp 1.5s infinite}
-@keyframes lp{0%,100%{opacity:.3}50%{opacity:.7}}
-.empty-state{text-align:center;padding:32px 16px;color:var(--text3);font-size:12px}
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:998;height:52px;display:flex;align-items:center;gap:8px;padding:0 18px;background:rgba(10,10,10,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.1)}
-.nav-logo{display:flex;align-items:center;gap:8px;margin-right:12px}
-.nav-logo-text{font-size:14px;font-weight:800;letter-spacing:1px;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2.5s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.nav-tabs{display:flex;gap:1px}
-.ntab{padding:5px 12px;border-radius:var(--r6);font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--text3);transition:all .15s;font-family:inherit}
-.ntab.on{background:var(--gd);color:var(--gold)}
-.ntab:hover:not(.on){background:rgba(255,255,255,.04);color:var(--text2)}
-.nav-right{display:flex;align-items:center;gap:8px;margin-left:auto}
-.nav-time{font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace}
-.mode-ind{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:var(--r6);font-size:10px;font-weight:700;letter-spacing:.5px}
-.m-off{background:rgba(255,255,255,.04);color:var(--text3);border:1px solid rgba(255,255,255,.06)}
-.m-alert{background:var(--am2);color:var(--amber);border:1px solid var(--amb)}
-.m-semi{background:rgba(59,130,246,.1);color:var(--blue);border:1px solid rgba(59,130,246,.2)}
-.m-auto{background:var(--gn2);color:var(--green);border:1px solid var(--gnb);animation:mpulse 2s infinite}
-@keyframes mpulse{0%,100%{box-shadow:none}50%{box-shadow:0 0 8px rgba(34,197,94,.3)}}
-@media(max-width:768px){.nav-tabs{display:none}}
+img{max-width:100%}
+
+/* ════════════════════════════════════════
+   TYPOGRAPHY SYSTEM
+════════════════════════════════════════ */
+.t-h1{font-size:clamp(24px,3.5vw,40px);font-weight:800;letter-spacing:-1.2px;line-height:1.1}
+.t-h2{font-size:clamp(18px,2.5vw,26px);font-weight:700;letter-spacing:-.6px}
+.t-h3{font-size:15px;font-weight:700;letter-spacing:-.3px}
+.t-body{font-size:13px;color:var(--tx2);line-height:1.65}
+.t-small{font-size:11px;color:var(--tx3)}
+.t-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3)}
+.t-mono{font-family:'DM Mono',monospace}
+.t-num{font-family:'DM Mono',monospace;font-weight:600}
+
+/* ════════════════════════════════════════
+   LAYOUT
+════════════════════════════════════════ */
+.app-shell{display:flex;flex-direction:column;min-height:100vh}
+
+/* TOP BAR */
+.topbar{
+  position:sticky;top:0;z-index:500;
+  height:54px;display:flex;align-items:center;
+  padding:0 16px;gap:12px;
+  background:rgba(7,17,31,.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.tb-logo{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-right:8px}
+.tb-logo-text{font-size:15px;font-weight:800;letter-spacing:.5px;background:linear-gradient(135deg,#F0B429,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+[data-theme="light"] .topbar{background:rgba(246,248,252,.92)}
+
+.tb-search{
+  flex:1;max-width:260px;
+  display:flex;align-items:center;gap:8px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r8);padding:6px 10px;
+  font-size:12px;color:var(--tx3);cursor:pointer;
+  transition:var(--t);
+}
+.tb-search:hover{border-color:var(--border-md)}
+.tb-divider{width:1px;height:20px;background:var(--border);flex-shrink:0}
+.tb-right{display:flex;align-items:center;gap:6px;margin-left:auto}
+.tb-btn{
+  width:32px;height:32px;border-radius:var(--r8);
+  background:transparent;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--tx3);font-size:13px;transition:var(--t);
+}
+.tb-btn:hover{background:var(--surface-alt);color:var(--tx);border-color:var(--border-md)}
+.tb-notif{position:relative}
+.notif-dot{position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;background:var(--danger);border:1.5px solid var(--bg)}
+.plan-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 10px;border-radius:100px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;
+  background:var(--gold-dim);border:1px solid var(--gold-b);color:var(--gold);
+  cursor:pointer;transition:var(--t);
+}
+.plan-badge:hover{background:rgba(240,180,41,.18)}
+.plan-badge.pro{background:linear-gradient(135deg,rgba(240,180,41,.2),rgba(59,130,246,.2));border-color:var(--primary)}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent);animation:live 2s infinite}
+@keyframes live{0%,100%{opacity:1}50%{opacity:.3}}
+@media(max-width:640px){.tb-search,.tb-divider{display:none}}
+
 /* TICKER */
-.ticker{margin-top:52px;background:var(--black2);border-bottom:1px solid rgba(201,168,76,.08);overflow:hidden;padding:6px 0;position:sticky;top:52px;z-index:90}
-.ticker-track{display:flex;gap:20px;white-space:nowrap;animation:tick 40s linear infinite}
+.ticker-bar{
+  height:32px;background:var(--surface);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;position:sticky;top:54px;z-index:499;
+}
+.ticker-track{display:flex;gap:0;white-space:nowrap;animation:ticker-scroll 60s linear infinite;height:100%;align-items:center}
 .ticker-track:hover{animation-play-state:paused}
-.t-item{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer}
-.t-sym{font-weight:600;color:var(--text2)}
-.t-up{color:var(--green)}.t-dn{color:var(--red)}.t-nu{color:var(--text3)}
-.t-sep{color:rgba(201,168,76,.2)}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-/* PAGES */
-.page{display:none;min-height:calc(100vh - 86px)}
-.page.on{display:flex;flex-direction:column}
-/* MARKETS */
-.mkt-layout{display:grid;grid-template-columns:248px 1fr;flex:1;overflow:hidden}
-@media(max-width:900px){.mkt-layout{grid-template-columns:1fr;overflow:visible}}
-/* SIDEBAR */
-.sb{background:var(--black2);border-right:1px solid rgba(201,168,76,.08);display:flex;flex-direction:column;overflow:hidden}
-.sb-top{padding:10px;border-bottom:1px solid rgba(201,168,76,.06)}
-.sb-inp{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.1);border-radius:var(--r8);padding:7px 10px 7px 28px;color:var(--text);font-size:12px;outline:none}
-.sb-inp:focus{border-color:rgba(201,168,76,.3)}
-.sb-search{position:relative}
-.sb-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:11px;pointer-events:none}
-.sb-filters{display:flex;gap:3px;flex-wrap:wrap;padding:7px 10px;border-bottom:1px solid rgba(201,168,76,.06)}
-.sbf{padding:3px 8px;border-radius:12px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.06);background:transparent;color:var(--text3);transition:all .14s}
-.sbf.on{background:var(--gd);border-color:var(--gb);color:var(--gold)}
-.a-list{flex:1;overflow-y:auto}
-.a-list::-webkit-scrollbar{width:2px}
-.a-cat{padding:7px 12px 4px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,.5);position:sticky;top:0;background:var(--black2);z-index:1;border-bottom:1px solid rgba(201,168,76,.05)}
-.a-row{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid rgba(201,168,76,.04);cursor:pointer;transition:background .12s}
-.a-row:hover{background:rgba(201,168,76,.04)}
-.a-row.sel{background:rgba(201,168,76,.07);border-right:2px solid var(--gold)}
-.a-ico{width:24px;height:24px;border-radius:6px;background:var(--gd);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--gold);font-family:'JetBrains Mono',monospace;flex-shrink:0}
-.a-info{flex:1;min-width:0;margin:0 8px}
-.a-sym{font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace}
-.a-name{font-size:10px;color:var(--text3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
-.a-pr{text-align:right}
-.a-price{font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.t-coin{display:inline-flex;align-items:center;gap:6px;padding:0 16px;height:100%;cursor:pointer;border-right:1px solid var(--border);font-size:11px;transition:background .15s}
+.t-coin:hover{background:var(--surface-alt)}
+.t-csym{font-weight:700;font-family:'DM Mono',monospace;color:var(--tx)}
+.t-cprice{font-family:'DM Mono',monospace;color:var(--tx2)}
+.t-cup{color:var(--accent)}.t-cdn{color:var(--danger)}
+@keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* MAIN LAYOUT */
+.main-content{display:grid;grid-template-columns:240px 1fr 300px;flex:1;min-height:0;overflow:hidden}
+@media(max-width:1200px){.main-content{grid-template-columns:220px 1fr}}
+@media(max-width:900px){.main-content{grid-template-columns:1fr;overflow:visible}}
+
+/* LEFT SIDEBAR */
+.left-sidebar{
+  background:var(--surface);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden;
+  position:sticky;top:86px;height:calc(100vh - 86px);
+}
+@media(max-width:900px){.left-sidebar{display:none}}
+
+.sidebar-section{padding:12px;border-bottom:1px solid var(--border)}
+.sidebar-search{display:flex;align-items:center;gap:6px;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--r8);padding:6px 10px;font-size:12px}
+.sidebar-search input{flex:1;background:transparent;border:none;color:var(--tx);font-size:12px}
+.sidebar-search input::placeholder{color:var(--tx4)}
+.filter-tabs{display:flex;gap:2px;padding:8px 12px 4px}
+.ftab{padding:3px 8px;border-radius:100px;font-size:10px;font-weight:700;cursor:pointer;border:1px solid transparent;background:transparent;color:var(--tx3);transition:var(--t);font-family:inherit}
+.ftab.on{background:var(--tint-blue);border-color:var(--b-blue);color:var(--primary)}
+.ftab:hover:not(.on){background:var(--surface-alt);color:var(--tx2)}
+
+/* ASSET LIST */
+.asset-list{flex:1;overflow-y:auto}
+.asset-cat{padding:6px 12px 3px;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--tx4);text-transform:uppercase;position:sticky;top:0;background:var(--surface);z-index:1}
+.asset-row{
+  display:flex;align-items:center;gap:8px;padding:7px 12px;
+  border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s;
+  position:relative;
+}
+.asset-row:hover{background:var(--surface-alt)}
+.asset-row.active{background:var(--tint-blue);border-right:2px solid var(--primary)}
+.a-icon{
+  width:28px;height:28px;border-radius:var(--r8);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:800;flex-shrink:0;
+  background:var(--surface-alt);border:1px solid var(--border);
+  color:var(--tx2);font-family:'DM Mono',monospace;
+}
+.a-info{flex:1;min-width:0}
+.a-sym{font-size:12px;font-weight:700;font-family:'DM Mono',monospace}
+.a-name{font-size:10px;color:var(--tx3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.a-price-col{text-align:right;flex-shrink:0}
+.a-price{font-size:11px;font-weight:600;font-family:'DM Mono',monospace}
 .a-chg{font-size:10px;margin-top:1px}
-/* MAIN */
-.mkt-main{display:flex;flex-direction:column;overflow:hidden}
-.chart-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid rgba(201,168,76,.08);flex-wrap:wrap;gap:8px;background:var(--black);flex-shrink:0}
-.ch-sym{font-size:17px;font-weight:800;font-family:'JetBrains Mono',monospace}
-.ch-price{font-size:15px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--gold2)}
-.ch-chg{font-size:12px;font-weight:600}
-.ch-sub{font-size:10px;color:var(--text3);display:flex;align-items:center;gap:8px;margin-top:2px}
-.tl-badge{font-size:9px;padding:1px 6px;border-radius:3px;background:var(--am2);color:var(--amber);border:1px solid var(--amb);font-family:'JetBrains Mono',monospace}
-.tf-group{display:flex;gap:1px;background:rgba(255,255,255,.04);padding:2px;border-radius:var(--r6)}
-.tftab{padding:4px 9px;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--text3);font-family:'JetBrains Mono',monospace;transition:all .14s}
-.tftab.on{background:var(--gd);color:var(--gold)}
+.chg-up{color:var(--accent)}.chg-dn{color:var(--danger)}.chg-nu{color:var(--tx3)}
+
+/* MAIN PANEL */
+.main-panel{display:flex;flex-direction:column;overflow:hidden;min-height:0}
+@media(max-width:900px){.main-panel{overflow:visible;min-height:auto}}
+
+/* CHART HEADER */
+.chart-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;border-bottom:1px solid var(--border);
+  flex-wrap:wrap;gap:8px;flex-shrink:0;
+}
+.ch-asset{display:flex;flex-direction:column;gap:2px}
+.ch-main-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ch-symbol{font-size:18px;font-weight:800;font-family:'DM Mono',monospace;letter-spacing:-.5px}
+.ch-price{font-size:16px;font-weight:700;font-family:'DM Mono',monospace;color:var(--gold)}
+.ch-chg-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:var(--r6);font-family:'DM Mono',monospace}
+.ch-chg-badge.up{background:var(--tint-green);color:var(--accent);border:1px solid var(--b-green)}
+.ch-chg-badge.dn{background:var(--tint-red);color:var(--danger);border:1px solid var(--b-red)}
+.ch-sub{font-size:10px;color:var(--tx3);display:flex;align-items:center;gap:8px}
+.delay-tag{font-size:9px;padding:1px 6px;border-radius:3px;background:var(--tint-warn);color:var(--warn);border:1px solid rgba(245,158,11,.2);font-family:'DM Mono',monospace}
+.ch-controls{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.tf-pills{display:flex;gap:1px;background:var(--surface-alt);padding:2px;border-radius:var(--r8)}
+.tf-pill{padding:4px 9px;border-radius:var(--r6);font-size:11px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--tx3);font-family:'DM Mono',monospace;transition:var(--t)}
+.tf-pill.on{background:var(--tint-blue);color:var(--primary)}
+.icon-btn{width:30px;height:30px;border-radius:var(--r6);background:transparent;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;color:var(--tx3);transition:var(--t)}
+.icon-btn:hover{background:var(--surface-alt);color:var(--tx);border-color:var(--border-md)}
+
 /* IND DROPDOWN */
 .ind-wrap{position:relative}
-.ind-dd{display:none;position:absolute;right:0;top:calc(100% + 5px);background:var(--black3);border:1px solid var(--gb);border-radius:var(--r10);padding:14px;z-index:200;min-width:210px;box-shadow:0 12px 40px rgba(0,0,0,.6)}
-.ind-dd.open{display:block}
-.ind-section{font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(201,168,76,.6);text-transform:uppercase;margin-bottom:8px}
-.ind-toggle{display:flex;align-items:center;gap:8px;padding:4px 0;cursor:pointer;font-size:11px;color:var(--text2);transition:color .14s}
-.ind-toggle:hover{color:var(--text)}
-.ind-toggle input{width:13px;height:13px;accent-color:var(--gold);cursor:pointer}
-.ind-sep{border:none;border-top:1px solid rgba(201,168,76,.08);margin:8px 0}
-/* TV */
+.ind-menu{
+  position:absolute;right:0;top:calc(100%+6px);
+  background:var(--surface);border:1px solid var(--border-md);
+  border-radius:var(--r12);padding:14px;z-index:200;min-width:220px;
+  box-shadow:var(--shadow-lg);display:none;
+}
+.ind-menu.open{display:block}
+.ind-group-label{font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--tx4);text-transform:uppercase;margin-bottom:8px;margin-top:4px}
+.ind-row{display:flex;align-items:center;gap:8px;padding:4px 0;cursor:pointer;font-size:11px;color:var(--tx2);transition:color .12s}
+.ind-row:hover{color:var(--tx)}
+.ind-row input{width:13px;height:13px;accent-color:var(--primary);cursor:pointer;flex-shrink:0}
+.ind-sep{border:none;border-top:1px solid var(--border);margin:8px 0}
+
+/* TV WRAPPER */
 .tv-wrap{position:relative;flex-shrink:0;transition:height .3s}
-.tv-drag{position:absolute;bottom:0;left:0;right:0;height:8px;background:linear-gradient(transparent,rgba(201,168,76,.1));cursor:ns-resize;display:flex;align-items:center;justify-content:center;z-index:10}
-.tv-drag-handle{width:28px;height:2px;border-radius:1px;background:rgba(201,168,76,.25)}
-/* ANALYSIS */
-.ap-grid{display:grid;grid-template-columns:1fr 1fr 300px;border-top:1px solid rgba(201,168,76,.08);flex:1;overflow-y:auto}
-@media(max-width:1100px){.ap-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.ap-grid{grid-template-columns:1fr}}
-.ap{padding:14px;border-right:1px solid rgba(201,168,76,.06);overflow-y:auto}
-.ap:last-child{border-right:none}
-.ap-title{font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:rgba(201,168,76,.6);margin-bottom:10px}
-.ts-card{background:var(--black3);border:1px solid rgba(201,168,76,.1);border-radius:var(--r10);padding:12px;margin-bottom:10px}
-.ts-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.conf-ring{position:relative;width:52px;height:52px;flex-shrink:0}
-.conf-ring svg{transform:rotate(-90deg)}
-.conf-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;font-family:'JetBrains Mono',monospace}
-.levels{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
-.lv{background:rgba(255,255,255,.03);border-radius:var(--r6);padding:7px 9px}
-.lv-l{font-size:9px;color:var(--text3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;margin-bottom:2px}
-.lv-v{font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace}
-.c-entry .lv-v{color:var(--gold2)}.c-stop .lv-v{color:var(--red)}.c-tp .lv-v{color:var(--green)}.c-inv .lv-v{color:var(--amber)}.c-rr .lv-v{color:var(--gold)}
-.score-rows{display:flex;flex-direction:column;gap:5px;margin-top:10px}
-.score-row{display:flex;align-items:center;gap:7px}
-.score-lbl{font-size:10px;color:var(--text3);width:100px;flex-shrink:0}
-.score-track{flex:1;height:2px;background:rgba(255,255,255,.05);border-radius:1px}
-.score-fill{height:2px;border-radius:1px;transition:width .6s}
-.score-val{font-size:10px;color:var(--text2);width:22px;text-align:right;font-family:'JetBrains Mono',monospace}
-.explain-box{border-left:2px solid var(--gold);padding:8px 10px;background:rgba(201,168,76,.04);border-radius:0 var(--r8) var(--r8) 0;margin-bottom:8px}
-.explain-item{display:flex;gap:6px;font-size:11px;color:var(--text2);line-height:1.6;margin-bottom:3px}
-.explain-dot{color:var(--gold);flex-shrink:0}
-.warn-item{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:var(--amber);padding:6px 9px;background:var(--am2);border:1px solid var(--amb);border-radius:var(--r6);margin-bottom:5px}
-.ind-mini{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.ind-item{background:var(--black3);border-radius:var(--r8);padding:8px 10px}
-.ind-name{font-size:9px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-bottom:2px}
-.ind-val{font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace}
-.ind-sig{font-size:9px;text-transform:uppercase;margin-top:1px;letter-spacing:.3px}
-.news-item{padding:8px 10px;background:var(--black3);border-radius:var(--r8);border-left:2px solid rgba(201,168,76,.12);cursor:pointer;margin-bottom:5px;transition:border-color .14s}
-.news-item:hover{border-left-color:var(--gold)}
-.news-item.bull{border-left-color:rgba(34,197,94,.4)}
-.news-item.bear{border-left-color:rgba(239,68,68,.4)}
-.news-t{font-size:11px;font-weight:500;line-height:1.5;margin-bottom:3px}
-.news-m{font-size:10px;color:var(--text3);display:flex;gap:8px}
-.scene{padding:9px 11px;border-radius:var(--r8);margin-bottom:6px}
-.scene-bull{background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.12)}
-.scene-base{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.1)}
-.scene-bear{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1)}
-.scene-hdr{display:flex;justify-content:space-between;margin-bottom:3px}
-.scene-lbl{font-size:11px;font-weight:700}
-.scene-prob{font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace}
-.scene-desc{font-size:11px;color:var(--text2);line-height:1.55}
-.scene-tgt{font-size:10px;font-family:'JetBrains Mono',monospace;margin-top:3px}
-/* SCANNER */
-.scanner-page{padding:16px;max-width:1400px;margin:0 auto}
-.scan-filters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
-.sf{padding:4px 12px;border-radius:14px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.06);background:transparent;color:var(--text3);transition:all .15s;font-family:inherit}
-.sf.on{background:var(--gd);border-color:var(--gb);color:var(--gold)}
-.grp-title{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(201,168,76,.6);padding:12px 0 8px;display:flex;align-items:center;gap:8px}
-.grp-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.2),transparent)}
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(308px,1fr));gap:12px;margin-bottom:6px}
-.ac{background:var(--black2);border:1px solid rgba(201,168,76,.08);border-radius:var(--r12);overflow:hidden;transition:border-color .18s}
-.ac:hover{border-color:var(--gb)}
-.ac.open{border-color:var(--gb2)}
-.ac-head{display:flex;align-items:center;gap:10px;padding:12px 14px}
-.ac-icon{width:30px;height:30px;border-radius:var(--r8);background:var(--gd);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--gold);font-family:'JetBrains Mono',monospace;flex-shrink:0}
-.ac-info{flex:1;min-width:0}
-.ac-r1{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
-.ac-sym{font-size:13px;font-weight:800;font-family:'JetBrains Mono',monospace}
-.ac-name{font-size:10px;color:var(--text3)}
-.ac-mrow{display:flex;align-items:center;gap:5px;margin-top:3px}
-.mtype{font-size:8px;font-weight:700;padding:2px 5px;border-radius:3px;text-transform:uppercase;letter-spacing:.3px}
-.mt-crypto{background:rgba(99,102,241,.1);color:#818cf8;border:1px solid rgba(99,102,241,.18)}
-.mt-stock{background:rgba(6,182,212,.08);color:#22d3ee;border:1px solid rgba(6,182,212,.15)}
-.mt-gold{background:var(--gd);color:var(--gold2);border:1px solid var(--gb)}
-.btag{font-size:8px;font-weight:700;color:var(--amber);padding:2px 5px;background:var(--am2);border:1px solid var(--amb);border-radius:3px}
-.ac-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;padding:0 14px 10px}
-.ac-stat{background:var(--black3);border-radius:5px;padding:6px 8px}
-.ac-sl{font-size:9px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-bottom:2px}
-.ac-sv{font-size:12px;font-weight:600;font-family:'JetBrains Mono',monospace}
-.ac-label{padding:0 14px 10px;font-size:10px;color:var(--text3);font-style:italic;line-height:1.5}
-.ac-expand{display:flex;align-items:center;justify-content:center;padding:7px;border-top:1px solid rgba(201,168,76,.06);font-size:10px;color:var(--text3);cursor:pointer;transition:all .14s}
-.ac-expand:hover{color:var(--gold);background:rgba(201,168,76,.04)}
-.ac-detail{display:none;border-top:1px solid rgba(201,168,76,.06);padding:12px 14px}
-.ac.open .ac-detail{display:block}
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
-.d-item{background:var(--black3);border-radius:6px;padding:7px 9px}
-.d-l{font-size:9px;color:var(--text3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;margin-bottom:2px}
-.d-v{font-size:12px;font-weight:600;font-family:'JetBrains Mono',monospace}
-/* PORTFOLIO */
-.port-page{padding:16px;max-width:1200px;margin:0 auto}
-.port-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
-.port-stat{background:var(--black2);border:1px solid rgba(201,168,76,.1);border-radius:var(--r12);padding:16px 18px}
-.port-stat-l{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.port-stat-v{font-size:24px;font-weight:800;font-family:'JetBrains Mono',monospace}
-.pos-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(201,168,76,.06)}
-.pos-row:last-child{border-bottom:none}
-.pos-sym{font-size:13px;font-weight:700;font-family:'JetBrains Mono',monospace}
-.pos-sub{font-size:10px;color:var(--text3);margin-top:1px}
-/* AUTO TRADING */
-.auto-page{padding:16px;max-width:900px;margin:0 auto}
-.auto-section{background:var(--black2);border:1px solid rgba(201,168,76,.1);border-radius:var(--r12);padding:18px;margin-bottom:14px}
-.auto-st{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-.mode-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-@media(max-width:640px){.mode-cards{grid-template-columns:1fr}}
-.mc-card{padding:14px;border-radius:var(--r10);border:2px solid rgba(255,255,255,.06);cursor:pointer;transition:all .18s;background:rgba(255,255,255,.02)}
-.mc-off.sel{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.04)}
-.mc-alert.sel{border-color:var(--amber);background:var(--am2)}
-.mc-semi.sel{border-color:var(--blue);background:rgba(59,130,246,.08)}
-.mc-icon{font-size:18px;margin-bottom:8px}
-.mc-t{font-size:12px;font-weight:700;margin-bottom:4px}
-.mc-d{font-size:11px;color:var(--text2);line-height:1.5}
-.safety-list{display:flex;flex-direction:column;gap:7px}
-.safety-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2)}
-.sdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.sdot-ok{background:var(--green)}.sdot-warn{background:var(--amber)}
-.emerg{width:100%;padding:12px;border-radius:var(--r10);background:var(--rd2);border:1px solid var(--rdb);color:var(--red);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:1px;transition:all .18s}
-.emerg:hover{background:rgba(239,68,68,.2)}
-/* AI BOT */
-.ai-page{display:grid;grid-template-columns:1fr 360px;flex:1;overflow:hidden}
-@media(max-width:900px){.ai-page{grid-template-columns:1fr;overflow:visible}}
-.ai-left{overflow-y:auto;padding:16px;border-right:1px solid rgba(201,168,76,.08)}
-.sum-card{background:var(--black2);border:1px solid rgba(201,168,76,.1);border-radius:var(--r12);padding:14px;margin-bottom:10px}
-.sum-t{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,.7);margin-bottom:10px}
-.sum-body{font-size:12px;color:var(--text2);line-height:1.75}
-.sum-body b{color:var(--text)}
-.ai-right{display:flex;flex-direction:column;overflow:hidden}
-.chat-hdr{padding:10px 14px;border-bottom:1px solid rgba(201,168,76,.08);background:var(--black2);display:flex;align-items:center;gap:8px;flex-shrink:0}
-.chat-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
-.cmsg{display:flex;gap:7px;max-width:92%}
-.cmsg.user{align-self:flex-end;flex-direction:row-reverse}
-.cav{width:24px;height:24px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px}
-.cav.bot{background:var(--gd);color:var(--gold);font-weight:700}
-.cav.usr{background:rgba(255,255,255,.06);color:var(--text2)}
-.cbbl{padding:8px 11px;border-radius:10px;font-size:12px;line-height:1.65}
-.bot .cbbl{background:var(--black3);border:1px solid rgba(201,168,76,.1);border-top-left-radius:2px}
-.user .cbbl{background:rgba(201,168,76,.08);border:1px solid var(--gb);border-top-right-radius:2px}
-.cbbl b{color:var(--gold2)}
-.bull-t{color:var(--green);font-weight:600}
-.bear-t{color:var(--red);font-weight:600}
-.chat-qs{display:flex;gap:4px;flex-wrap:wrap;padding:7px 10px;border-top:1px solid rgba(201,168,76,.06);flex-shrink:0}
-.cq{font-size:10px;padding:4px 8px;border-radius:5px;border:1px solid rgba(255,255,255,.06);background:transparent;color:var(--text3);cursor:pointer;transition:all .14s;white-space:nowrap}
-.cq:hover{border-color:var(--gb);color:var(--gold)}
-.chat-inp{padding:8px 10px;border-top:1px solid rgba(201,168,76,.06);display:flex;gap:6px;align-items:flex-end;flex-shrink:0}
-.chat-ta{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.1);border-radius:var(--r8);padding:7px 10px;color:var(--text);font-family:'Inter',sans-serif;font-size:12px;resize:none;max-height:70px;outline:none;transition:border-color .18s}
-.chat-ta:focus{border-color:rgba(201,168,76,.35)}
-.chat-send{width:30px;height:30px;border-radius:7px;background:var(--gold);border:none;color:var(--black);font-size:12px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;transition:background .15s}
-.chat-send:hover{background:var(--gold2)}
-.chat-send:disabled{opacity:.4;cursor:not-allowed}
-.typing{display:flex;gap:3px;align-items:center;padding:8px 11px;background:var(--black3);border:1px solid rgba(201,168,76,.1);border-radius:10px;border-top-left-radius:2px;width:fit-content}
-.td{width:4px;height:4px;border-radius:50%;background:var(--gold);animation:td 1.4s infinite}
-.td:nth-child(2){animation-delay:.2s}.td:nth-child(3){animation-delay:.4s}
-@keyframes td{0%,60%,100%{opacity:.35}30%{opacity:1;transform:translateY(-3px)}}
-/* SETTINGS */
-.settings-page{padding:24px;max-width:680px;margin:0 auto}
-.set-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.tv-drag{position:absolute;bottom:0;left:0;right:0;height:8px;cursor:ns-resize;display:flex;align-items:center;justify-content:center;z-index:10;background:linear-gradient(transparent,rgba(255,255,255,.04))}
+.tv-drag-handle{width:32px;height:3px;border-radius:2px;background:var(--border-md)}
+
+/* ANALYSIS GRID */
+.analysis-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--border);
+  flex:1;overflow-y:auto;
+}
+@media(max-width:700px){.analysis-grid{grid-template-columns:1fr}}
+.ag-panel{padding:14px;border-right:1px solid var(--border);overflow-y:auto}
+.ag-panel:last-child{border-right:none}
+
+/* SECTION LABEL */
+.sec-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tx4);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* SIGNAL CARD */
+.signal-card{background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--r12);padding:14px;margin-bottom:10px}
+.signal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sig-badge{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:var(--r8);font-size:13px;font-weight:800;letter-spacing:.3px;font-family:'DM Mono',monospace}
+.sig-buy{background:var(--tint-green);color:var(--accent);border:1px solid var(--b-green)}
+.sig-sell{background:var(--tint-red);color:var(--danger);border:1px solid var(--b-red)}
+.sig-hold{background:var(--tint-warn);color:var(--warn);border:1px solid rgba(245,158,11,.2)}
+.sig-watch{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-b)}
+
+/* CONFIDENCE RING */
+.conf-ring-wrap{position:relative;width:56px;height:56px;flex-shrink:0}
+.conf-ring-wrap svg{transform:rotate(-90deg)}
+.conf-ring-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;font-family:'DM Mono',monospace}
+
+/* PRICE LEVELS */
+.levels-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:10px}
+.level-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r8);padding:8px 10px}
+.level-label{font-size:8px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--tx4);margin-bottom:3px;font-family:'DM Mono',monospace}
+.level-value{font-size:12px;font-weight:700;font-family:'DM Mono',monospace}
+.lv-entry{color:var(--gold)}.lv-stop{color:var(--danger)}.lv-tp{color:var(--accent)}.lv-inv{color:var(--warn)}.lv-rr{color:var(--primary)}
+
+/* SCORE BARS */
+.score-list{display:flex;flex-direction:column;gap:5px}
+.score-row{display:flex;align-items:center;gap:8px}
+.score-name{font-size:10px;color:var(--tx3);width:88px;flex-shrink:0}
+.score-track{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.score-fill{height:3px;border-radius:2px;transition:width .7s ease}
+.score-pct{font-size:10px;color:var(--tx3);width:24px;text-align:right;font-family:'DM Mono',monospace}
+
+/* EXPLAIN */
+.explain-block{border-left:2px solid var(--primary);padding:8px 10px;background:var(--tint-blue);border-radius:0 var(--r8) var(--r8) 0;margin-bottom:8px}
+.explain-item{display:flex;gap:6px;font-size:11px;color:var(--tx2);line-height:1.6;margin-bottom:3px}
+.explain-dot{color:var(--primary);flex-shrink:0;margin-top:2px}
+.warn-block{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:var(--warn);padding:7px 10px;background:var(--tint-warn);border:1px solid rgba(245,158,11,.18);border-radius:var(--r8);margin-bottom:6px}
+
+/* INDICATORS GRID */
+.ind-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+.ind-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r10);padding:9px 11px}
+.ind-name{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--tx4);margin-bottom:3px}
+.ind-val{font-size:13px;font-weight:700;font-family:'DM Mono',monospace}
+.ind-sig{font-size:9px;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+/* NEWS */
+.news-item{padding:9px 11px;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--r10);cursor:pointer;margin-bottom:5px;transition:border-color .15s;border-left:3px solid var(--border)}
+.news-item:hover{border-left-color:var(--primary)}
+.news-item.bull{border-left-color:var(--accent)}
+.news-item.bear{border-left-color:var(--danger)}
+.news-title{font-size:11px;font-weight:500;line-height:1.5;margin-bottom:4px}
+.news-meta{font-size:10px;color:var(--tx3);display:flex;gap:8px}
+
+/* SCENARIOS */
+.scenario-item{padding:10px 12px;border-radius:var(--r10);margin-bottom:6px}
+.sc-bull{background:var(--tint-green);border:1px solid var(--b-green)}
+.sc-base{background:var(--tint-gold);border:1px solid var(--b-gold)}
+.sc-bear{background:var(--tint-red);border:1px solid var(--b-red)}
+.sc-head{display:flex;justify-content:space-between;margin-bottom:4px}
+.sc-lbl{font-size:11px;font-weight:700}
+.sc-prob{font-size:10px;color:var(--tx3);font-family:'DM Mono',monospace}
+.sc-desc{font-size:11px;color:var(--tx2);line-height:1.55}
+.sc-tgt{font-size:10px;font-family:'DM Mono',monospace;margin-top:3px}
+
+/* RIGHT SIDEBAR */
+.right-sidebar{
+  background:var(--surface);border-left:1px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden;
+  position:sticky;top:86px;height:calc(100vh - 86px);
+}
+@media(max-width:1200px){.right-sidebar{display:none}}
+.rs-tab-bar{display:flex;border-bottom:1px solid var(--border);flex-shrink:0}
+.rs-tab{flex:1;padding:10px 8px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--t)}
+.rs-tab.on{color:var(--primary);border-bottom-color:var(--primary)}
+.rs-content{flex:1;overflow-y:auto;padding:12px}
+
+/* PORTFOLIO STATS */
+.port-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+.port-stat{background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--r10);padding:10px 12px}
+.ps-label{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--tx4);margin-bottom:4px}
+.ps-value{font-size:20px;font-weight:800;font-family:'DM Mono',monospace;line-height:1}
+.ps-sub{font-size:10px;color:var(--tx3);margin-top:2px}
+
+/* ALERTS */
+.alert-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.alert-item:last-child{border-bottom:none}
+.alert-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.alert-body{flex:1;min-width:0}
+.alert-title{font-size:11px;font-weight:600;line-height:1.4}
+.alert-meta{font-size:10px;color:var(--tx3);margin-top:2px}
+.alert-item.unread .alert-title{color:var(--tx);font-weight:700}
+
+/* SKELETON */
+.skel{background:linear-gradient(90deg,var(--surface-alt) 25%,var(--surface-3) 50%,var(--surface-alt) 75%);background-size:200% 100%;animation:skel 1.6s infinite;border-radius:4px}
+@keyframes skel{from{background-position:200% 0}to{background-position:-200% 0}}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:7px 14px;border-radius:var(--r8);font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:var(--t);white-space:nowrap}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-h);transform:translateY(-1px);box-shadow:0 4px 16px rgba(59,130,246,.3)}
+.btn-gold{background:var(--gold);color:#000}
+.btn-gold:hover{background:#FFD45E;transform:translateY(-1px)}
+.btn-outline{background:transparent;border:1px solid var(--border-md);color:var(--tx2)}
+.btn-outline:hover{border-color:var(--border-lg);color:var(--tx)}
+.btn-ghost{background:transparent;color:var(--tx3)}
+.btn-ghost:hover{background:var(--surface-alt);color:var(--tx2)}
+.btn-danger{background:var(--tint-red);border:1px solid var(--b-red);color:var(--danger)}
+.btn-success{background:var(--tint-green);border:1px solid var(--b-green);color:var(--accent)}
+.btn-sm{padding:5px 10px;font-size:11px;border-radius:var(--r6)}
+.btn-xs{padding:3px 7px;font-size:10px;border-radius:5px}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
+
+/* INPUT */
+.input-field{width:100%;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--r8);padding:8px 12px;color:var(--tx);font-size:12px;transition:border-color .15s}
+.input-field:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.input-label{display:block;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--tx3);margin-bottom:5px}
+.input-group{margin-bottom:10px}
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.input-row{grid-template-columns:1fr}}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;font-family:'DM Mono',monospace}
+.badge-buy{background:var(--tint-green);color:var(--accent);border:1px solid var(--b-green)}
+.badge-sell{background:var(--tint-red);color:var(--danger);border:1px solid var(--b-red)}
+.badge-hold{background:var(--tint-warn);color:var(--warn)}
+.badge-watch{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-b)}
+.badge-new{background:var(--primary);color:#fff}
+.badge-pro{background:linear-gradient(135deg,var(--gold),#D97706);color:#000}
+
 /* PREMIUM GATE */
 .prem-wrap{position:relative;border-radius:var(--r12);overflow:hidden}
-.prem-blur{filter:blur(5px);pointer-events:none;user-select:none;opacity:.4}
-.prem-gate{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,10,.88);backdrop-filter:blur(4px);border-radius:var(--r12);border:1px solid var(--gb);padding:20px;text-align:center;gap:6px}
-.prem-icon{font-size:22px;margin-bottom:4px}
-.prem-t{font-size:13px;font-weight:700}
-.prem-s{font-size:11px;color:var(--text2);line-height:1.6;max-width:200px}
+.prem-blur{filter:blur(6px);pointer-events:none;user-select:none;opacity:.35}
+.prem-gate{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(7,17,31,.9);backdrop-filter:blur(4px);border-radius:var(--r12);padding:20px;text-align:center;gap:6px;border:1px solid var(--gold-b)}
+[data-theme="light"] .prem-gate{background:rgba(246,248,252,.92)}
+.prem-icon{font-size:24px;margin-bottom:4px}
+.prem-title{font-size:13px;font-weight:800}
+.prem-desc{font-size:11px;color:var(--tx2);line-height:1.6;max-width:200px}
 .prem-feats{display:flex;flex-direction:column;gap:3px;margin:4px 0}
-.pf{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:5px}
-.pf-ok{color:var(--green)}
-.btn-upgrade{background:linear-gradient(135deg,var(--gold),#7a5c1a);color:#fff;padding:8px 18px;border-radius:var(--r8);font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all .2s;margin-top:4px}
-.btn-upgrade:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(201,168,76,.3)}
-/* EXPAND */
-.chart-expanded .ap-grid{display:none}
-.chart-expanded .tv-wrap{height:calc(100vh - 112px)!important}
-@media(max-width:900px){.tv-wrap{height:260px!important}.ap-grid{grid-template-columns:1fr!important}}
-@media(max-width:640px){.tv-wrap{height:220px!important}.tf-group .tftab:nth-child(1),.tf-group .tftab:nth-child(2){display:none}}
+.pf-row{font-size:11px;color:var(--tx2);display:flex;align-items:center;gap:5px}
+.pf-ok{color:var(--accent)}
+.upgrade-btn{background:linear-gradient(135deg,var(--gold),#D97706);color:#000;padding:8px 18px;border-radius:var(--r8);font-size:12px;font-weight:800;border:none;cursor:pointer;font-family:inherit;transition:var(--t);margin-top:4px}
+.upgrade-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(240,180,41,.3)}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--border);margin:12px 0}
+
+/* PAGE SYSTEM */
+.page{display:none;flex:1}
+.page.active{display:flex;flex-direction:column}
+
+/* MOBILE BOTTOM NAV */
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:600;background:var(--surface);border-top:1px solid var(--border);padding:6px 0 env(safe-area-inset-bottom,6px)}
+@media(max-width:900px){.mobile-nav{display:flex}}
+.mn-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px;color:var(--tx3);font-size:9px;font-weight:700;letter-spacing:.3px;transition:var(--t)}
+.mn-item.on{color:var(--primary)}
+.mn-icon{font-size:18px;line-height:1}
+@media(max-width:900px){.app-shell{padding-bottom:60px}}
+
+/* SCANNER CARDS */
+.scanner-wrap{padding:16px;max-width:1400px;margin:0 auto}
+.filter-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.filter-chip{padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--tx3);transition:var(--t);font-family:inherit}
+.filter-chip.on{background:var(--tint-blue);border-color:var(--b-blue);color:var(--primary)}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px}
+.group-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--tx4);padding:12px 0 8px;display:flex;align-items:center;gap:8px}
+.group-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.asset-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r12);overflow:hidden;transition:border-color .18s,box-shadow .18s}
+.asset-card:hover{border-color:var(--border-md);box-shadow:var(--shadow)}
+.asset-card.expanded{border-color:var(--b-blue)}
+.card-head{display:flex;align-items:center;gap:10px;padding:12px 14px}
+.card-icon{width:32px;height:32px;border-radius:var(--r8);background:var(--surface-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;font-family:'DM Mono',monospace;color:var(--tx2);flex-shrink:0}
+.card-info{flex:1;min-width:0}
+.card-r1{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.card-sym{font-size:13px;font-weight:800;font-family:'DM Mono',monospace}
+.card-name{font-size:10px;color:var(--tx3)}
+.card-tags{display:flex;align-items:center;gap:4px;margin-top:3px}
+.market-tag{font-size:8px;font-weight:700;padding:2px 5px;border-radius:3px;text-transform:uppercase;letter-spacing:.3px}
+.mt-crypto{background:rgba(99,102,241,.12);color:#818cf8;border:1px solid rgba(99,102,241,.2)}
+.mt-stock{background:rgba(0,212,255,.08);color:#22d3ee;border:1px solid rgba(0,212,255,.15)}
+.mt-gold{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-b)}
+.card-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;padding:0 14px 10px}
+.card-stat{background:var(--surface-alt);border-radius:6px;padding:6px 8px}
+.cs-l{font-size:9px;color:var(--tx4);font-family:'DM Mono',monospace;margin-bottom:2px;text-transform:uppercase;letter-spacing:.5px}
+.cs-v{font-size:12px;font-weight:700;font-family:'DM Mono',monospace}
+.card-quote{padding:0 14px 10px;font-size:10px;color:var(--tx3);font-style:italic;line-height:1.5}
+.card-expand{display:flex;align-items:center;justify-content:center;padding:7px;border-top:1px solid var(--border);font-size:10px;color:var(--tx3);cursor:pointer;transition:var(--t)}
+.card-expand:hover{color:var(--primary);background:var(--surface-alt)}
+.card-detail{display:none;border-top:1px solid var(--border);padding:12px 14px}
+.asset-card.expanded .card-detail{display:block}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.d-item{background:var(--surface-alt);border-radius:6px;padding:7px 9px}
+.d-label{font-size:9px;color:var(--tx4);font-family:'DM Mono',monospace;text-transform:uppercase;margin-bottom:2px;letter-spacing:.5px}
+.d-value{font-size:12px;font-weight:700;font-family:'DM Mono',monospace}
+
+/* PORTFOLIO PAGE */
+.portfolio-page{padding:16px;max-width:1200px;margin:0 auto}
+.port-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.port-stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:16px}
+.port-stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r12);padding:16px 18px;transition:var(--t)}
+.port-stat-card:hover{border-color:var(--border-md)}
+.psc-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--tx3);margin-bottom:6px}
+.psc-value{font-size:26px;font-weight:800;font-family:'DM Mono',monospace;line-height:1}
+.psc-sub{font-size:11px;color:var(--tx3);margin-top:4px}
+.panel-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r12);padding:16px;margin-bottom:12px}
+.panel-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:12px}
+
+/* AUTO TRADING PAGE */
+.auto-page{padding:16px;max-width:900px;margin:0 auto}
+.auto-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r12);padding:18px;margin-bottom:12px}
+.as-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.mode-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:640px){.mode-cards{grid-template-columns:1fr}}
+.mode-card{padding:14px;border-radius:var(--r10);border:2px solid var(--border);cursor:pointer;transition:var(--t);background:var(--surface-alt)}
+.mode-card:hover{border-color:var(--border-md)}
+.mode-card.mc-active-off{border-color:var(--border-md);background:var(--surface-alt)}
+.mode-card.mc-active-alert{border-color:var(--warn);background:var(--tint-warn)}
+.mode-card.mc-active-semi{border-color:var(--primary);background:var(--tint-blue)}
+.mc-icon{font-size:20px;margin-bottom:8px}
+.mc-title{font-size:12px;font-weight:700;margin-bottom:4px}
+.mc-desc{font-size:11px;color:var(--tx2);line-height:1.5}
+.safety-list{display:flex;flex-direction:column;gap:7px}
+.safety-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--tx2)}
+.safety-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.sd-ok{background:var(--accent)}.sd-warn{background:var(--warn)}
+.emerg-btn{width:100%;padding:12px;border-radius:var(--r10);background:var(--tint-red);border:1px solid var(--b-red);color:var(--danger);font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:1px;transition:var(--t)}
+.emerg-btn:hover{background:rgba(239,68,68,.2)}
+
+/* AI BOT PAGE */
+.ai-page{display:grid;grid-template-columns:1fr 360px;flex:1;overflow:hidden}
+@media(max-width:900px){.ai-page{grid-template-columns:1fr;overflow:visible}}
+.ai-summaries{overflow-y:auto;padding:16px;border-right:1px solid var(--border)}
+.sum-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r12);padding:14px;margin-bottom:10px}
+.sum-title{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tx4);margin-bottom:10px}
+.sum-body{font-size:12px;color:var(--tx2);line-height:1.75}
+.sum-body b{color:var(--tx);font-weight:600}
+.chat-wrap{display:flex;flex-direction:column;overflow:hidden}
+.chat-header{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-shrink:0;background:var(--surface)}
+.chat-messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.msg{display:flex;gap:7px;max-width:94%}
+.msg.user{align-self:flex-end;flex-direction:row-reverse}
+.msg-avatar{width:26px;height:26px;border-radius:var(--r8);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800}
+.msg-avatar.bot{background:var(--tint-blue);color:var(--primary)}
+.msg-avatar.user{background:var(--surface-alt);color:var(--tx2)}
+.msg-bubble{padding:9px 12px;border-radius:10px;font-size:12px;line-height:1.65}
+.bot .msg-bubble{background:var(--surface-alt);border:1px solid var(--border);border-top-left-radius:2px}
+.user .msg-bubble{background:var(--tint-blue);border:1px solid var(--b-blue);border-top-right-radius:2px}
+.msg-bubble b{color:var(--gold)}
+.typing-indicator{display:flex;gap:3px;align-items:center;padding:8px 12px;background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;border-top-left-radius:2px;width:fit-content}
+.typing-dot{width:4px;height:4px;border-radius:50%;background:var(--primary);animation:typing 1.4s infinite}
+.typing-dot:nth-child(2){animation-delay:.2s}.typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes typing{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-4px)}}
+.chat-quick{display:flex;gap:4px;flex-wrap:wrap;padding:7px 10px;border-top:1px solid var(--border);flex-shrink:0}
+.quick-btn{font-size:10px;padding:4px 9px;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--tx3);cursor:pointer;transition:var(--t);white-space:nowrap}
+.quick-btn:hover{border-color:var(--b-blue);color:var(--primary)}
+.chat-input-row{padding:8px 10px;border-top:1px solid var(--border);display:flex;gap:6px;align-items:flex-end;flex-shrink:0}
+.chat-textarea{flex:1;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--r8);padding:8px 10px;color:var(--tx);font-size:12px;resize:none;max-height:70px;transition:border-color .15s;line-height:1.5}
+.chat-textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+.chat-send-btn{width:32px;height:32px;border-radius:var(--r8);background:var(--primary);border:none;color:#fff;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;transition:var(--t)}
+.chat-send-btn:hover{background:var(--primary-h)}
+.chat-send-btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* SETTINGS */
+.settings-page{padding:24px;max-width:680px;margin:0 auto}
+.settings-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r12);padding:18px;margin-bottom:12px}
+.settings-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:12px}
 
 /* LANDING PAGE */
-.lp-hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative;overflow:hidden;background:var(--black)}
-.lp-hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(ellipse,rgba(201,168,76,.06) 0%,transparent 70%);pointer-events:none}
-.lp-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.08);border:1px solid var(--gb);border-radius:100px;padding:5px 14px;font-size:11px;font-weight:600;color:var(--gold2);letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
-.lp-h1{font-size:clamp(28px,5vw,58px);font-weight:900;letter-spacing:-2px;line-height:1.08;margin-bottom:16px;color:var(--text)}
-.lp-h1 em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.lp-sub{font-size:clamp(13px,2vw,16px);color:var(--text2);max-width:520px;line-height:1.75;margin-bottom:32px}
+.lp-hero{min-height:calc(100vh - 86px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative;overflow:hidden}
+.lp-hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(ellipse,rgba(59,130,246,.06) 0%,transparent 65%);pointer-events:none}
+.lp-badge{display:inline-flex;align-items:center;gap:7px;background:var(--tint-blue);border:1px solid var(--b-blue);border-radius:100px;padding:5px 14px;font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.5px;margin-bottom:20px}
+.lp-h1{font-size:clamp(32px,6vw,64px);font-weight:900;letter-spacing:-2.5px;line-height:1.06;margin-bottom:18px}
+.lp-h1 em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lp-sub{font-size:clamp(14px,2vw,17px);color:var(--tx2);max-width:540px;line-height:1.75;margin-bottom:36px}
 .lp-ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
-.lp-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
-.lp-chip{display:inline-flex;align-items:center;gap:6px;background:var(--black3);border:1px solid rgba(201,168,76,.1);border-radius:8px;padding:6px 12px;font-size:11px;color:var(--text2)}
-.lp-chip span{color:var(--gold2);font-weight:600;font-family:'JetBrains Mono',monospace}
-
-/* SECTION */
-.lp-section{padding:64px 24px;border-top:1px solid rgba(201,168,76,.08)}
+.lp-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.lp-chip{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r8);padding:6px 12px;font-size:11px;color:var(--tx2)}
+.lp-chip strong{color:var(--tx);font-weight:700}
+.lp-section{padding:72px 24px;border-top:1px solid var(--border)}
 .lp-section-inner{max-width:1100px;margin:0 auto}
-.lp-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
-.lp-sh{font-size:clamp(22px,3.5vw,36px);font-weight:800;letter-spacing:-1px;line-height:1.15;margin-bottom:10px}
-.lp-ss{font-size:13px;color:var(--text2);max-width:480px;line-height:1.7}
-
-/* FEATURES GRID */
+.section-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);display:block;margin-bottom:8px}
+.section-h{font-size:clamp(22px,3.5vw,36px);font-weight:800;letter-spacing:-1px;line-height:1.15;margin-bottom:10px}
+.section-s{font-size:13px;color:var(--tx2);max-width:480px;line-height:1.7}
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
 @media(max-width:768px){.feat-grid{grid-template-columns:1fr}}
-.feat-card{background:var(--black2);border:1px solid rgba(201,168,76,.1);border-radius:var(--r12);padding:20px}
-.feat-icon{width:38px;height:38px;border-radius:10px;background:var(--gd);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px}
-.feat-t{font-size:14px;font-weight:700;margin-bottom:6px}
-.feat-d{font-size:12px;color:var(--text2);line-height:1.65}
-
-/* HOW IT WORKS */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px;position:relative}
-@media(max-width:768px){.steps{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.steps{grid-template-columns:1fr}}
-.step{background:var(--black2);border:1px solid rgba(201,168,76,.1);border-radius:var(--r12);padding:18px;text-align:center}
-.step-num{width:36px;height:36px;border-radius:50%;background:var(--gd);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--gold);margin:0 auto 10px}
-.step-t{font-size:13px;font-weight:700;margin-bottom:5px}
-.step-d{font-size:11px;color:var(--text2);line-height:1.6}
-
-/* TRUST SIGNALS */
+.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r12);padding:20px;transition:var(--t)}
+.feat-card:hover{border-color:var(--border-md);box-shadow:var(--shadow)}
+.feat-icon{width:40px;height:40px;border-radius:var(--r10);background:var(--tint-blue);border:1px solid var(--b-blue);display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px}
+.feat-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.feat-desc{font-size:12px;color:var(--tx2);line-height:1.65}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+@media(max-width:768px){.steps-grid{grid-template-columns:1fr 1fr}}
+.step-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r12);padding:18px;text-align:center}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--tint-blue);border:1px solid var(--b-blue);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--primary);margin:0 auto 10px;font-family:'DM Mono',monospace}
+.step-title{font-size:13px;font-weight:700;margin-bottom:5px}
+.step-desc{font-size:11px;color:var(--tx2);line-height:1.6}
 .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
 @media(max-width:768px){.trust-grid{grid-template-columns:1fr}}
-.trust-item{background:var(--black2);border:1px solid rgba(201,168,76,.1);border-radius:var(--r12);padding:18px}
-.trust-icon{font-size:20px;margin-bottom:8px}
-.trust-t{font-size:13px;font-weight:700;margin-bottom:5px}
-.trust-d{font-size:12px;color:var(--text2);line-height:1.65}
-
-/* PRICING */
-.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;max-width:700px;margin-left:auto;margin-right:auto}
-@media(max-width:640px){.price-grid{grid-template-columns:1fr}}
-.price-card{background:var(--black2);border:1px solid rgba(201,168,76,.1);border-radius:var(--r16);padding:24px;position:relative}
-.price-card.featured{border-color:var(--gb2);background:rgba(201,168,76,.04)}
-.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);font-size:10px;font-weight:800;padding:4px 14px;border-radius:100px;letter-spacing:1px;white-space:nowrap}
-.price-name{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-bottom:8px}
-.price-amount{font-size:36px;font-weight:900;font-family:'JetBrains Mono',monospace;letter-spacing:-1px;margin-bottom:4px}
-.price-period{font-size:11px;color:var(--text3);margin-bottom:16px}
+.trust-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r12);padding:18px;transition:var(--t)}
+.trust-item:hover{border-color:var(--border-md)}
+.risk-note{background:var(--tint-red);border:1px solid var(--b-red);border-radius:var(--r10);padding:14px 16px;margin-top:20px}
+.risk-note-t{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--danger);margin-bottom:6px}
+.risk-note-b{font-size:11px;color:var(--tx2);line-height:1.7}
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;max-width:680px;margin-left:auto;margin-right:auto}
+@media(max-width:580px){.price-grid{grid-template-columns:1fr}}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r16);padding:24px;position:relative;transition:var(--t)}
+.price-card:hover{border-color:var(--border-md)}
+.price-card.featured{border-color:var(--b-blue);background:var(--tint-blue)}
+.price-featured-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:10px;font-weight:800;padding:4px 14px;border-radius:100px;letter-spacing:.5px;white-space:nowrap}
+.price-name{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx2);margin-bottom:8px}
+.price-amount{font-size:38px;font-weight:900;font-family:'DM Mono',monospace;letter-spacing:-1.5px;margin-bottom:4px}
+.price-period{font-size:11px;color:var(--tx3);margin-bottom:16px}
 .price-feats{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
-.price-feat{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text2)}
-.price-feat-ok{color:var(--green);flex-shrink:0}
-.price-feat-no{color:var(--text3);flex-shrink:0}
-
-/* FAQ */
-.faq-list{display:flex;flex-direction:column;gap:8px;margin-top:32px;max-width:720px}
-.faq-item{background:var(--black2);border:1px solid rgba(201,168,76,.1);border-radius:var(--r10);overflow:hidden}
-.faq-q{padding:14px 16px;font-size:13px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .15s;color:var(--text)}
-.faq-q:hover{background:rgba(201,168,76,.04)}
-.faq-icon{color:var(--gold);font-size:16px;transition:transform .2s;flex-shrink:0}
+.price-feat{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--tx2)}
+.pf-yes{color:var(--accent);flex-shrink:0}.pf-no{color:var(--tx4);flex-shrink:0}
+.faq-list{display:flex;flex-direction:column;gap:7px;margin-top:28px;max-width:720px}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r10);overflow:hidden}
+.faq-q{padding:14px 16px;font-size:13px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .15s}
+.faq-q:hover{background:var(--surface-alt)}
+.faq-icon{color:var(--primary);font-size:16px;transition:transform .2s;flex-shrink:0}
 .faq-item.open .faq-icon{transform:rotate(45deg)}
-.faq-a{display:none;padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.75;border-top:1px solid rgba(201,168,76,.08)}
+.faq-a{display:none;padding:12px 16px;font-size:12px;color:var(--tx2);line-height:1.75;border-top:1px solid var(--border)}
 .faq-item.open .faq-a{display:block}
+.affiliate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+@media(max-width:768px){.affiliate-grid{grid-template-columns:1fr}}
+.aff-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r12);padding:18px;cursor:pointer;transition:var(--t)}
+.aff-card:hover{border-color:var(--border-md);box-shadow:var(--shadow)}
+.lp-footer{background:var(--surface);border-top:1px solid var(--border);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.cta-section{text-align:center;padding:72px 24px;border-top:1px solid var(--border)}
+.cta-h{font-size:clamp(24px,4vw,48px);font-weight:900;letter-spacing:-1.5px;margin-bottom:12px}
+.cta-h em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-top:36px}
-@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
-.about-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.about-stat{background:var(--black2);border:1px solid rgba(201,168,76,.1);border-radius:var(--r10);padding:14px}
-.about-stat-v{font-size:28px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--gold2);margin-bottom:3px}
-.about-stat-l{font-size:11px;color:var(--text3)}
+/* POPUP SCORE */
+.score-pop{position:absolute;font-size:14px;font-weight:800;pointer-events:none;animation:score-fly .9s ease forwards;font-family:'DM Mono',monospace;text-shadow:0 0 8px currentColor;white-space:nowrap;z-index:50}
+@keyframes score-fly{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-60px);opacity:0}}
 
-/* RISK DISCLAIMER */
-.risk-disclaimer{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:var(--r10);padding:16px 18px;margin-top:16px}
-.risk-disclaimer-t{font-size:11px;font-weight:700;color:var(--red);letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px}
-.risk-disclaimer-b{font-size:11px;color:var(--text2);line-height:1.75}
+/* RESPONSIVE FIXES */
+@media(max-width:900px){
+  .tv-wrap{height:240px!important}
+  .analysis-grid{grid-template-columns:1fr!important;overflow:visible}
+  .chart-expanded .tv-wrap{height:65vh!important}
+}
+@media(max-width:640px){
+  .tv-wrap{height:200px!important}
+  .tf-pills .tf-pill:nth-child(1),.tf-pills .tf-pill:nth-child(2){display:none}
+  .ch-symbol{font-size:15px}
+}
+.chart-expanded .analysis-grid{display:none}
+.chart-expanded .tv-wrap{height:calc(100vh - 116px)!important}
 
-/* CTA BANNER */
-.cta-banner{text-align:center;padding:72px 24px;border-top:1px solid rgba(201,168,76,.08)}
-.cta-h{font-size:clamp(22px,4vw,42px);font-weight:900;letter-spacing:-1px;margin-bottom:10px}
-.cta-h em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-
-/* FOOTER */
-.lp-footer{background:var(--black2);border-top:1px solid rgba(201,168,76,.1);padding:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.lp-footer-logo{font-size:14px;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.lp-footer-note{font-size:10px;color:var(--text3);max-width:480px;line-height:1.6}
-
+/* SCROLLBAR in sidebar */
+.asset-list::-webkit-scrollbar,.chat-messages::-webkit-scrollbar,.rs-content::-webkit-scrollbar,.ai-summaries::-webkit-scrollbar{width:3px}
 </style>
 </head>
 <body>
-<nav class="nav">
-  <div class="nav-logo">
-    <div class="nav-dot"></div>
-    <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><polygon points="14,2 26,24 2,24" fill="none" stroke="#c9a84c" stroke-width="1.5"/><polygon points="14,7 22,21 6,21" fill="none" stroke="#c9a84c" stroke-width="1"/><line x1="14" y1="7" x2="14" y2="15" stroke="#c9a84c" stroke-width="1"/><line x1="10" y1="15" x2="18" y2="15" stroke="#c9a84c" stroke-width="1"/><circle cx="10" cy="15" r="1.2" fill="#c9a84c"/><circle cx="18" cy="15" r="1.2" fill="#c9a84c"/><circle cx="14" cy="7" r="1.2" fill="#c9a84c"/><line x1="10" y1="15" x2="7" y2="19" stroke="#c9a84c" stroke-width=".8"/><line x1="18" y1="15" x2="21" y2="19" stroke="#c9a84c" stroke-width=".8"/><circle cx="7" cy="19" r="1" fill="#c9a84c"/><circle cx="21" cy="19" r="1" fill="#c9a84c"/></svg>
-    <span class="nav-logo-text">TRDAI</span>
-  </div>
-  <div class="nav-tabs">
-    <button class="ntab" onclick="goPage('landing',this)">Ana Sayfa</button>
-    <button class="ntab on" onclick="goPage('markets',this)">Piyasalar</button>
-    <button class="ntab" onclick="goPage('scanner',this)">Tarayıcı</button>
-    <button class="ntab" onclick="goPage('portfolio',this)">Portföy</button>
-    <button class="ntab" onclick="goPage('auto',this)">Oto Trading</button>
-    <button class="ntab" onclick="goPage('aibot',this)">AI Asistan</button>
-    <button class="ntab" onclick="goPage('settings',this)">Ayarlar</button>
-  </div>
-  <div class="nav-right">
-    <span class="nav-time mono" id="nav-clock">--:--:--</span>
-    <div class="mode-ind m-off" id="mode-ind">KAPALI</div>
-    <button class="btn btn-outline btn-sm" id="prem-btn" onclick="togglePremium()">PRO</button>
-  </div>
-</nav>
-<div class="ticker"><div class="ticker-track" id="ticker-track"><span class="t-item loading-pulse"><span class="t-sym t-nu">TRDAI · YÜKLENİYOR...</span></span></div></div>
+<div class="app-shell">
 
-<!-- LANDING PAGE -->
-<div id="page-landing" class="page">
-
-  <!-- GOOGLE ADSENSE - Üst Banner -->
-  <div id="adsense-top" style="width:100%;max-width:728px;margin:0 auto;padding:8px 0;display:none">
-    <!-- Google AdSense kodu buraya gelecek -->
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+<!-- TOP BAR -->
+<header class="topbar" role="banner">
+  <div class="tb-logo">
+    <div class="live-dot"></div>
+    <svg width="20" height="20" viewBox="0 0 28 28" fill="none"><polygon points="14,2 26,24 2,24" fill="none" stroke="#F0B429" stroke-width="1.5"/><polygon points="14,7 22,21 6,21" fill="none" stroke="#F0B429" stroke-width="1"/><line x1="14" y1="7" x2="14" y2="15" stroke="#F0B429" stroke-width="1"/><line x1="10" y1="15" x2="18" y2="15" stroke="#F0B429" stroke-width="1"/><circle cx="10" cy="15" r="1.2" fill="#F0B429"/><circle cx="18" cy="15" r="1.2" fill="#F0B429"/><circle cx="14" cy="7" r="1.2" fill="#F0B429"/></svg>
+    <span class="tb-logo-text">TRDAI</span>
   </div>
+  <div class="tb-search" onclick="document.getElementById('sb-search')?.focus()">
+    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span>Varlık ara...</span>
+  </div>
+  <div class="tb-divider"></div>
+  <nav style="display:flex;gap:1px" aria-label="Ana navigasyon">
+    <button class="tb-btn" id="nav-landing" onclick="goPage('landing',this)" title="Ana Sayfa" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Ana Sayfa</button>
+    <button class="tb-btn" id="nav-markets" onclick="goPage('markets',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Piyasalar</button>
+    <button class="tb-btn" id="nav-scanner" onclick="goPage('scanner',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;display:none" id="nav-scanner">Tarayıcı</button>
+  </nav>
+  <div class="tb-right">
+    <span class="t-mono" style="font-size:11px;color:var(--tx3)" id="clock">--:--:--</span>
+    <button class="tb-btn" onclick="toggleTheme()" id="theme-btn" title="Tema Değiştir" aria-label="Tema değiştir">☀</button>
+    <div class="tb-btn tb-notif" title="Bildirimler" onclick="goPage('portfolio')"><span>🔔</span><div class="notif-dot" id="notif-dot"></div></div>
+    <div class="plan-badge" id="plan-badge" onclick="togglePremium()"><span>⭐</span><span>FREE</span></div>
+  </div>
+</header>
 
-  <!-- HERO -->
-  <section class="lp-hero" role="banner">
-    <div class="lp-badge">
-      <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 1.5s infinite"></span>
-      Canlı · AI Destekli Platform
-    </div>
-    <h1 class="lp-h1">Trading kararlarını<br><em>yapay zekaya bırak.</em></h1>
-    <p class="lp-sub">TRDAI, kripto, BIST hisse senetleri ve altın piyasaları için çok faktörlü teknik analiz üretir. Her sinyal açıklanabilir, her seviye gerekçeli.</p>
+<!-- TICKER -->
+<div class="ticker-bar" role="marquee" aria-label="Piyasa fiyatları">
+  <div class="ticker-track" id="ticker-track">
+    <div class="t-coin" style="padding:0 16px"><span style="color:var(--tx3);font-size:11px">Fiyatlar yükleniyor...</span></div>
+  </div>
+</div>
+
+<!-- PAGE: LANDING -->
+<div id="page-landing" class="page active" style="overflow-y:auto">
+  <section class="lp-hero" role="main">
+    <div class="lp-badge"><div class="live-dot"></div>Canlı · AI Destekli Platform</div>
+    <h1 class="lp-h1 t-h1">Trading kararlarını<br><em>yapay zekaya bırak.</em></h1>
+    <p class="lp-sub">TRDAI, kripto, BIST ve altın piyasaları için kurumsal kalitede teknik analiz ve sinyal üretir. Her sinyal açıklanabilir, her seviye gerekçeli.</p>
     <div class="lp-ctas">
-      <button class="btn btn-gold" style="font-size:14px;padding:12px 24px" onclick="goPage('markets')">Analizi Başlat →</button>
-      <button class="btn btn-outline" style="font-size:14px;padding:12px 24px" onclick="scrollToSection('how-it-works')">Nasıl Çalışır</button>
-      <a href="game.html" target="_blank" class="btn btn-outline" style="font-size:13px;padding:12px 20px;border-color:rgba(240,180,41,.3);color:var(--gold)">🎮 CryptoBlast</a>
+      <button class="btn btn-primary" style="font-size:14px;padding:12px 26px" onclick="goPage('markets')">Analizi Başlat →</button>
+      <button class="btn btn-outline" style="font-size:14px;padding:12px 22px" onclick="document.getElementById('how-section').scrollIntoView({behavior:'smooth'})">Nasıl Çalışır</button>
+      <a href="game.html" target="_blank" class="btn btn-outline" style="font-size:13px;padding:12px 18px;border-color:var(--gold-b);color:var(--gold)">🎮 CryptoBlast</a>
     </div>
     <div class="lp-chips">
-      <div class="lp-chip">RSI · MACD · BB <span>6 İndikatör</span></div>
-      <div class="lp-chip">Güven Skoru <span>0–100</span></div>
-      <div class="lp-chip">Risk/Ödül <span>Otomatik</span></div>
-      <div class="lp-chip">Telegram <span>Anlık Bildirim</span></div>
-      <div class="lp-chip">50 Kripto + 30 BIST <span>+ Altın</span></div>
+      <div class="lp-chip">RSI · MACD · BB <strong>6 İndikatör</strong></div>
+      <div class="lp-chip">Güven Skoru <strong>0–100</strong></div>
+      <div class="lp-chip">Risk/Ödül <strong>Otomatik</strong></div>
+      <div class="lp-chip">50 Kripto + 30 BIST <strong>+ Altın</strong></div>
+      <div class="lp-chip">Telegram <strong>Anlık Bildirim</strong></div>
     </div>
-    <div style="font-size:11px;color:var(--text3);margin-top:8px">Kayıt gerektirmez · Ücretsiz başlayın</div>
+    <div style="font-size:11px;color:var(--tx4);margin-top:10px">Kayıt gerektirmez · Ücretsiz başlayın</div>
   </section>
 
-  <!-- ÖZELLIKLER -->
-  <section class="lp-section" id="features">
+  <section class="lp-section" id="how-section">
     <div class="lp-section-inner">
-      <span class="lp-tag">Platform Özellikleri</span>
-      <h2 class="lp-sh">Kurumsal araçlar,<br>bireysel trader fiyatı.</h2>
-      <p class="lp-ss">TradingView'den daha sade, daha akıllı ve çok daha açıklanabilir analizler.</p>
+      <span class="section-tag">Nasıl Çalışır</span>
+      <h2 class="section-h t-h2">4 adımda profesyonel analiz.</h2>
+      <div class="steps-grid">
+        <div class="step-item"><div class="step-num">01</div><div class="step-title">Varlık Seç</div><div class="step-desc">Kripto, BIST veya altın listesinden analiz etmek istediğin varlığı seç.</div></div>
+        <div class="step-item"><div class="step-num">02</div><div class="step-title">Veri Yüklenir</div><div class="step-desc">CoinGecko ve Yahoo Finance'ten gerçek zamanlı fiyat ve indikatör verisi çekilir.</div></div>
+        <div class="step-item"><div class="step-num">03</div><div class="step-title">AI Analiz Eder</div><div class="step-desc">6 faktörlü motor çalışır. Smart Money, ICT ve teknik analiz birlikte değerlendirilir.</div></div>
+        <div class="step-item"><div class="step-num">04</div><div class="step-title">Sinyal Üretilir</div><div class="step-desc">Entry, stop, TP, güven skoru ve 3 senaryo hazır. İstersen Telegram'a gönder.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section" style="background:var(--surface)">
+    <div class="lp-section-inner">
+      <span class="section-tag">Platform Özellikleri</span>
+      <h2 class="section-h t-h2">Kurumsal araçlar, bireysel trader fiyatı.</h2>
       <div class="feat-grid">
-        <div class="feat-card">
-          <div class="feat-icon">◈</div>
-          <div class="feat-t">Çok Faktörlü Analiz Motoru</div>
-          <div class="feat-d">Trend gücü, momentum, hacim onayı, destek/direnç ve volatilite birlikte değerlendirilir. Basit "al/sat" yerine 6 faktörlü güven skoru.</div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon">▣</div>
-          <div class="feat-t">Açıklanabilir Sinyaller</div>
-          <div class="feat-d">Her sinyal neden üretildiğini gösterir. Entry zone, stop-loss, TP1/TP2 ve invalidation level otomatik hesaplanır. Kara kutu yok.</div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon">◆</div>
-          <div class="feat-t">Çoklu Piyasa Desteği</div>
-          <div class="feat-d">50+ kripto, 30 BIST hissesi ve altın/gümüş aynı platformda. Her piyasa tipi için ayrı analiz mantığı.</div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon">○</div>
-          <div class="feat-t">TradingView Entegrasyonu</div>
-          <div class="feat-d">Gerçek mum grafikleri, RSI/MACD/Bollinger indikatörleri. Grafik büyütme ve sürükleyerek yeniden boyutlandırma.</div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon">◉</div>
-          <div class="feat-t">Telegram Bildirimleri</div>
-          <div class="feat-d">Sinyal üretildiğinde anında Telegram'a detaylı bildirim. Entry, stop, TP ve güven skoru tek mesajda.</div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon">◎</div>
-          <div class="feat-t">AI Trading Koçu</div>
-          <div class="feat-d">Günlük piyasa özeti, breakout adayları, risk yönetimi coaching. Sadece borsa ve kripto konularında yanıt verir.</div>
-        </div>
+        <div class="feat-card"><div class="feat-icon">◈</div><div class="feat-title">Çok Faktörlü Analiz</div><div class="feat-desc">Trend gücü, momentum, hacim, S/R, volatilite ve MTF birlikte değerlendirilerek 6 faktörlü güven skoru üretilir.</div></div>
+        <div class="feat-card"><div class="feat-icon">▣</div><div class="feat-title">Açıklanabilir Sinyaller</div><div class="feat-desc">Her sinyal neden üretildiğini gösterir. Entry, stop-loss ve TP1/TP2 otomatik hesaplanır. Kara kutu yok.</div></div>
+        <div class="feat-card"><div class="feat-icon">◆</div><div class="feat-title">Çoklu Piyasa</div><div class="feat-desc">50+ kripto, 30 BIST hissesi ve altın/gümüş aynı platformda. Her piyasa tipi için ayrı analiz mantığı.</div></div>
+        <div class="feat-card"><div class="feat-icon">○</div><div class="feat-title">TradingView Grafik</div><div class="feat-desc">Gerçek mum grafikleri, RSI/MACD/Bollinger. Grafik büyütme ve sürükleyerek yeniden boyutlandırma.</div></div>
+        <div class="feat-card"><div class="feat-icon">◉</div><div class="feat-title">Telegram Bildirimleri</div><div class="feat-desc">Sinyal üretilince anında Telegram'a bildirim. Entry, stop, TP ve güven skoru tek mesajda.</div></div>
+        <div class="feat-card"><div class="feat-icon">◎</div><div class="feat-title">AI Trading Koçu</div><div class="feat-desc">ICT, Smart Money, Wyckoff bilgisiyle günlük özet ve breakout analizi. Sadece finans sorularına yanıt verir.</div></div>
       </div>
     </div>
   </section>
 
-  <!-- NASIL ÇALIŞIR -->
-  <section class="lp-section" id="how-it-works" style="background:var(--black2)">
-    <div class="lp-section-inner">
-      <span class="lp-tag">Nasıl Çalışır</span>
-      <h2 class="lp-sh">4 adımda profesyonel analiz.</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <div class="step-t">Varlık Seç</div>
-          <div class="step-d">Kripto, BIST veya altın listesinden analiz etmek istediğin varlığı seç.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <div class="step-t">Veri Yüklenir</div>
-          <div class="step-d">CoinGecko ve Yahoo Finance'ten gerçek zamanlı fiyat ve indikatör verisi çekilir.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <div class="step-t">AI Analiz Eder</div>
-          <div class="step-d">6 faktörlü analiz motoru çalışır. Trend, momentum, hacim, S/R, volatilite ve MTF birlikte değerlendirilir.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">04</div>
-          <div class="step-t">Sinyal Üretilir</div>
-          <div class="step-d">Entry zone, stop-loss, TP1/TP2, güven skoru ve senaryo analizi hazır. İstersen Telegram'a gönder.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GÜVEN & ŞEFFAFLIK -->
   <section class="lp-section">
     <div class="lp-section-inner">
-      <span class="lp-tag">Güven & Şeffaflık</span>
-      <h2 class="lp-sh">Her sinyal açıklanabilir.</h2>
-      <p class="lp-ss">Kara kutu yok. Her karar hangi veriye dayanıyor, neden bu seviye seçildi — hepsi görünür.</p>
+      <span class="section-tag">Güven & Şeffaflık</span>
+      <h2 class="section-h t-h2">Her sinyal açıklanabilir.</h2>
       <div class="trust-grid">
-        <div class="trust-item">
-          <div class="trust-icon">◈</div>
-          <div class="trust-t">Açık Metodoloji</div>
-          <div class="trust-d">Confidence score hesabı, ağırlıklandırma mantığı ve sinyal üretim kuralları tamamen açık. Ayarlar sekmesinden inceleyebilirsin.</div>
-        </div>
-        <div class="trust-item">
-          <div class="trust-icon">◆</div>
-          <div class="trust-t">Doğrulanabilir Veri Kaynakları</div>
-          <div class="trust-d">Kripto: CoinGecko API (gerçek zamanlı). BIST: Yahoo Finance (15dk gecikmeli). Altın: Yahoo Finance. Kaynak belirtilir, uydurma veri kullanılmaz.</div>
-        </div>
-        <div class="trust-item">
-          <div class="trust-icon">○</div>
-          <div class="trust-t">Risk Farkındalığı</div>
-          <div class="trust-d">Her analizde invalidation level, risk/ödül oranı ve uyarılar gösterilir. Platform yatırım tavsiyesi vermez, karar kullanıcıya aittir.</div>
-        </div>
+        <div class="trust-item"><div style="font-size:20px;margin-bottom:8px">◈</div><div class="feat-title">Açık Metodoloji</div><div class="feat-desc" style="margin-top:5px">Confidence score hesabı ve ağırlıklandırma mantığı tamamen açık. Ayarlar sekmesinden incelenebilir.</div></div>
+        <div class="trust-item"><div style="font-size:20px;margin-bottom:8px">◆</div><div class="feat-title">Doğrulanabilir Kaynaklar</div><div class="feat-desc" style="margin-top:5px">Kripto: CoinGecko (gerçek zamanlı). BIST: BigPara/Yahoo (15dk). Altın: Yahoo Finance. Kaynak belirtilir.</div></div>
+        <div class="trust-item"><div style="font-size:20px;margin-bottom:8px">○</div><div class="feat-title">Risk Farkındalığı</div><div class="feat-desc" style="margin-top:5px">Her analizde invalidation level, R/R oranı ve uyarılar görünür. Karar her zaman kullanıcıya aittir.</div></div>
       </div>
-      <div class="risk-disclaimer" style="margin-top:24px">
-        <div class="risk-disclaimer-t">⚠️ Risk Bildirimi</div>
-        <div class="risk-disclaimer-b">TRDAI bir yatırım danışmanlığı platformu değildir. Üretilen sinyaller ve analizler yalnızca bilgilendirme amaçlıdır, yatırım tavsiyesi niteliği taşımaz. Kripto para ve hisse senedi yatırımları yüksek risk içerir. Geçmiş performans göstergeleri gelecekteki sonuçları garanti etmez. Tüm yatırım kararları kullanıcıya aittir. Lütfen profesyonel finansal danışmanlık alın.</div>
+      <div class="risk-note">
+        <div class="risk-note-t">⚠️ Risk Bildirimi</div>
+        <div class="risk-note-b">TRDAI bir yatırım danışmanlığı platformu değildir. Üretilen sinyaller yalnızca bilgilendirme amaçlıdır. Kripto ve hisse senedi yatırımları yüksek risk içerir. Geçmiş performans gelecekteki sonuçları garanti etmez. Tüm yatırım kararları kullanıcıya aittir.</div>
       </div>
     </div>
   </section>
 
-  <!-- FİYATLANDIRMA -->
-  <section class="lp-section" id="pricing" style="background:var(--black2)">
+  <section class="lp-section" style="background:var(--surface)" id="pricing">
     <div class="lp-section-inner">
-      <span class="lp-tag">Fiyatlandırma</span>
-      <h2 class="lp-sh">Sade ve şeffaf.</h2>
-      <p class="lp-ss">Kredi kartı gerekmez. İstediğin zaman iptal et.</p>
+      <span class="section-tag">Fiyatlandırma</span>
+      <h2 class="section-h t-h2">Sade ve şeffaf.</h2>
+      <p class="section-s">Kredi kartı gerekmez. İstediğin zaman iptal et.</p>
       <div class="price-grid">
         <div class="price-card">
           <div class="price-name">Ücretsiz</div>
-          <div class="price-amount">₺0</div>
+          <div class="price-amount t-mono">₺0</div>
           <div class="price-period">Sonsuza kadar ücretsiz</div>
           <div class="price-feats">
-            <div class="price-feat"><span class="price-feat-ok">✓</span>Temel teknik analiz</div>
-            <div class="price-feat"><span class="price-feat-ok">✓</span>50 kripto + BIST + Altın</div>
-            <div class="price-feat"><span class="price-feat-ok">✓</span>TradingView grafik</div>
-            <div class="price-feat"><span class="price-feat-ok">✓</span>Telegram sinyalleri</div>
-            <div class="price-feat"><span class="price-feat-ok">✓</span>AI asistan (Groq key ile)</div>
-            <div class="price-feat"><span class="price-feat-no">—</span><span style="color:var(--text3)">Backtest özeti</span></div>
-            <div class="price-feat"><span class="price-feat-no">—</span><span style="color:var(--text3)">Kişisel watchlist</span></div>
-            <div class="price-feat"><span class="price-feat-no">—</span><span style="color:var(--text3)">Fiyat alarmları</span></div>
+            <div class="price-feat"><span class="pf-yes">✓</span>Temel teknik analiz</div>
+            <div class="price-feat"><span class="pf-yes">✓</span>50 kripto + BIST + Altın</div>
+            <div class="price-feat"><span class="pf-yes">✓</span>TradingView grafik</div>
+            <div class="price-feat"><span class="pf-yes">✓</span>Telegram sinyalleri</div>
+            <div class="price-feat"><span class="pf-yes">✓</span>AI asistan (Groq key ile)</div>
+            <div class="price-feat"><span class="pf-no">—</span><span style="color:var(--tx3)">Backtest özeti</span></div>
+            <div class="price-feat"><span class="pf-no">—</span><span style="color:var(--tx3)">Kişisel watchlist</span></div>
           </div>
           <button class="btn btn-outline" style="width:100%;justify-content:center" onclick="goPage('markets')">Hemen Başla</button>
         </div>
         <div class="price-card featured">
-          <div class="price-badge">EN POPÜLER</div>
+          <div class="price-featured-badge">EN POPÜLER</div>
           <div class="price-name">Pro</div>
-          <div class="price-amount" style="color:var(--gold2)">₺299</div>
+          <div class="price-amount t-mono" style="color:var(--gold)">₺299</div>
           <div class="price-period">aylık · KDV dahil</div>
           <div class="price-feats">
-            <div class="price-feat"><span class="price-feat-ok">✓</span>Ücretsiz plan dahil her şey</div>
-            <div class="price-feat"><span class="price-feat-ok">✓</span>Backtest özeti (142 trade)</div>
-            <div class="price-feat"><span class="price-feat-ok">✓</span>Kişisel watchlist</div>
-            <div class="price-feat"><span class="price-feat-ok">✓</span>Fiyat alarmları</div>
-            <div class="price-feat"><span class="price-feat-ok">✓</span>Çoklu zaman dilimi analizi</div>
-            <div class="price-feat"><span class="price-feat-ok">✓</span>Öncelikli destek</div>
-            <div class="price-feat"><span class="price-feat-ok">✓</span>Aylık performans raporu</div>
-            <div class="price-feat"><span class="price-feat-ok">✓</span>Export / paylaş</div>
+            <div class="price-feat"><span class="pf-yes">✓</span>Ücretsiz plan dahil her şey</div>
+            <div class="price-feat"><span class="pf-yes">✓</span>Backtest özeti (142 trade)</div>
+            <div class="price-feat"><span class="pf-yes">✓</span>Kişisel watchlist</div>
+            <div class="price-feat"><span class="pf-yes">✓</span>Fiyat alarmları</div>
+            <div class="price-feat"><span class="pf-yes">✓</span>Multi-timeframe analiz</div>
+            <div class="price-feat"><span class="pf-yes">✓</span>Öncelikli destek</div>
+            <div class="price-feat"><span class="pf-yes">✓</span>Aylık performans raporu</div>
           </div>
-          <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="togglePremium()">Pro'yu Dene →</button>
+          <button class="upgrade-btn" style="width:100%" onclick="goProShopier()">Pro'ya Geç — ₺299/ay →</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HAKKIMIZDA -->
-  <section class="lp-section" id="about">
+  <section class="lp-section" id="exchanges">
     <div class="lp-section-inner">
-      <span class="lp-tag">Platform Hakkında</span>
-      <div class="about-grid">
-        <div>
-          <h2 class="lp-sh" style="margin-bottom:14px">Neden TRDAI?</h2>
-          <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:14px">TRDAI, bireysel yatırımcıların kurumsal düzeyde teknik analiz araçlarına erişimini demokratikleştirmek için geliştirildi. TradingView'in karmaşıklığı olmadan, Bloomberg terminalinin pahalılığı olmadan — sade, hızlı ve açıklanabilir analiz.</p>
-          <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:20px">Platform 2024 yılında geliştirilmeye başlandı. Türkiye'deki kripto ve BIST yatırımcılarının ihtiyaçlarına göre tasarlandı. Tüm analiz mantığı şeffaf ve metodoloji dokümantasyonu kamuya açık.</p>
-          <div style="font-size:11px;color:var(--text3);padding:10px 12px;background:var(--black3);border-radius:var(--r8);border-left:2px solid var(--gb)">Veri kaynakları: CoinGecko API · Yahoo Finance · CoinGecko News API<br>Analiz motoru: Deterministik, açık kaynak mantık · Kara kutu yok<br>Hosting: GitHub Pages · Cloudflare Workers</div>
-        </div>
-        <div class="about-stat-grid">
-          <div class="about-stat"><div class="about-stat-v">50+</div><div class="about-stat-l">Kripto Varlık</div></div>
-          <div class="about-stat"><div class="about-stat-v">30</div><div class="about-stat-l">BIST Hissesi</div></div>
-          <div class="about-stat"><div class="about-stat-v">6</div><div class="about-stat-l">Analiz Faktörü</div></div>
-          <div class="about-stat"><div class="about-stat-v">7</div><div class="about-stat-l">Zaman Dilimi</div></div>
-          <div class="about-stat"><div class="about-stat-v">0₺</div><div class="about-stat-l">Başlangıç Ücreti</div></div>
-          <div class="about-stat"><div class="about-stat-v">24/7</div><div class="about-stat-l">Canlı Veri</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SSS -->
-  <section class="lp-section" style="background:var(--black2)" id="faq">
-    <div class="lp-section-inner">
-      <span class="lp-tag">Sık Sorulan Sorular</span>
-      <h2 class="lp-sh">Merak ettiklerin.</h2>
-      <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Confidence Score nasıl hesaplanıyor?</span><span class="faq-icon">+</span></div>
-          <div class="faq-a">6 faktörün ağırlıklı ortalamasıyla hesaplanır: Trend gücü (%25), Momentum (%20), Hacim onayı (%15), Destek/direnç bağlamı (%15), Volatilite uygunluğu (%10) ve Çoklu zaman dilimi uyumu (%15). 65+ güçlü sinyal, 45 altı zayıf sinyal anlamına gelir. Her faktörün alt skoru "Score Breakdown" bölümünde görünür.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>BIST verileri gerçek zamanlı mı?</span><span class="faq-icon">+</span></div>
-          <div class="faq-a">BIST hisse verileri Yahoo Finance üzerinden 15 dakika gecikmeli olarak gelmektedir. Kripto verileri CoinGecko API üzerinden gerçek zamanlı (yaklaşık 60 saniyede bir güncellenir). Altın ve gümüş verileri Yahoo Finance üzerinden gerçek zamanlıya yakın sağlanır.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>AI asistanı kullanmak için ne gerekiyor?</span><span class="faq-icon">+</span></div>
-          <div class="faq-a">Ücretsiz bir Groq API key yeterli. console.groq.com adresine girip kayıt olduktan sonra bir API key oluşturun ve Ayarlar sekmesine girin. Groq'un ücretsiz planında günlük yeterli kullanım hakkı mevcut.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Platform gerçekten işlem açıyor mu?</span><span class="faq-icon">+</span></div>
-          <div class="faq-a">Hayır. TRDAI yalnızca teknik analiz ve sinyal üretimi yapar. Gerçek alım-satım işlemi gerçekleştirmez. Oto Trading modunda "Yarı Otomatik" seçeneği bile sadece size bildirim gönderir, son karar her zaman sizindir. Auto-Execution modu bu versiyonda devre dışıdır.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>%68 win rate nereden geliyor?</span><span class="faq-icon">+</span></div>
-          <div class="faq-a">Bu rakam platform geliştirme sürecinde yapılan simülasyon testlerinden elde edilmiştir. 2023-2024 dönemine ait kripto piyasası verisi kullanılmış, varsayılan strateji parametreleriyle geriye dönük test uygulanmıştır. Bu rakam garanti değildir ve piyasa koşullarına göre değişir. Geçmiş performans gelecekteki sonuçları garanti etmez. Pro kullanıcılar backtest detaylarına tam erişim sağlar.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Telegram bildirimleri nasıl kurulur?</span><span class="faq-icon">+</span></div>
-          <div class="faq-a">1. Telegram'da @BotFather'a yazın ve /newbot komutu ile bot oluşturun — Bot Token alırsınız. 2. Botunuza bir mesaj gönderin, ardından @userinfobot'a yazarak Chat ID'nizi öğrenin. 3. TRDAI Ayarlar sekmesine her iki bilgiyi girin ve "Test" butonuna basın.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Verilerim güvende mi?</span><span class="faq-icon">+</span></div>
-          <div class="faq-a">TRDAI hiçbir kişisel veri toplamaz. API keyler yalnızca tarayıcınızın localStorage'ında saklanır, sunucuya gönderilmez. Platform sunucu taraflı veri depolamaz.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Mobil cihazda çalışıyor mu?</span><span class="faq-icon">+</span></div>
-          <div class="faq-a">Evet. Platform mobil uyumlu tasarlanmıştır. Grafik alanı sürükleyerek yeniden boyutlandırılabilir. Tüm özellikler telefon ve tablet üzerinde erişilebilir.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AFFİLİATE BÖLÜMÜ -->
-  <section class="lp-section" id="exchanges" style="background:var(--black2)">
-    <div class="lp-section-inner">
-      <span class="lp-tag">Önerilen Borsalar</span>
-      <h2 class="lp-sh">Güvenilir platformlarda işlem yap.</h2>
-      <p class="lp-ss">TRDAI analizlerini bu borsalarda kullan. Aşağıdaki linklerden kayıt olursan komisyon indirimi kazanırsın.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:28px">
+      <span class="section-tag">Önerilen Borsalar</span>
+      <h2 class="section-h t-h2">Güvenilir platformlarda işlem yap.</h2>
+      <div class="affiliate-grid">
         <a href="https://accounts.binance.com/register?ref=TRDAI" target="_blank" rel="noopener" style="text-decoration:none">
-          <div style="background:var(--black3);border:1px solid rgba(247,147,26,.2);border-radius:var(--r12);padding:20px;transition:all .18s;cursor:pointer" onmouseover="this.style.borderColor='rgba(247,147,26,.5)'" onmouseout="this.style.borderColor='rgba(247,147,26,.2)'">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div style="width:36px;height:36px;background:rgba(247,147,26,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px">₿</div>
-              <div style="font-size:15px;font-weight:800;color:#f7931a">Binance</div>
-            </div>
-            <div style="font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:12px">Dünyanın en büyük kripto borsası. 600+ coin, düşük komisyon.</div>
-            <div style="font-size:10px;font-weight:700;color:#f7931a;background:rgba(247,147,26,.1);border:1px solid rgba(247,147,26,.2);padding:5px 10px;border-radius:5px;display:inline-block">%20 Komisyon İndirimi →</div>
+          <div class="aff-card" style="border-color:rgba(247,147,26,.2)">
+            <div style="font-size:20px;margin-bottom:8px;color:#f7931a">₿ Binance</div>
+            <div style="font-size:12px;color:var(--tx2);line-height:1.6;margin-bottom:10px">Dünyanın en büyük kripto borsası. 600+ coin, düşük komisyon.</div>
+            <div class="badge badge-buy">%20 İndirim →</div>
           </div>
         </a>
         <a href="https://www.btcturk.com/referans/TRDAI" target="_blank" rel="noopener" style="text-decoration:none">
-          <div style="background:var(--black3);border:1px solid rgba(0,212,255,.2);border-radius:var(--r12);padding:20px;transition:all .18s;cursor:pointer" onmouseover="this.style.borderColor='rgba(0,212,255,.5)'" onmouseout="this.style.borderColor='rgba(0,212,255,.2)'">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div style="width:36px;height:36px;background:rgba(0,212,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#00d4ff">BT</div>
-              <div style="font-size:15px;font-weight:800;color:#00d4ff">BTCTurk</div>
-            </div>
-            <div style="font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:12px">Türkiye'nin lider kripto borsası. TL ile kolay alım-satım.</div>
-            <div style="font-size:10px;font-weight:700;color:#00d4ff;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);padding:5px 10px;border-radius:5px;display:inline-block">Ücretsiz Kayıt + Bonus →</div>
+          <div class="aff-card" style="border-color:rgba(0,212,255,.2)">
+            <div style="font-size:20px;margin-bottom:8px;color:#00d4ff">◈ BTCTurk</div>
+            <div style="font-size:12px;color:var(--tx2);line-height:1.6;margin-bottom:10px">Türkiye'nin lider kripto borsası. TL ile kolay alım-satım.</div>
+            <div class="badge badge-watch">Kayıt Ol + Bonus →</div>
           </div>
         </a>
         <a href="https://www.paribu.com/referans/TRDAI" target="_blank" rel="noopener" style="text-decoration:none">
-          <div style="background:var(--black3);border:1px solid rgba(139,92,246,.2);border-radius:var(--r12);padding:20px;transition:all .18s;cursor:pointer" onmouseover="this.style.borderColor='rgba(139,92,246,.5)'" onmouseout="this.style.borderColor='rgba(139,92,246,.2)'">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div style="width:36px;height:36px;background:rgba(139,92,246,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#8b5cf6">P</div>
-              <div style="font-size:15px;font-weight:800;color:#8b5cf6">Paribu</div>
-            </div>
-            <div style="font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:12px">Türk kripto borsası. IBAN ile anlık para transferi.</div>
-            <div style="font-size:10px;font-weight:700;color:#8b5cf6;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);padding:5px 10px;border-radius:5px;display:inline-block">Kayıt Ol + Bonus →</div>
+          <div class="aff-card" style="border-color:rgba(139,92,246,.2)">
+            <div style="font-size:20px;margin-bottom:8px;color:#8b5cf6">▲ Paribu</div>
+            <div style="font-size:12px;color:var(--tx2);line-height:1.6;margin-bottom:10px">Türk kripto borsası. IBAN ile anlık para transferi.</div>
+            <div class="badge" style="background:rgba(139,92,246,.12);color:#a78bfa;border:1px solid rgba(139,92,246,.2)">Kayıt Ol →</div>
           </div>
         </a>
       </div>
-      <div style="font-size:10px;color:var(--text3);margin-top:12px;text-align:center">* Affiliate linkler içerir. Kayıt olursan TRDAI küçük komisyon kazanır, sana ekstra maliyet yoktur.</div>
+      <div style="font-size:10px;color:var(--tx4);margin-top:10px;text-align:center">* Affiliate linkler içerir. Kayıt olursan TRDAI küçük komisyon kazanır, sana ekstra maliyet yoktur.</div>
     </div>
   </section>
 
-  <!-- CTA BANNER -->
-  <div class="cta-banner">
+  <section class="lp-section" style="background:var(--surface)">
+    <div class="lp-section-inner">
+      <span class="section-tag">Sık Sorulan Sorular</span>
+      <h2 class="section-h t-h2">Merak ettiklerin.</h2>
+      <div class="faq-list">
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span>Confidence Score nasıl hesaplanıyor?</span><span class="faq-icon">+</span></div><div class="faq-a">6 faktörün ağırlıklı ortalaması: Trend (%25), Momentum (%20), Hacim (%15), S/R (%15), Volatilite (%10), MTF (%15). 70+ güçlü sinyal, 50 altı zayıf sinyal anlamına gelir.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span>BIST verileri gerçek zamanlı mı?</span><span class="faq-icon">+</span></div><div class="faq-a">BIST hisse verileri BigPara/Yahoo Finance üzerinden 15 dakika gecikmeli. Kripto CoinGecko API ile gerçek zamanlı (~60 saniye). Altın Yahoo Finance ile anlık.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span>AI asistanı kullanmak için ne gerekiyor?</span><span class="faq-icon">+</span></div><div class="faq-a">Ücretsiz Groq API key yeterli. console.groq.com adresine kayıt olup key oluşturun, Ayarlar sekmesine girin.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span>Platform gerçek işlem açıyor mu?</span><span class="faq-icon">+</span></div><div class="faq-a">Hayır. TRDAI yalnızca teknik analiz ve sinyal üretimi yapar. Auto-Execution modu bu versiyonda devre dışıdır. Binance API entegrasyonu yakında.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span>Verilerim güvende mi?</span><span class="faq-icon">+</span></div><div class="faq-a">TRDAI hiçbir kişisel veri toplamaz. API keyler yalnızca tarayıcının localStorage'ında saklanır, sunucuya gönderilmez.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span>Mobil cihazda çalışıyor mu?</span><span class="faq-icon">+</span></div><div class="faq-a">Evet. Platform mobil öncelikli tasarlanmıştır. Alt navigasyon ile tüm özellikler parmak dostu erişilebilir.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-section">
     <h2 class="cta-h">Piyasayı takip etmeyi<br><em>AI'ya bırak.</em></h2>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:24px">Ücretsiz başla. Kayıt gerektirmez.</p>
-    <button class="btn btn-gold" style="font-size:14px;padding:12px 28px" onclick="goPage('markets')">Hemen Başla →</button>
+    <p style="font-size:13px;color:var(--tx2);margin-bottom:24px">Ücretsiz başla. Kayıt gerektirmez.</p>
+    <button class="btn btn-primary" style="font-size:14px;padding:12px 28px" onclick="goPage('markets')">Hemen Başla →</button>
   </div>
 
-  <!-- FOOTER -->
   <footer class="lp-footer">
     <div>
-      <div class="lp-footer-logo">△ TRDAI</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:3px">Premium Trading Intelligence · 2024</div>
+      <div style="font-size:14px;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent">△ TRDAI</div>
+      <div style="font-size:10px;color:var(--tx4);margin-top:2px">Premium Trading Intelligence · 2024</div>
     </div>
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <a href="game.html" target="_blank" style="font-size:11px;color:var(--gold);border:1px solid var(--gb);padding:4px 10px;border-radius:6px;transition:all .15s" onmouseover="this.style.background='var(--gd)'" onmouseout="this.style.background='transparent'">🎮 CryptoBlast Oyna</a>
-      <div class="lp-footer-note">TRDAI yatırım danışmanlığı hizmeti vermez. Tüm analizler bilgilendirme amaçlıdır.</div>
-    </div>
+    <a href="game.html" target="_blank" style="font-size:11px;color:var(--gold);border:1px solid var(--gold-b);padding:4px 10px;border-radius:6px;transition:var(--t)" onmouseover="this.style.background='var(--gold-dim)'" onmouseout="this.style.background='transparent'">🎮 CryptoBlast Oyna</a>
+    <div style="font-size:10px;color:var(--tx4);max-width:380px;line-height:1.6;text-align:right">TRDAI yatırım danışmanlığı hizmeti vermez. Tüm analizler bilgilendirme amaçlıdır.</div>
   </footer>
-
 </div>
-<!-- /LANDING PAGE -->
 
-<!-- MARKETS -->
-<div id="page-markets" class="page on">
-  <div class="mkt-layout">
-    <div class="sb">
-      <div class="sb-top"><div class="sb-search"><span class="sb-icon">⌕</span><input class="sb-inp" type="text" placeholder="Varlık ara..." id="sb-q" oninput="filterSB(this.value)"></div></div>
-      <div class="sb-filters">
-        <button class="sbf on" onclick="sbFlt('all',this)">TÜMÜ</button>
-        <button class="sbf" onclick="sbFlt('crypto',this)">KRİPTO</button>
-        <button class="sbf" onclick="sbFlt('stock',this)">BIST</button>
-        <button class="sbf" onclick="sbFlt('gold',this)">ALTIN</button>
-      </div>
-      <div class="a-list" id="asset-list"></div>
-    </div>
-    <div class="mkt-main">
-      <div class="chart-hdr">
-        <div>
-          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-            <span class="ch-sym mono" id="ch-sym">BTC/USDT</span>
-            <span class="ch-price" id="ch-price">$—</span>
-            <span class="ch-chg" id="ch-chg">—</span>
-          </div>
-          <div class="ch-sub"><span id="ch-name">Bitcoin</span><span class="tl-badge" id="tl-badge" style="display:none">₺ · 15dk gecikmeli</span></div>
+<!-- PAGE: MARKETS -->
+<div id="page-markets" class="page">
+  <div class="main-content">
+    <!-- LEFT SIDEBAR -->
+    <aside class="left-sidebar" aria-label="Varlık listesi">
+      <div class="sidebar-section">
+        <div class="sidebar-search">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input id="sb-search" type="text" placeholder="Varlık ara..." oninput="filterSB(this.value)" aria-label="Varlık ara">
         </div>
-        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-          <div class="tf-group">
-            <button class="tftab" onclick="setTf('1',this)">1m</button>
-            <button class="tftab" onclick="setTf('5',this)">5m</button>
-            <button class="tftab" onclick="setTf('15',this)">15m</button>
-            <button class="tftab" onclick="setTf('60',this)">1H</button>
-            <button class="tftab on" onclick="setTf('240',this)">4H</button>
-            <button class="tftab" onclick="setTf('D',this)">1D</button>
-            <button class="tftab" onclick="setTf('W',this)">1W</button>
+      </div>
+      <div class="filter-tabs">
+        <button class="ftab on" onclick="sbFlt('all',this)">TÜMÜ</button>
+        <button class="ftab" onclick="sbFlt('crypto',this)">KRİPTO</button>
+        <button class="ftab" onclick="sbFlt('stock',this)">BIST</button>
+        <button class="ftab" onclick="sbFlt('gold',this)">ALTIN</button>
+      </div>
+      <div class="asset-list" id="asset-list" role="list"></div>
+    </aside>
+
+    <!-- MAIN PANEL -->
+    <main class="main-panel" role="main">
+      <!-- CHART HEADER -->
+      <div class="chart-header">
+        <div class="ch-asset">
+          <div class="ch-main-row">
+            <span class="ch-symbol" id="ch-sym">BTC/USDT</span>
+            <span class="ch-price" id="ch-price">$—</span>
+            <span class="ch-chg-badge" id="ch-chg">—</span>
+          </div>
+          <div class="ch-sub">
+            <span id="ch-name">Bitcoin</span>
+            <span class="delay-tag" id="tl-badge" style="display:none">₺ 15dk gecikmeli</span>
+          </div>
+        </div>
+        <div class="ch-controls">
+          <div class="tf-pills" role="group" aria-label="Zaman dilimi">
+            <button class="tf-pill" onclick="setTf('1',this)">1m</button>
+            <button class="tf-pill" onclick="setTf('5',this)">5m</button>
+            <button class="tf-pill" onclick="setTf('15',this)">15m</button>
+            <button class="tf-pill" onclick="setTf('60',this)">1H</button>
+            <button class="tf-pill on" onclick="setTf('240',this)">4H</button>
+            <button class="tf-pill" onclick="setTf('D',this)">1D</button>
+            <button class="tf-pill" onclick="setTf('W',this)">1W</button>
           </div>
           <div class="ind-wrap">
-            <button class="btn btn-outline btn-sm" onclick="toggleIndDD()" id="ind-dd-btn" style="font-size:10px">İndikatörler ▾</button>
-            <div class="ind-dd" id="ind-dd">
-              <div class="ind-section">Göstergeler</div>
-              <label class="ind-toggle"><input type="checkbox" id="tog-rsi" checked onchange="reloadTV()"><span>RSI (14)</span></label>
-              <label class="ind-toggle"><input type="checkbox" id="tog-macd" checked onchange="reloadTV()"><span>MACD</span></label>
-              <label class="ind-toggle"><input type="checkbox" id="tog-bb" checked onchange="reloadTV()"><span>Bollinger Bands</span></label>
-              <label class="ind-toggle"><input type="checkbox" id="tog-ema" onchange="reloadTV()"><span>EMA 9/21</span></label>
-              <label class="ind-toggle"><input type="checkbox" id="tog-vol" onchange="reloadTV()"><span>Volume</span></label>
-              <label class="ind-toggle"><input type="checkbox" id="tog-vwap" onchange="reloadTV()"><span>VWAP</span></label>
+            <button class="icon-btn" onclick="toggleIndMenu()" id="ind-btn" title="İndikatörler" style="width:auto;padding:0 10px;font-size:11px;font-weight:600">İndikatörler ▾</button>
+            <div class="ind-menu" id="ind-menu">
+              <div class="ind-group-label">Göstergeler</div>
+              <label class="ind-row"><input type="checkbox" id="tog-rsi" checked onchange="reloadTV()"><span>RSI (14)</span></label>
+              <label class="ind-row"><input type="checkbox" id="tog-macd" checked onchange="reloadTV()"><span>MACD</span></label>
+              <label class="ind-row"><input type="checkbox" id="tog-bb" checked onchange="reloadTV()"><span>Bollinger Bands</span></label>
+              <label class="ind-row"><input type="checkbox" id="tog-ema" onchange="reloadTV()"><span>EMA 9/21</span></label>
+              <label class="ind-row"><input type="checkbox" id="tog-vol" onchange="reloadTV()"><span>Volume</span></label>
+              <label class="ind-row"><input type="checkbox" id="tog-vwap" onchange="reloadTV()"><span>VWAP</span></label>
               <div class="ind-sep"></div>
-              <div class="ind-section">Grafik Stili</div>
-              <label class="ind-toggle"><input type="radio" name="cstyle" value="1" checked onchange="reloadTV()"><span>Mum Grafik</span></label>
-              <label class="ind-toggle"><input type="radio" name="cstyle" value="2" onchange="reloadTV()"><span>Bar Grafik</span></label>
-              <label class="ind-toggle"><input type="radio" name="cstyle" value="3" onchange="reloadTV()"><span>Çizgi Grafik</span></label>
+              <div class="ind-group-label">Grafik Stili</div>
+              <label class="ind-row"><input type="radio" name="cstyle" value="1" checked onchange="reloadTV()"><span>Mum Grafik</span></label>
+              <label class="ind-row"><input type="radio" name="cstyle" value="2" onchange="reloadTV()"><span>Bar Grafik</span></label>
+              <label class="ind-row"><input type="radio" name="cstyle" value="3" onchange="reloadTV()"><span>Çizgi Grafik</span></label>
             </div>
           </div>
-          <button class="btn btn-outline btn-sm" id="expand-btn" onclick="toggleExpand()" style="font-size:11px;padding:5px 8px" title="Büyüt">⤢</button>
-          <button class="btn btn-outline btn-sm" onclick="sendSignalTG()" style="font-size:10px">TG</button>
+          <button class="icon-btn" id="expand-btn" onclick="toggleExpand()" title="Büyüt/Küçült">⤢</button>
+          <button class="icon-btn" onclick="sendSignalTG()" title="Telegram'a Gönder" style="width:auto;padding:0 10px;font-size:11px;font-weight:600">TG ↗</button>
         </div>
       </div>
-      <div id="tv-wrap" class="tv-wrap" style="height:340px;background:var(--black)">
+
+      <!-- TV CHART -->
+      <div id="tv-wrap" class="tv-wrap" style="height:340px;background:var(--bg)">
         <div id="tv-container" style="width:100%;height:100%"></div>
         <div class="tv-drag" id="tv-drag"><div class="tv-drag-handle"></div></div>
       </div>
-      <div class="ap-grid">
-        <div class="ap">
-          <div class="ap-title">Trade Setup</div>
-          <div class="ts-card">
-            <div class="ts-top">
-              <div id="m-sig-badge"><span class="badge badge-hold" style="font-size:14px;padding:7px 14px">— ANALYSING</span></div>
-              <div class="conf-ring">
-                <svg width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="4"/><circle cx="26" cy="26" r="22" fill="none" stroke="var(--gold)" stroke-width="4" stroke-linecap="round" stroke-dasharray="138.2" id="m-conf-circ" stroke-dashoffset="138.2" style="transition:stroke-dashoffset .8s"/></svg>
-                <div class="conf-num" id="m-conf-num" style="color:var(--text3)">—</div>
+
+      <!-- ANALYSIS PANELS -->
+      <div class="analysis-grid">
+        <!-- PANEL 1: Signal + Score -->
+        <div class="ag-panel">
+          <div class="sec-label">Trade Setup</div>
+          <div class="signal-card">
+            <div class="signal-top">
+              <div id="m-sig-badge"><span class="sig-badge sig-hold">— ANALİZ EDİLİYOR</span></div>
+              <div class="conf-ring-wrap">
+                <svg width="56" height="56" viewBox="0 0 56 56">
+                  <circle cx="28" cy="28" r="23" fill="none" stroke="var(--border)" stroke-width="4"/>
+                  <circle cx="28" cy="28" r="23" fill="none" stroke="var(--primary)" stroke-width="4" stroke-linecap="round" stroke-dasharray="144.5" id="m-conf-circ" stroke-dashoffset="144.5" style="transition:stroke-dashoffset .8s"/>
+                </svg>
+                <div class="conf-ring-num" id="m-conf-num" style="color:var(--tx3)">—</div>
               </div>
             </div>
-            <div class="levels">
-              <div class="lv c-entry"><div class="lv-l">Entry Zone</div><div class="lv-v" id="m-entry">—</div></div>
-              <div class="lv c-stop"><div class="lv-l">Stop Loss</div><div class="lv-v" id="m-stop">—</div></div>
-              <div class="lv c-tp"><div class="lv-l">TP 1</div><div class="lv-v" id="m-tp1">—</div></div>
-              <div class="lv c-tp"><div class="lv-l">TP 2</div><div class="lv-v" id="m-tp2">—</div></div>
-              <div class="lv c-inv"><div class="lv-l">Invalidation</div><div class="lv-v" id="m-inv">—</div></div>
-              <div class="lv c-rr"><div class="lv-l">R/R</div><div class="lv-v mono" id="m-rr">—</div></div>
+            <div class="levels-grid">
+              <div class="level-item"><div class="level-label">Entry Zone</div><div class="level-value lv-entry" id="m-entry">—</div></div>
+              <div class="level-item"><div class="level-label">Stop Loss</div><div class="level-value lv-stop" id="m-stop">—</div></div>
+              <div class="level-item"><div class="level-label">TP 1</div><div class="level-value lv-tp" id="m-tp1">—</div></div>
+              <div class="level-item"><div class="level-label">TP 2</div><div class="level-value lv-tp" id="m-tp2">—</div></div>
+              <div class="level-item"><div class="level-label">Invalidation</div><div class="level-value lv-inv" id="m-inv">—</div></div>
+              <div class="level-item"><div class="level-label">R/R</div><div class="level-value lv-rr t-mono" id="m-rr">—</div></div>
             </div>
-            <div class="ap-title" style="margin-top:10px">Score Breakdown</div>
-            <div class="score-rows" id="m-scores"></div>
+            <div class="sec-label" style="margin-top:10px">Score Breakdown</div>
+            <div class="score-list" id="m-scores">
+              <div class="score-row"><span class="score-name">Trend</span><div class="score-track"><div class="score-fill skel" style="width:60%"></div></div><span class="score-pct">—</span></div>
+              <div class="score-row"><span class="score-name">Momentum</span><div class="score-track"><div class="score-fill skel" style="width:50%"></div></div><span class="score-pct">—</span></div>
+              <div class="score-row"><span class="score-name">Hacim</span><div class="score-track"><div class="score-fill skel" style="width:70%"></div></div><span class="score-pct">—</span></div>
+              <div class="score-row"><span class="score-name">S/R</span><div class="score-track"><div class="score-fill skel" style="width:55%"></div></div><span class="score-pct">—</span></div>
+              <div class="score-row"><span class="score-name">Volatilite</span><div class="score-track"><div class="score-fill skel" style="width:45%"></div></div><span class="score-pct">—</span></div>
+              <div class="score-row"><span class="score-name">MTF</span><div class="score-track"><div class="score-fill skel" style="width:65%"></div></div><span class="score-pct">—</span></div>
+            </div>
           </div>
           <div id="m-explain"></div>
           <div id="m-warns"></div>
         </div>
-        <div class="ap">
-          <div class="ap-title">Teknik Göstergeler</div>
-          <div class="ind-mini" id="m-ind-grid">
-            <div class="ind-item loading-pulse"><div class="ind-name">RSI (14)</div><div class="ind-val" style="color:var(--text3)">—</div></div>
-            <div class="ind-item loading-pulse"><div class="ind-name">MACD</div><div class="ind-val" style="color:var(--text3)">—</div></div>
-            <div class="ind-item loading-pulse"><div class="ind-name">EMA 9/21</div><div class="ind-val" style="color:var(--text3)">—</div></div>
-            <div class="ind-item loading-pulse"><div class="ind-name">BB Width</div><div class="ind-val" style="color:var(--text3)">—</div></div>
-            <div class="ind-item loading-pulse"><div class="ind-name">Trend</div><div class="ind-val" style="color:var(--text3)">—</div></div>
-            <div class="ind-item loading-pulse"><div class="ind-name">Momentum</div><div class="ind-val" style="color:var(--text3)">—</div></div>
+
+        <!-- PANEL 2: Technical + News -->
+        <div class="ag-panel">
+          <div class="sec-label">Teknik Göstergeler</div>
+          <div class="ind-grid" id="m-ind-grid">
+            <div class="ind-item"><div class="ind-name">RSI (14)</div><div class="ind-val skel" style="height:16px;width:50px"></div></div>
+            <div class="ind-item"><div class="ind-name">MACD</div><div class="ind-val skel" style="height:16px;width:60px"></div></div>
+            <div class="ind-item"><div class="ind-name">EMA 9/21</div><div class="ind-val skel" style="height:16px;width:55px"></div></div>
+            <div class="ind-item"><div class="ind-name">BB Width</div><div class="ind-val skel" style="height:16px;width:40px"></div></div>
+            <div class="ind-item"><div class="ind-name">Trend</div><div class="ind-val skel" style="height:16px;width:65px"></div></div>
+            <div class="ind-item"><div class="ind-name">Momentum</div><div class="ind-val skel" style="height:16px;width:50px"></div></div>
           </div>
-          <hr class="div" style="margin:12px 0">
-          <div class="ap-title">Haberler</div>
-          <div id="m-news"><div class="loading-pulse" style="font-size:11px;color:var(--text3);padding:8px">Yükleniyor...</div></div>
+          <div class="divider"></div>
+          <div class="sec-label">Haberler</div>
+          <div id="m-news">
+            <div class="news-item skel" style="height:50px"></div>
+            <div class="news-item skel" style="height:50px;margin-top:5px"></div>
+          </div>
         </div>
-        <div class="ap">
-          <div class="ap-title">Senaryo Analizi</div>
-          <div id="m-scenarios"><div class="loading-pulse" style="font-size:11px;color:var(--text3);padding:8px">Analiz bekleniyor...</div></div>
-          <hr class="div">
-          <div class="ap-title">Backtest</div>
-          <div class="prem-wrap">
-            <div class="prem-blur"><div class="detail-grid"><div class="d-item"><div class="d-l">Win Rate</div><div class="d-v" style="color:var(--green)">68%</div></div><div class="d-item"><div class="d-l">Avg R/R</div><div class="d-v" style="color:var(--gold)">1:2.4</div></div><div class="d-item"><div class="d-l">Trades</div><div class="d-v">142</div></div><div class="d-item"><div class="d-l">Drawdown</div><div class="d-v" style="color:var(--red)">-12%</div></div></div></div>
-            <div class="prem-gate" id="bt-lock"><div class="prem-icon">🔒</div><div class="prem-t">Backtest Verisi</div><div class="prem-s">142 trade üzerinden geçmiş performans.</div><div class="prem-feats"><div class="pf"><span class="pf-ok">✓</span>Win Rate & Drawdown</div><div class="pf"><span class="pf-ok">✓</span>Strateji karşılaştırma</div></div><button class="btn-upgrade" onclick="togglePremium()">Pro'ya Geç →</button></div>
+
+        <!-- PANEL 3: Scenarios + Quick -->
+        <div class="ag-panel" style="border-right:none">
+          <div class="sec-label">Senaryo Analizi</div>
+          <div id="m-scenarios">
+            <div class="scenario-item skel" style="height:60px"></div>
+            <div class="scenario-item skel" style="height:60px;margin-top:6px"></div>
+            <div class="scenario-item skel" style="height:60px;margin-top:6px"></div>
           </div>
-          <hr class="div">
-          <div class="ap-title">Hızlı Sorgula</div>
+          <div class="divider"></div>
+          <div class="sec-label">Backtest</div>
+          <div class="prem-wrap">
+            <div class="prem-blur">
+              <div class="detail-grid">
+                <div class="d-item"><div class="d-label">Win Rate</div><div class="d-value" style="color:var(--accent)">68%</div></div>
+                <div class="d-item"><div class="d-label">Avg R/R</div><div class="d-value" style="color:var(--gold)">1:2.4</div></div>
+                <div class="d-item"><div class="d-label">Trades</div><div class="d-value">142</div></div>
+                <div class="d-item"><div class="d-label">Drawdown</div><div class="d-value" style="color:var(--danger)">-12%</div></div>
+              </div>
+            </div>
+            <div class="prem-gate" id="bt-lock">
+              <div class="prem-icon">🔒</div>
+              <div class="prem-title">Backtest Verisi</div>
+              <div class="prem-desc">142 trade üzerinden geçmiş performans analizi.</div>
+              <div class="prem-feats"><div class="pf-row"><span class="pf-ok">✓</span>Win Rate & Drawdown</div><div class="pf-row"><span class="pf-ok">✓</span>Strateji karşılaştırma</div></div>
+              <button class="upgrade-btn" onclick="goProShopier()">Pro'ya Geç →</button>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="sec-label">Hızlı Sorgula</div>
           <div style="display:flex;flex-direction:column;gap:4px">
-            <button class="cq" style="text-align:left;width:100%;font-size:11px;padding:6px 10px" onclick="goPage('aibot');botQ('Seçili varlığı detaylı analiz et')">Bu varlığı analiz et</button>
-            <button class="cq" style="text-align:left;width:100%;font-size:11px;padding:6px 10px" onclick="goPage('aibot');botQ('Bugün piyasalarda neler oldu?')">Günlük özet</button>
-            <button class="cq" style="text-align:left;width:100%;font-size:11px;padding:6px 10px" onclick="goPage('aibot');botQ('En güçlü 3 breakout adayı')">Top 3 fırsat</button>
+            <button class="quick-btn" style="text-align:left;width:100%;font-size:11px;padding:7px 10px" onclick="goPage('aibot');botQ('Seçili varlığı detaylı analiz et')">Bu varlığı analiz et</button>
+            <button class="quick-btn" style="text-align:left;width:100%;font-size:11px;padding:7px 10px" onclick="goPage('aibot');botQ('Bugün piyasalarda neler oldu?')">Günlük özet</button>
+            <button class="quick-btn" style="text-align:left;width:100%;font-size:11px;padding:7px 10px" onclick="goPage('aibot');botQ('En güçlü 3 breakout adayı')">Top 3 fırsat</button>
           </div>
         </div>
       </div>
-    </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="right-sidebar" aria-label="Portföy ve uyarılar">
+      <div class="rs-tab-bar" role="tablist">
+        <div class="rs-tab on" onclick="rsTab('portfolio',this)" role="tab">Portföy</div>
+        <div class="rs-tab" onclick="rsTab('alerts',this)" role="tab">Uyarılar</div>
+        <div class="rs-tab" onclick="rsTab('news',this)" role="tab">Haberler</div>
+      </div>
+      <div class="rs-content">
+        <!-- Portfolio Tab -->
+        <div id="rs-portfolio">
+          <div class="port-stat-grid">
+            <div class="port-stat"><div class="ps-label">Toplam</div><div class="ps-value" style="color:var(--gold)">—</div><div class="ps-sub">Güncelleniyor</div></div>
+            <div class="port-stat"><div class="ps-label">Günlük</div><div class="ps-value" id="rs-pnl">—</div></div>
+          </div>
+          <div class="sec-label" style="margin-bottom:8px">Watchlist</div>
+          <div class="prem-wrap">
+            <div class="prem-blur" style="padding:12px;font-size:12px;color:var(--tx3)">BTC, ETH, THYAO...</div>
+            <div class="prem-gate"><div class="prem-icon">⭐</div><div class="prem-title">Kişisel Watchlist</div><div class="prem-desc">Varlık ekle, fiyat alarmı kur, Telegram bildirimi al.</div><button class="upgrade-btn" onclick="goProShopier()">Pro'ya Geç →</button></div>
+          </div>
+          <div class="divider"></div>
+          <div class="sec-label" style="margin-bottom:8px">Son Sinyaller</div>
+          <div id="rs-signals"><div class="t-small" style="text-align:center;padding:16px">Henüz sinyal yok.</div></div>
+        </div>
+        <!-- Alerts Tab -->
+        <div id="rs-alerts" style="display:none">
+          <div class="sec-label" style="margin-bottom:8px">Bildirimler</div>
+          <div id="alerts-list">
+            <div class="alert-item unread"><div class="alert-dot" style="background:var(--primary)"></div><div class="alert-body"><div class="alert-title">Platform hazır</div><div class="alert-meta">Veri yükleniyor...</div></div></div>
+          </div>
+        </div>
+        <!-- News Tab -->
+        <div id="rs-news" style="display:none">
+          <div class="sec-label" style="margin-bottom:8px">Son Haberler</div>
+          <div id="rs-news-list"><div class="skel" style="height:50px;margin-bottom:5px"></div><div class="skel" style="height:50px;margin-bottom:5px"></div></div>
+        </div>
+      </div>
+    </aside>
   </div>
 </div>
 
-<!-- SCANNER -->
-<div id="page-scanner" class="page">
-  <div class="scanner-page">
+<!-- PAGE: SCANNER -->
+<div id="page-scanner" class="page" style="overflow-y:auto">
+  <div class="scanner-wrap">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
-      <div><div style="font-size:13px;font-weight:800;letter-spacing:2px">PİYASA TARAYICI</div><div style="font-size:11px;color:var(--text3);margin-top:2px">Breakout adayları ve yüksek güven skorlu setuplar</div></div>
-      <div style="display:flex;gap:8px;align-items:center"><span style="font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace" id="scan-cnt">—</span><button class="btn btn-outline btn-sm" onclick="runScanner()">↻ Tara</button></div>
+      <div>
+        <div class="t-h3">PİYASA TARAYICI</div>
+        <div class="t-small" style="margin-top:2px">Breakout adayları ve yüksek güven skorlu setuplar</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span class="t-small t-mono" id="scan-cnt">—</span>
+        <button class="btn btn-outline btn-sm" onclick="runScanner()">↻ Tara</button>
+      </div>
     </div>
-    <div class="scan-filters">
-      <button class="sf on" onclick="setSF('all',this)">Tümü</button>
-      <button class="sf" onclick="setSF('crypto',this)">Kripto</button>
-      <button class="sf" onclick="setSF('stock',this)">BIST</button>
-      <button class="sf" onclick="setSF('gold',this)">Altın</button>
-      <button class="sf" onclick="setSF('buy',this)">AL Sinyali</button>
-      <button class="sf" onclick="setSF('watch',this)">İzle</button>
-      <button class="sf" onclick="setSF('breakout',this)">Breakout</button>
-      <button class="sf" onclick="setSF('hc',this)">Güven 65+</button>
+    <div class="filter-row">
+      <button class="filter-chip on" onclick="setSF('all',this)">Tümü</button>
+      <button class="filter-chip" onclick="setSF('crypto',this)">Kripto</button>
+      <button class="filter-chip" onclick="setSF('stock',this)">BIST</button>
+      <button class="filter-chip" onclick="setSF('gold',this)">Altın</button>
+      <button class="filter-chip" onclick="setSF('buy',this)">AL Sinyali</button>
+      <button class="filter-chip" onclick="setSF('watch',this)">İzle</button>
+      <button class="filter-chip" onclick="setSF('breakout',this)">Breakout</button>
+      <button class="filter-chip" onclick="setSF('hc',this)">Güven 65+</button>
     </div>
     <div id="scanner-out"></div>
   </div>
 </div>
 
-<!-- PORTFOLIO -->
-<div id="page-portfolio" class="page">
-  <div class="port-page">
-    <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--gold);margin-bottom:16px">PORTFÖY & İZLEME</div>
-    <div class="port-grid">
-      <div class="port-stat"><div class="port-stat-l">Toplam Değer</div><div class="port-stat-v" style="color:var(--gold2)">—</div><div style="font-size:11px;color:var(--text3);margin-top:3px">Canlı takip</div></div>
-      <div class="port-stat"><div class="port-stat-l">Günlük P&L</div><div class="port-stat-v" id="port-pnl">—</div></div>
-      <div class="port-stat"><div class="port-stat-l">Açık Pozisyon</div><div class="port-stat-v" id="port-pos">0</div></div>
-      <div class="port-stat"><div class="port-stat-l">Sinyal Sayısı</div><div class="port-stat-v" style="color:var(--green)" id="port-sig">0</div></div>
+<!-- PAGE: PORTFOLIO -->
+<div id="page-portfolio" class="page" style="overflow-y:auto">
+  <div class="portfolio-page">
+    <div class="port-header">
+      <div class="t-h3">PORTFÖY & İZLEME</div>
+      <button class="btn btn-outline btn-sm" onclick="renderSigHistory()">↻ Güncelle</button>
     </div>
-    <div class="glass" style="padding:18px;margin-bottom:14px">
-      <div class="ap-title" style="margin-bottom:12px">Takip Listesi</div>
+    <div class="port-stats-row">
+      <div class="port-stat-card"><div class="psc-label">Toplam Değer</div><div class="psc-value" style="color:var(--gold)">—</div><div class="psc-sub">Canlı takip</div></div>
+      <div class="port-stat-card"><div class="psc-label">Günlük P&L</div><div class="psc-value" id="port-pnl">—</div></div>
+      <div class="port-stat-card"><div class="psc-label">Açık Pozisyon</div><div class="psc-value" id="port-pos">0</div></div>
+      <div class="port-stat-card"><div class="psc-label">Sinyal Sayısı</div><div class="psc-value" style="color:var(--accent)" id="port-sig">0</div></div>
+    </div>
+    <div class="panel-card">
+      <div class="panel-title">Takip Listesi</div>
       <div class="prem-wrap">
-        <div class="prem-blur"><div style="padding:16px;color:var(--text3);font-size:12px">BTC, ETH, THYAO...</div></div>
-        <div class="prem-gate"><div class="prem-icon">⭐</div><div class="prem-t">Kişisel Watchlist</div><div class="prem-s">Varlık ekle, fiyat alarmı kur, Telegram bildirimi al.</div><div class="prem-feats"><div class="pf"><span class="pf-ok">✓</span>Sınırsız varlık</div><div class="pf"><span class="pf-ok">✓</span>Fiyat alarmları</div><div class="pf"><span class="pf-ok">✓</span>Telegram</div></div><button class="btn-upgrade" onclick="togglePremium()">Pro'ya Geç →</button></div>
+        <div class="prem-blur" style="padding:14px;color:var(--tx3);font-size:12px">BTC, ETH, THYAO...</div>
+        <div class="prem-gate"><div class="prem-icon">⭐</div><div class="prem-title">Kişisel Watchlist</div><div class="prem-desc">Varlık ekle, fiyat alarmı kur, Telegram bildirimi al.</div><div class="prem-feats"><div class="pf-row"><span class="pf-ok">✓</span>Sınırsız varlık</div><div class="pf-row"><span class="pf-ok">✓</span>Fiyat alarmları</div><div class="pf-row"><span class="pf-ok">✓</span>Telegram</div></div><button class="upgrade-btn" onclick="goProShopier()">Pro'ya Geç →</button></div>
       </div>
     </div>
-    <div class="glass" style="padding:18px">
-      <div class="ap-title" style="margin-bottom:12px">Geçmiş Sinyaller</div>
-      <div id="sig-history"><div class="empty-state">Henüz sinyal yok.</div></div>
+    <div class="panel-card">
+      <div class="panel-title">Geçmiş Sinyaller</div>
+      <div id="sig-history"><div class="t-small" style="text-align:center;padding:24px">Henüz sinyal yok. Analiz başlatın.</div></div>
     </div>
   </div>
 </div>
 
-<!-- AUTO TRADING -->
-<div id="page-auto" class="page">
+<!-- PAGE: AUTO TRADING -->
+<div id="page-auto" class="page" style="overflow-y:auto">
   <div class="auto-page">
-    <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--gold);margin-bottom:4px">OTO TRADİNG SİSTEMİ</div>
-    <div style="font-size:11px;color:var(--text3);margin-bottom:16px">Otomatik işlem modu yalnızca deneyimli kullanıcılar için. Her mod tam risk yönetimi gerektirir.</div>
+    <div class="t-h3" style="margin-bottom:4px">OTO TRADİNG SİSTEMİ</div>
+    <div class="t-body" style="margin-bottom:16px">Otomatik işlem modu yalnızca deneyimli kullanıcılar için. Her mod tam risk yönetimi gerektirir.</div>
+
     <div class="auto-section">
-      <div class="auto-st">Çalışma Modu</div>
+      <div class="as-title">Otomatik Telegram Sinyal Yayını</div>
+      <div class="t-body" style="margin-bottom:10px">Belirlediğin koşullar sağlandığında Telegram kanalına otomatik sinyal gönder.</div>
+      <div class="input-row">
+        <div class="input-group"><label class="input-label">Min. Güven Skoru</label><input class="input-field" id="tg-min-conf" type="number" value="65" min="40" max="95"></div>
+        <div class="input-group"><label class="input-label">Sinyal Türü</label><select class="input-field" id="tg-sig-type"><option value="all">Tümü</option><option value="buy">Sadece AL</option><option value="buysell">AL + SAT</option></select></div>
+        <div class="input-group"><label class="input-label">Market</label><select class="input-field" id="tg-market"><option value="all">Hepsi</option><option value="crypto">Kripto</option><option value="stock">BIST</option></select></div>
+        <div class="input-group"><label class="input-label">Tekrar Engel (saat)</label><input class="input-field" id="tg-cooldown" type="number" value="4" min="1" max="24"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:7px;font-size:12px;cursor:pointer"><input type="checkbox" id="tg-auto-enabled" style="width:14px;height:14px;accent-color:var(--primary)"><span class="t-body">Otomatik sinyal yayını aktif</span></label>
+        <button class="btn btn-outline btn-sm" onclick="testAutoSignal()">Test Gönder</button>
+        <button class="btn btn-primary btn-sm" onclick="saveTGAuto()">Kaydet</button>
+      </div>
+    </div>
+
+    <div class="auto-section">
+      <div class="as-title">Çalışma Modu</div>
       <div class="mode-cards">
-        <div class="mc-card mc-off sel" id="mc-off" onclick="setMode('off')"><div class="mc-icon">○</div><div class="mc-t">Kapalı</div><div class="mc-d">Sistem pasif. Uyarı veya işlem yapılmaz.</div></div>
-        <div class="mc-card mc-alert" id="mc-alert" onclick="setMode('alert')"><div class="mc-icon">◉</div><div class="mc-t">Alert Modu</div><div class="mc-d">Fırsatları tespit et, Telegram'a bildir.</div></div>
-        <div class="mc-card mc-semi" id="mc-semi" onclick="setMode('semi')"><div class="mc-icon">◈</div><div class="mc-t">Yarı Otomatik</div><div class="mc-d">Analiz et, öneri sun. Son onay kullanıcıdan.</div></div>
+        <div class="mode-card mc-active-off" id="mc-off" onclick="setMode('off')"><div class="mc-icon">○</div><div class="mc-title">Kapalı</div><div class="mc-desc">Sistem pasif.</div></div>
+        <div class="mode-card" id="mc-alert" onclick="setMode('alert')"><div class="mc-icon">◉</div><div class="mc-title">Alert Modu</div><div class="mc-desc">Fırsatları tespit et, Telegram'a bildir.</div></div>
+        <div class="mode-card" id="mc-semi" onclick="setMode('semi')"><div class="mc-icon">◈</div><div class="mc-title">Yarı Otomatik</div><div class="mc-desc">Analiz et, öneri sun. Son onay senden.</div></div>
       </div>
-      <div style="background:var(--rd2);border:1px solid var(--rdb);border-radius:var(--r8);padding:10px 12px;font-size:11px;color:var(--red);margin-bottom:10px">⚠️ Auto-Execution bu versiyonda devre dışı. Broker API entegrasyonu gerektirir.</div>
-      <div style="font-size:11px;color:var(--text3)">Aktif mod: <span id="mode-lbl" style="color:var(--gold);font-weight:600">KAPALI</span></div>
+      <div style="background:var(--tint-red);border:1px solid var(--b-red);border-radius:var(--r8);padding:9px 12px;font-size:11px;color:var(--danger);margin-bottom:8px">⚠️ Auto-Execution modu bu versiyonda devre dışıdır. Broker API entegrasyonu gerektirir.</div>
+      <div class="t-small">Aktif mod: <span id="mode-lbl" style="color:var(--primary);font-weight:700">KAPALI</span></div>
     </div>
+
     <div class="auto-section">
-      <div class="auto-st">Risk Limitleri</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div class="inp-g"><label class="inp-lbl">Maks. İşlem ($)</label><input class="inp" id="rl-max" placeholder="500" type="number"></div>
-        <div class="inp-g"><label class="inp-lbl">Günlük Risk ($)</label><input class="inp" id="rl-daily" placeholder="200" type="number"></div>
-        <div class="inp-g"><label class="inp-lbl">Maks. Pozisyon</label><input class="inp" id="rl-pos" placeholder="3" type="number"></div>
-        <div class="inp-g"><label class="inp-lbl">Min. Güven Skoru</label><input class="inp" id="rl-conf" placeholder="65" type="number" min="40" max="95"></div>
-        <div class="inp-g"><label class="inp-lbl">Yön</label><select class="inp" id="rl-dir"><option value="both">Long + Short</option><option value="long">Sadece Long</option><option value="short">Sadece Short</option></select></div>
-        <div class="inp-g"><label class="inp-lbl">Kaldıraç</label><select class="inp" id="rl-lev"><option value="1">1x (Kaldıraçsız)</option><option value="2">2x</option><option value="3">3x</option></select></div>
+      <div class="as-title">Risk Limitleri</div>
+      <div class="input-row">
+        <div class="input-group"><label class="input-label">Maks. İşlem ($)</label><input class="input-field" id="rl-max" placeholder="500" type="number"></div>
+        <div class="input-group"><label class="input-label">Günlük Risk ($)</label><input class="input-field" id="rl-daily" placeholder="200" type="number"></div>
+        <div class="input-group"><label class="input-label">Maks. Pozisyon</label><input class="input-field" id="rl-pos" placeholder="3" type="number"></div>
+        <div class="input-group"><label class="input-label">Min. Güven Skoru</label><input class="input-field" id="rl-conf" placeholder="65" type="number"></div>
+        <div class="input-group"><label class="input-label">Yön</label><select class="input-field" id="rl-dir"><option value="both">Long + Short</option><option value="long">Sadece Long</option><option value="short">Sadece Short</option></select></div>
+        <div class="input-group"><label class="input-label">Kaldıraç</label><select class="input-field" id="rl-lev"><option value="1">1x</option><option value="2">2x</option><option value="3">3x</option></select></div>
       </div>
-      <button class="btn btn-gold btn-sm" onclick="saveRisk()">Kaydet</button>
+      <button class="btn btn-primary btn-sm" onclick="saveRisk()">Kaydet</button>
     </div>
+
     <div class="auto-section">
-      <div class="auto-st">Güvenlik Protokolü</div>
+      <div class="as-title">Güvenlik Protokolü</div>
       <div class="safety-list">
-        <div class="safety-item"><div class="sdot sdot-ok"></div>Stop-loss olmadan işlem açılmaz</div>
-        <div class="safety-item"><div class="sdot sdot-ok"></div>Maks. işlem tutarı aşılamaz</div>
-        <div class="safety-item"><div class="sdot sdot-ok"></div>Günlük zarar limitine ulaşıldığında sistem durur</div>
-        <div class="safety-item"><div class="sdot sdot-ok"></div>Aynı sinyal 4h cooldown ile tekrar tetiklenemez</div>
-        <div class="safety-item"><div class="sdot sdot-ok"></div>Her işlem loglanır ve Telegram'a bildirilir</div>
-        <div class="safety-item"><div class="sdot sdot-ok"></div>Kullanıcı istediği an sistemi durdurabilir</div>
-        <div class="safety-item"><div class="sdot sdot-warn"></div>Yüksek volatilite (>%8 daily) dönemlerinde uyarı üretilir</div>
+        <div class="safety-item"><div class="safety-dot sd-ok"></div>Stop-loss olmadan işlem açılmaz</div>
+        <div class="safety-item"><div class="safety-dot sd-ok"></div>Maks. işlem tutarı aşılamaz</div>
+        <div class="safety-item"><div class="safety-dot sd-ok"></div>Günlük zarar limitinde sistem durur</div>
+        <div class="safety-item"><div class="safety-dot sd-ok"></div>Aynı sinyal 4h cooldown ile tekrar tetiklenemez</div>
+        <div class="safety-item"><div class="safety-dot sd-ok"></div>Her işlem loglanır ve Telegram'a bildirilir</div>
+        <div class="safety-item"><div class="safety-dot sd-warn"></div>Yüksek volatilite (>%8) dönemlerinde uyarı</div>
       </div>
     </div>
-    <button class="emerg" onclick="emergencyStop()">🚨 ACİL DURDUR — TÜM SİSTEMLERİ KAPAT</button>
+    <button class="emerg-btn" onclick="emergencyStop()">🚨 ACİL DURDUR — TÜM SİSTEMLERİ KAPAT</button>
   </div>
 </div>
 
-<!-- AI BOT -->
+<!-- PAGE: AI BOT -->
 <div id="page-aibot" class="page">
   <div class="ai-page">
-    <div class="ai-left">
-      <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;color:rgba(201,168,76,.7);margin-bottom:12px">GÜNLÜK PİYASA ÖZETİ</div>
-      <div class="sum-card"><div class="sum-t">Kripto Piyasası</div><div class="sum-body" id="sum-crypto"><span class="loading-pulse" style="color:var(--text3)">Hazırlanıyor...</span></div></div>
-      <div class="sum-card"><div class="sum-t">BIST Piyasası</div><div class="sum-body" id="sum-bist"><span class="loading-pulse" style="color:var(--text3)">Hazırlanıyor...</span></div></div>
-      <div class="sum-card"><div class="sum-t">Altın & Emtia</div><div class="sum-body" id="sum-gold"><span class="loading-pulse" style="color:var(--text3)">Hazırlanıyor...</span></div></div>
-      <div class="sum-card"><div class="sum-t">Öne Çıkan Gelişmeler</div><div class="sum-body" id="sum-news"><span class="loading-pulse" style="color:var(--text3)">Analiz ediliyor...</span></div></div>
-      <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="genSummary()">↻ Yenile</button>
+    <div class="ai-summaries">
+      <div class="t-label" style="margin-bottom:12px">Günlük Piyasa Özeti</div>
+      <div class="sum-card"><div class="sum-title">Kripto Piyasası</div><div class="sum-body" id="sum-crypto"><span class="t-small">Hazırlanıyor...</span></div></div>
+      <div class="sum-card"><div class="sum-title">BIST Piyasası</div><div class="sum-body" id="sum-bist"><span class="t-small">Hazırlanıyor...</span></div></div>
+      <div class="sum-card"><div class="sum-title">Altın & Emtia</div><div class="sum-body" id="sum-gold"><span class="t-small">Hazırlanıyor...</span></div></div>
+      <div class="sum-card"><div class="sum-title">Öne Çıkan Gelişmeler</div><div class="sum-body" id="sum-news"><span class="t-small">Analiz ediliyor...</span></div></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="genSummary()">↻ Özeti Yenile</button>
     </div>
-    <div class="ai-right">
-      <div class="chat-hdr">
-        <div class="cav bot" style="width:28px;height:28px;border-radius:8px;font-size:12px">T</div>
-        <div><div style="font-size:12px;font-weight:700">TRDAI Assistant v2</div><div style="font-size:10px;color:var(--green);display:flex;align-items:center;gap:4px"><span style="width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 2s infinite"></span>Aktif · Borsa & Kripto</div></div>
+    <div class="chat-wrap">
+      <div class="chat-header">
+        <div class="msg-avatar bot" style="width:28px;height:28px;font-size:12px;border-radius:var(--r8)">T</div>
+        <div><div style="font-size:12px;font-weight:700">TRDAI Elite Signal Engine v3</div><div style="font-size:10px;color:var(--accent);display:flex;align-items:center;gap:4px"><div class="live-dot" style="width:5px;height:5px"></div>Aktif · ICT · Smart Money</div></div>
       </div>
-      <div class="chat-msgs" id="bot-msgs">
-        <div id="bot-welcome" style="text-align:center;padding:24px 12px">
-          <svg width="44" height="44" viewBox="0 0 28 28" fill="none" style="margin-bottom:10px"><polygon points="14,2 26,24 2,24" fill="none" stroke="#c9a84c" stroke-width="1.5"/><polygon points="14,7 22,21 6,21" fill="none" stroke="#c9a84c" stroke-width="1"/><line x1="14" y1="7" x2="14" y2="15" stroke="#c9a84c" stroke-width="1"/><line x1="10" y1="15" x2="18" y2="15" stroke="#c9a84c" stroke-width="1"/><circle cx="10" cy="15" r="1.2" fill="#c9a84c"/><circle cx="18" cy="15" r="1.2" fill="#c9a84c"/><circle cx="14" cy="7" r="1.2" fill="#c9a84c"/></svg>
-          <div style="font-size:11px;font-weight:800;letter-spacing:2px;color:var(--gold);margin-bottom:4px">TRDAI v2.0</div>
-          <div style="font-size:9px;color:var(--text3);letter-spacing:1px;margin-bottom:12px">PREMIUM TRADING INTELLIGENCE</div>
-          <div style="font-size:11px;color:var(--text2);line-height:1.7;text-align:left;background:var(--black3);border:1px solid rgba(201,168,76,.1);border-radius:var(--r8);padding:12px">Her analiz için:<br>✓ Entry / Stop / Target<br>✓ Risk yönetimi + position sizing<br>✓ Makro bağlam + senaryo<br>✓ Güven skoru + gerekçe<br><br><span style="color:var(--gold);font-size:10px">"BTC analizi" · "Risk hesapla" · "Günlük özet"</span></div>
+      <div class="chat-messages" id="bot-msgs">
+        <div id="bot-welcome" style="text-align:center;padding:28px 12px">
+          <svg width="48" height="48" viewBox="0 0 28 28" fill="none" style="margin-bottom:12px"><polygon points="14,2 26,24 2,24" fill="none" stroke="#F0B429" stroke-width="1.5"/><polygon points="14,7 22,21 6,21" fill="none" stroke="#F0B429" stroke-width="1"/><line x1="14" y1="7" x2="14" y2="15" stroke="#F0B429" stroke-width="1"/><line x1="10" y1="15" x2="18" y2="15" stroke="#F0B429" stroke-width="1"/><circle cx="10" cy="15" r="1.2" fill="#F0B429"/><circle cx="18" cy="15" r="1.2" fill="#F0B429"/><circle cx="14" cy="7" r="1.2" fill="#F0B429"/></svg>
+          <div style="font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--gold);margin-bottom:3px">TRDAI v3.0</div>
+          <div style="font-size:9px;color:var(--tx3);letter-spacing:1px;margin-bottom:14px">ELITE SIGNAL ENGINE</div>
+          <div style="font-size:11px;color:var(--tx2);line-height:1.7;text-align:left;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--r10);padding:12px">Her analiz için:<br>✓ Piyasa yapısı + Order blocks<br>✓ Smart Money confluence<br>✓ Entry / Stop / TP seviyeleri<br>✓ Risk yönetimi + Position sizing<br>✓ 3 senaryo + güven skoru<br>✓ Haber analizi → işlem sinyali<br>✓ Günlük haber özeti + katalizörler<br><br><span style="color:var(--gold);font-size:10px">"BTC analizi" · "haber analizi" · "günlük haber özeti" · "risk hesapla" · "multi-tf"</span></div>
         </div>
       </div>
-      <div class="chat-qs">
-        <button class="cq" onclick="botQ('Günlük piyasa özeti: BTC BIST Altın')">Günlük Özet</button>
-        <button class="cq" onclick="botQ('En iyi 3 breakout adayı ve gerekçeleri')">Top Setups</button>
-        <button class="cq" onclick="botQ('BTC 4 bölüm analiz: Bulgu Gerekçe Risk Senaryo')">BTC Analiz</button>
-        <button class="cq" onclick="botQ('Risk yönetimi ve position sizing coaching')">Risk Coach</button>
-        <button class="cq" onclick="botQ('BIST bugün nasıl kapandı?')">BIST</button>
+      <div class="chat-quick">
+        <button class="quick-btn" onclick="botQ('Günlük piyasa özeti: BTC BIST Altın')">Günlük Özet</button>
+        <button class="quick-btn" onclick="botQ('En iyi 3 breakout adayı')">Top Setups</button>
+        <button class="quick-btn" onclick="botQ('BTC 6 bölüm elite analiz')">BTC Analiz</button>
+        <button class="quick-btn" onclick="botQ('günlük haber özeti ver, önemli haberleri ve etkilenen varlıkları listele')">Haber Özeti</button>
+        <button class="quick-btn" onclick="botQ('risk hesapla 10000 2 69000 67500')">Risk Hesapla</button>
+        <button class="quick-btn" onclick="botQ('BIST bugün nasıl kapandı?')">BIST</button>
+        <button class="quick-btn" onclick="botQ('makro analiz: DXY BTC dominance global risk')">Makro</button>
       </div>
-      <div class="chat-inp">
-        <textarea class="chat-ta" id="bot-inp" placeholder="Piyasa sorusu..." rows="1" onkeydown="bKey(event)" oninput="bResize(this)"></textarea>
-        <button class="chat-send" id="bot-send" onclick="botSend()">↗</button>
+      <div class="chat-input-row">
+        <textarea class="chat-textarea" id="bot-inp" placeholder="Piyasa sorusu..." rows="1" onkeydown="bKey(event)" oninput="bResize(this)" aria-label="Mesaj yaz"></textarea>
+        <button class="chat-send-btn" id="bot-send" onclick="botSend()" aria-label="Gönder">↗</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SETTINGS -->
-<div id="page-settings" class="page">
+<!-- PAGE: SETTINGS -->
+<div id="page-settings" class="page" style="overflow-y:auto">
   <div class="settings-page">
-    <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--gold);margin-bottom:16px">PLATFORM AYARLARI</div>
-    <div class="glass" style="padding:18px;margin-bottom:12px">
-      <div class="set-title">Telegram</div>
-      <div class="inp-row"><div class="inp-g"><label class="inp-lbl">Bot Token</label><input class="inp" id="tg-token" placeholder="1234567890:AAFxxx..."></div><div class="inp-g"><label class="inp-lbl">Chat ID</label><input class="inp" id="tg-chat" placeholder="123456789"></div></div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-gold btn-sm" onclick="saveTG()">Kaydet</button><button class="btn btn-outline btn-sm" onclick="testTG()">Test</button></div>
-    </div>
-    <div class="glass" style="padding:18px;margin-bottom:12px">
-      <div class="set-title">Groq API</div>
-      <div class="inp-g"><label class="inp-lbl">API Key</label><input class="inp" id="groq-key" placeholder="gsk_xxx..." type="password"></div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-gold btn-sm" onclick="saveGroq()">Kaydet</button><button class="btn btn-outline btn-sm" onclick="testGroq()">Test</button><a href="https://console.groq.com/keys" target="_blank" class="btn btn-outline btn-sm">Key Al →</a></div>
-      <div style="font-size:10px;color:var(--text3);margin-top:6px">console.groq.com → ücretsiz → Create Key</div>
-    </div>
-    <div class="glass" style="padding:18px;margin-bottom:12px">
-      <div class="set-title">Position Sizing</div>
-      <div style="font-size:11px;color:var(--text2);margin-bottom:10px">Maks. %2-3 risk prensibi ile pozisyon boyutu hesaplar.</div>
-      <div class="inp-row"><div class="inp-g"><label class="inp-lbl">Portföy ($)</label><input class="inp" id="ps-port" placeholder="10000" type="number"></div><div class="inp-g"><label class="inp-lbl">Risk (%)</label><input class="inp" id="ps-risk" placeholder="2" type="number" step="0.5" value="2"></div></div>
-      <div class="inp-row"><div class="inp-g"><label class="inp-lbl">Giriş Fiyatı</label><input class="inp" id="ps-entry" placeholder="72000" type="number"></div><div class="inp-g"><label class="inp-lbl">Stop Loss</label><input class="inp" id="ps-stop" placeholder="70000" type="number"></div></div>
-      <button class="btn btn-gold btn-sm" onclick="calcPos()" style="margin-bottom:8px">Hesapla</button>
-      <div id="ps-result" style="display:none;background:var(--black3);border:1px solid var(--gb);border-radius:var(--r8);padding:12px">
-        <div class="detail-grid"><div class="d-item"><div class="d-l">Risk</div><div class="d-v" id="ps-ra" style="color:var(--red)">—</div></div><div class="d-item"><div class="d-l">Pozisyon</div><div class="d-v" id="ps-sz" style="color:var(--green)">—</div></div><div class="d-item"><div class="d-l">Lot</div><div class="d-v" id="ps-lt" style="color:var(--gold)">—</div></div><div class="d-item"><div class="d-l">R/R</div><div class="d-v" id="ps-rr">—</div></div></div>
-        <div style="font-size:10px;color:var(--text3);margin-top:8px">Bu hesaplama bilgilendirme amaçlıdır.</div>
+    <div class="t-h3" style="margin-bottom:16px">PLATFORM AYARLARI</div>
+    <div class="settings-section">
+      <div class="settings-title">Telegram Bildirimleri</div>
+      <div class="input-row">
+        <div class="input-group"><label class="input-label">Bot Token</label><input class="input-field" id="tg-token" placeholder="1234567890:AAFxxx..."></div>
+        <div class="input-group"><label class="input-label">Chat ID</label><input class="input-field" id="tg-chat" placeholder="123456789"></div>
       </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary btn-sm" onclick="saveTG()">Kaydet</button><button class="btn btn-outline btn-sm" onclick="testTG()">Test</button></div>
     </div>
-    <div class="glass" style="padding:18px;margin-bottom:12px">
-      <div class="set-title">Güncelleme Hızı</div>
-      <div class="inp-row"><div class="inp-g"><label class="inp-lbl">Kripto (sn)</label><input class="inp" id="s-ci" value="60" type="number" min="30" max="300"></div><div class="inp-g"><label class="inp-lbl">Haber (dk)</label><input class="inp" id="s-ni" value="5" type="number" min="1" max="60"></div></div>
-      <button class="btn btn-gold btn-sm" onclick="saveSettings()">Kaydet</button>
+    <div class="settings-section">
+      <div class="settings-title">Groq API — AI Asistan</div>
+      <div class="input-group"><label class="input-label">API Key</label><input class="input-field" id="groq-key" placeholder="gsk_xxx..." type="password"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary btn-sm" onclick="saveGroq()">Kaydet</button><button class="btn btn-outline btn-sm" onclick="testGroq()">Test</button><a href="https://console.groq.com/keys" target="_blank" class="btn btn-outline btn-sm">Key Al →</a></div>
+      <div class="t-small" style="margin-top:6px">console.groq.com → ücretsiz → Create Key</div>
     </div>
-    <!-- BİNANCE API -->
-    <div class="glass" style="padding:18px;margin-bottom:12px;border-color:rgba(247,147,26,.2)">
-      <div class="set-title" style="color:#f7931a">Binance API — Gerçek Trading</div>
-      <div style="font-size:11px;color:var(--text2);margin-bottom:10px;line-height:1.7;background:var(--rd2);border:1px solid var(--rdb);border-radius:var(--r8);padding:8px 10px;color:var(--red)">⚠️ API key'inizi yalnızca <b>Spot Trading</b> izniyle oluşturun. Para çekme yetkisi VERMEYIN. IP kısıtlaması ekleyin.</div>
-      <div class="inp-row">
-        <div class="inp-g"><label class="inp-lbl">Binance API Key</label><input class="inp" id="bn-key" placeholder="Binance API Key..." type="password"></div>
-        <div class="inp-g"><label class="inp-lbl">Binance Secret Key</label><input class="inp" id="bn-secret" placeholder="Binance Secret Key..." type="password"></div>
+    <div class="settings-section" style="border-color:rgba(247,147,26,.2)">
+      <div class="settings-title" style="color:#f7931a">Binance API — Gerçek Trading</div>
+      <div class="t-body" style="margin-bottom:10px;padding:8px 10px;background:var(--tint-red);border:1px solid var(--b-red);border-radius:var(--r8);color:var(--danger);font-size:11px">⚠️ Sadece Spot Trading izniyle oluşturun. Para çekme yetkisi VERMEYİN.</div>
+      <div class="input-row">
+        <div class="input-group"><label class="input-label">API Key</label><input class="input-field" id="bn-key" placeholder="Binance API Key..." type="password"></div>
+        <div class="input-group"><label class="input-label">Secret Key</label><input class="input-field" id="bn-secret" placeholder="Secret Key..." type="password"></div>
       </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
-        <button class="btn btn-gold btn-sm" onclick="saveBinance()">Kaydet</button>
-        <button class="btn btn-outline btn-sm" onclick="testBinance()">Bakiye Test Et</button>
-        <a href="https://www.binance.com/tr/my/settings/api-management" target="_blank" class="btn btn-outline btn-sm">API Oluştur →</a>
-      </div>
-      <div id="bn-balance" style="display:none;background:var(--black3);border:1px solid var(--gb);border-radius:var(--r8);padding:10px;font-size:11px">
-        <div style="font-size:9px;color:var(--gold);letter-spacing:1.5px;margin-bottom:6px">BAKIYE</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px"><button class="btn btn-primary btn-sm" onclick="saveBinance()">Kaydet</button><button class="btn btn-outline btn-sm" onclick="testBinance()">Bakiye Test</button><a href="https://www.binance.com/tr/my/settings/api-management" target="_blank" class="btn btn-outline btn-sm">API Oluştur →</a></div>
+      <div id="bn-balance" style="display:none;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--r8);padding:10px">
+        <div class="t-label" style="margin-bottom:6px">Bakiye</div>
         <div id="bn-balance-content"></div>
       </div>
     </div>
-
-    <!-- HIZLI EMİR PANELİ -->
-    <div class="glass" style="padding:18px;margin-bottom:12px;border-color:rgba(247,147,26,.15)">
-      <div class="set-title" style="color:#f7931a">Hızlı Emir</div>
-      <div class="inp-row">
-        <div class="inp-g"><label class="inp-lbl">Sembol</label><input class="inp" id="ord-sym" placeholder="BTCUSDT" value="BTCUSDT"></div>
-        <div class="inp-g"><label class="inp-lbl">Miktar (USDT)</label><input class="inp" id="ord-qty" placeholder="100" type="number"></div>
+    <div class="settings-section" style="border-color:rgba(247,147,26,.15)">
+      <div class="settings-title" style="color:#f7931a">Hızlı Emir</div>
+      <div class="input-row">
+        <div class="input-group"><label class="input-label">Sembol</label><input class="input-field" id="ord-sym" placeholder="BTCUSDT" value="BTCUSDT"></div>
+        <div class="input-group"><label class="input-label">Miktar (USDT)</label><input class="input-field" id="ord-qty" placeholder="100" type="number"></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-        <button class="btn btn-success" onclick="placeOrder('BUY')" style="font-size:12px;padding:10px;justify-content:center">▲ MARKET AL</button>
-        <button class="btn btn-danger" onclick="placeOrder('SELL')" style="font-size:12px;padding:10px;justify-content:center">▼ MARKET SAT</button>
+        <button class="btn btn-success" onclick="placeOrder('BUY')" style="justify-content:center">▲ MARKET AL</button>
+        <button class="btn btn-danger" onclick="placeOrder('SELL')" style="justify-content:center">▼ MARKET SAT</button>
       </div>
-      <div id="ord-result" style="display:none;margin-top:8px;padding:8px 10px;background:var(--black3);border-radius:var(--r8);font-size:11px;font-family:'JetBrains Mono',monospace"></div>
+      <div id="ord-result" style="display:none;margin-top:8px;padding:8px 10px;background:var(--surface-alt);border-radius:var(--r8);font-size:11px;font-family:'DM Mono',monospace"></div>
     </div>
-
-    <div class="glass" style="padding:18px;margin-bottom:12px">
-      <div class="set-title">Metodoloji</div>
-      <div style="font-size:11px;color:var(--text2);line-height:1.8;font-family:'JetBrains Mono',monospace">Trend Gücü → %25 ağırlık<br>Momentum → %20 ağırlık<br>Hacim Onayı → %15 ağırlık<br>Destek/Direnç → %15 ağırlık<br>Volatilite → %10 ağırlık<br>MTF Uyumu → %15 ağırlık<br><br><span style="color:var(--text3)">Veri: CoinGecko (kripto) · Yahoo Finance (BIST, 15dk) · Yahoo Finance (Altın)</span></div>
-      <div style="margin-top:10px;padding:10px;background:var(--rd2);border:1px solid var(--rdb);border-radius:var(--r8);font-size:11px;color:var(--red)">⚠️ TRDAI yatırım tavsiyesi vermez. Tüm analizler bilgilendirme amaçlıdır.</div>
+    <div class="settings-section">
+      <div class="settings-title">Position Sizing</div>
+      <div class="t-body" style="margin-bottom:10px">Maks. %2-3 risk prensibi ile pozisyon boyutu hesaplar.</div>
+      <div class="input-row">
+        <div class="input-group"><label class="input-label">Portföy ($)</label><input class="input-field" id="ps-port" placeholder="10000" type="number"></div>
+        <div class="input-group"><label class="input-label">Risk (%)</label><input class="input-field" id="ps-risk" placeholder="2" type="number" step="0.5" value="2"></div>
+        <div class="input-group"><label class="input-label">Giriş Fiyatı</label><input class="input-field" id="ps-entry" placeholder="72000" type="number"></div>
+        <div class="input-group"><label class="input-label">Stop Loss</label><input class="input-field" id="ps-stop" placeholder="70000" type="number"></div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="calcPos()" style="margin-bottom:8px">Hesapla</button>
+      <div id="ps-result" style="display:none;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--r8);padding:12px">
+        <div class="detail-grid">
+          <div class="d-item"><div class="d-label">Risk</div><div class="d-value" id="ps-ra" style="color:var(--danger)">—</div></div>
+          <div class="d-item"><div class="d-label">Pozisyon</div><div class="d-value" id="ps-sz" style="color:var(--accent)">—</div></div>
+          <div class="d-item"><div class="d-label">Lot</div><div class="d-value" id="ps-lt" style="color:var(--gold)">—</div></div>
+          <div class="d-item"><div class="d-label">R/R</div><div class="d-value" id="ps-rr">—</div></div>
+        </div>
+        <div class="t-small" style="margin-top:8px">Bu hesaplama bilgilendirme amaçlıdır.</div>
+      </div>
+    </div>
+    <div class="settings-section">
+      <div class="settings-title">Güncelleme Hızı</div>
+      <div class="input-row">
+        <div class="input-group"><label class="input-label">Kripto (sn)</label><input class="input-field" id="s-ci" value="60" type="number" min="30" max="300"></div>
+        <div class="input-group"><label class="input-label">Haber (dk)</label><input class="input-field" id="s-ni" value="5" type="number" min="1" max="60"></div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="saveSettings()">Kaydet</button>
+    </div>
+    <div class="settings-section">
+      <div class="settings-title">Metodoloji</div>
+      <div style="font-size:11px;color:var(--tx2);line-height:2;font-family:'DM Mono',monospace">Trend Gücü → %25<br>Momentum → %20<br>Hacim Onayı → %15<br>Destek/Direnç → %15<br>Volatilite → %10<br>MTF Uyumu → %15<br><br><span style="color:var(--tx4)">Veri: CoinGecko · BigPara · Yahoo Finance</span></div>
+      <div style="margin-top:10px;padding:10px;background:var(--tint-red);border:1px solid var(--b-red);border-radius:var(--r8);font-size:11px;color:var(--danger)">⚠️ TRDAI yatırım tavsiyesi vermez. Bilgilendirme amaçlıdır.</div>
     </div>
   </div>
 </div>
 
+</div><!-- /app-shell -->
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" role="navigation" aria-label="Mobil navigasyon">
+  <div class="mn-item on" id="mn-landing" onclick="goPage('landing',this)"><div class="mn-icon">⌂</div>Ana</div>
+  <div class="mn-item" id="mn-markets" onclick="goPage('markets',this)"><div class="mn-icon">◈</div>Piyasa</div>
+  <div class="mn-item" id="mn-scanner" onclick="goPage('scanner',this)"><div class="mn-icon">◉</div>Tara</div>
+  <div class="mn-item" id="mn-aibot" onclick="goPage('aibot',this)"><div class="mn-icon">△</div>AI</div>
+  <div class="mn-item" id="mn-settings" onclick="goPage('settings',this)"><div class="mn-icon">⚙</div>Ayar</div>
+</nav>
+
 <script src="https://s3.tradingview.com/tv.js"></script>
 <script>
+'use strict';
+
 'use strict';
 const PROXY="https://trading-ai-proxy.kuzixd-7.workers.dev";
 const W={trend:.25,momentum:.20,volume:.15,sr:.15,volatility:.10,mtf:.15};
@@ -1485,7 +1651,7 @@ function buildCard(asset,res,price,chg){
       <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px">${Object.entries(res.scores).map(([k,v])=>{const l={trend:"Trend",momentum:"Momentum",volume:"Hacim",sr:"S/R",volatility:"Volatilite",mtf:"MTF"};const pct=Math.round(v);const c=pct>=70?"var(--green)":pct>=45?"var(--gold)":"var(--red)";return`<div class="score-row"><span class="score-lbl">${l[k]||k}</span><div class="score-track"><div class="score-fill" style="width:${pct}%;background:${c}"></div></div><span class="score-val">${pct}</span></div>`;}).join("")}</div>
       <div class="explain-box" style="margin-bottom:8px">${res.ex.map(e=>`<div class="explain-item"><span class="explain-dot">▸</span>${e}</div>`).join("")}</div>
       ${res.warn.map(w=>`<div class="warn-item" style="margin-bottom:4px">⚠️ ${w}</div>`).join("")}
-      <div style="font-size:9px;color:var(--text3);margin-top:8px;font-family:'JetBrains Mono',monospace">Güncelleme: ${fmt.time()}${asset.type==="stock"?" · BIST 15dk gecikmeli":""}</div>
+      <div style="font-size:9px;color:var(--text3);margin-top:8px;font-family:'DM Mono',monospace">Güncelleme: ${fmt.time()}${asset.type==="stock"?" · BIST 15dk gecikmeli":""}</div>
     </div>
   </div>`;
 }
@@ -1784,63 +1950,101 @@ Hedge fund seviyesi analiz yapan, retail trader'a özel sunan platform. ICT (Inn
 TEMEL PRENSİPLER:
 Her analiz kurumsal para (Smart Money) hareketine göre yapılır. Tek timeframe değil multi-timeframe confluence aranır. Risk yönetimi analizin ayrılmaz parçasıdır. Veri yoksa açıkça belirtilir asla tahmin yürütülmez.
 
-HER ANALİZDE ZORUNLU 6 BÖLÜM:
+════════════════════════════════
+BÖLÜM 1 — TEKNİK ANALİZ FORMATI
+════════════════════════════════
+Her teknik analizde zorunlu 6 bölüm:
 
-PIYASA YAPISI:
-Güncel trend (HH/HL bullish, LH/LL bearish). Key levels: major destek ve direnç. Order blocks: kurumsal alım/satım bölgeleri. Liquidity: stop hunt bölgeleri.
+PIYASA YAPISI: Güncel trend (HH/HL bullish, LH/LL bearish). Key levels: major destek ve direnç. Order blocks: kurumsal alım/satım bölgeleri. Liquidity: stop hunt bölgeleri.
 
-TEKNİK TEYIT:
-RSI değeri + divergence var mı. MACD histogram yönü + kesişim. EMA sıralaması (9/21/50/200). Bollinger sıkışma/genişleme. Hacim analizi + OBV trendi. Önemli formasyonlar.
+TEKNİK TEYIT: RSI değeri + divergence var mı. MACD histogram yönü + kesişim. EMA sıralaması (9/21/50/200). Bollinger sıkışma/genişleme. Hacim analizi + OBV trendi. Önemli formasyonlar.
 
-TRADE SETUP:
-Sinyal: LONG / SHORT / BEKLE / IZLE
-Güven skoru: XX/100 (düşük 0-49, orta 50-69, yüksek 70-84, elite 85+)
-Entry Zone, Stop Loss (entry'den yüzde kaç), TP1 TP2 TP3, Invalidation seviyesi, Max risk portföyün yüzde 1-2'si.
+TRADE SETUP: Sinyal: LONG / SHORT / BEKLE / IZLE. Güven skoru: XX/100 (düşük 0-49, orta 50-69, yüksek 70-84, elite 85+). Entry Zone, Stop Loss, TP1 TP2 TP3, Invalidation seviyesi. Max risk portföyün yüzde 1-2si.
 
-RİSK ANALİZİ:
-Risk seviyesi: DÜŞÜK / ORTA / YÜKSEK / KRİTİK
-Macro riskler (Fed, TCMB, jeopolitik). Teknik riskler (divergence, false breakout). Likidite riski. Yaklaşan önemli event var mı.
+RİSK ANALİZİ: Risk seviyesi: DÜŞÜK / ORTA / YÜKSEK / KRİTİK. Macro riskler. Teknik riskler. Likidite riski. Yaklaşan önemli event.
 
-SENARYO ANALİZİ:
-Bullish Senaryo yüzde kaç ihtimal, koşul ve hedef. Base Senaryo yüzde kaç ihtimal. Bearish Senaryo yüzde kaç ihtimal. Kritik tetikleyici nedir.
+SENARYO ANALİZİ: Bullish / Base / Bearish senaryoları yüzde ihtimalle. Kritik tetikleyici nedir.
 
-POSITION SIZING:
-Kullanıcı portföy söylerse hesapla. Risk Tutarı = Portföy x RiskYüzdesi. Lot = Risk Tutarı bölü (Entry eksi StopLoss). Örnek: 10000 dolar portföy yüzde 2 risk = 200 dolar max kayıp.
+POSITION SIZING: Kullanıcı portföy söylerse hesapla. Risk Tutarı = Portföy x RiskYüzdesi. Lot = Risk Tutarı bölü (Entry eksi StopLoss).
 
-ÖZEL MODLAR - Bu kelimeleri görünce özel format uygula:
+════════════════════════════════
+BÖLÜM 2 — HABER ANALİZİ ve SİNYAL MOTORU
+════════════════════════════════
+Kullanıcı haber paylaşırsa veya haber analizi isterse bu sistemi uygula:
+
+TEMEL KURALLAR:
+- Asla haber uydurma. Asla kaynak belirtmeden kesin konuşma.
+- Eski haberi güncel gibi sunma. Aynı haberi tekrar tekrar önemliymiş gibi gösterme.
+- Sinyal üretmeden önce haberin gerçekten fiyat etkisi olup olmadığını kontrol et.
+- Zayıf veri varsa sinyal verme — "watch only" de.
+- FOMO dili kullanma. "Guaranteed", "sure win", "100%" gibi ifadeler kullanma.
+
+HABER İŞLEYİŞ ADIMLARI:
+1. Haberi temizle ve tekrarları kaldır.
+2. Haberin hangi varlığı etkilediğini tespit et.
+3. Etki sınıflandır: Bullish / Bearish / Neutral / Mixed
+4. Etki nedenini açıkla: bilanço, makro veri, regülasyon, ortaklık, ürün lansmanı, dava/ceza, satın alma/birleşme, sızıntı/söylenti, sektör haberi
+5. Haber etkisi ile fiyat hareketi birbirini destekliyor mu kontrol et.
+6. Teknik yapı ile haberi karşılaştır.
+
+KARAR KURALLARI:
+- Güçlü haber + hacim artışı + trend onayı = High confidence signal
+- Güçlü haber ama trend zayıf = Watch
+- Söylenti / doğrulanmamış bilgi = No Trade
+- Eski haber = Yeni fiyat etkisi yoksa Ignore
+- Yüksek volatilite = Smaller size warning
+- Çelişkili veri = Mixed
+- Haber güçlü ama fiyat tepki vermiyorsa = Watch
+- Haber olumsuz ama düşüş önceden fiyatlanmışsa = Mixed
+
+HABER SİNYAL ÇIKTI FORMATI (zorunlu):
+1. Headline — Haber başlığı
+2. Özet — 1-2 cümle
+3. Etkilenen sembol/varlık
+4. Etki yönü — Bullish / Bearish / Neutral / Mixed
+5. Neden önemli — Etki kategorisi
+6. Fiyatla uyum — Haber fiyatı destekliyor mu?
+7. Teknik teyit — Trend ve indikatörler ne diyor?
+8. Sinyal — Buy / Sell / Watch / No Trade
+9. Güven seviyesi — High / Medium / Low
+10. Risk notu — Önemli uyarılar
+11. İptal koşulu — Hangi durumda sinyal geçersiz?
+12. Zaman ufku — Kısa vade / Orta vade
+13. Kaynak ve zaman damgası
+
+GÜNLÜK HABER ÖZETİ İSTENİRSE:
+- En önemli 3 haber
+- En çok etkilenen varlıklar
+- En güçlü bullish katalizörler
+- En güçlü bearish katalizörler
+- Bugün izlenecek riskler
+- Takip listesi güncellemeleri
+
+════════════════════════════════
+BÖLÜM 3 — ÖZEL MODLAR
+════════════════════════════════
 "trade journal" yazarsa: trade psikoloji analizi + hata tespiti + koçluk
 "risk hesapla" yazarsa: anlık position sizing hesabı
 "multi-tf" yazarsa: 5m 15m 1h 4h 1d 1w confluence analizi
 "tarama" veya "fırsat" yazarsa: top 5 setup gerekçeli ranking
 "makro" yazarsa: DXY BTC dominance BIST genel durum global risk
+"haber analizi" yazarsa: yukarıdaki haber sinyal motorunu çalıştır
+"günlük haber özeti" yazarsa: günün önemli haberleri + varlık etkileri
 "korelasyon" yazarsa: iki varlık arası ilişki analizi
 "portföy" yazarsa: portföy risk analizi korelasyon uyarıları
 "psikoloji" yazarsa: trading psikolojisi coaching hata analizi
-"haber etkisi" yazarsa: haberin piyasaya olası etkisi
 
-BAĞLAM:
-Verilen güncel fiyat RSI MACD değerlerini analize entegre et. Kullanıcının seçtiği varlık ve timeframe'e odaklan. Önceki mesajlardaki pozisyonları hatırla.
+════════════════════════════════
+BÖLÜM 4 — GENEL KURALLAR
+════════════════════════════════
+BAĞLAM: Verilen güncel fiyat RSI MACD değerlerini analize entegre et. Kullanıcının seçtiği varlık ve timeframe'e odaklan.
 
 DİL KURALLARI:
 Kullan: potansiyel, olası, teknik olarak, data gösteriyor, yüksek olasılıklı, confluence var.
 Kesinlikle kullanma: kesin çıkar, garanti, şimdi al, fırsat kaçacak, uçacak.
-Türkçe birincil, RSI MACD gibi teknik terimler İngilizce kalabilir.
-Özgüvenli ama kibar konuş. Net ve direkt ol. Neden sorusunu açıkla. Belirsizliği dürüstçe söyle.
+Türkçe birincil. Özgüvenli ama kibar. Net ve direkt. Neden sorusunu açıkla.
 
 Her analizin sonunda: Bu analiz bilgilendirme amaçlıdır, yatırım tavsiyesi değildir.`
-
-async function botCall(msg){
-  const key=localStorage.getItem("groq_key")||"";
-  const btc=S.coinData["bitcoin"]?.usd;
-  const selAssetData=S.bistData[S.sel.id]||S.coinData[S.sel.id]||S.goldData[S.sel.id];
-  const selPrice=selAssetData?.price||selAssetData?.usd||0;
-  const selCur=S.sel.type==="stock"?"TL":"$";
-  const selChg=selAssetData?.chg||selAssetData?.usd_24h_change||0;
-  const bistTop=Object.entries(S.bistData).slice(0,5).map(([id,v])=>{
-    const a=BIST.find(b=>b.id===id);
-    return a?`${a.sym}:${v.price?.toFixed(0)}₺(${v.chg?.toFixed(1)}%)`:"";
-  }).filter(Boolean).join(", ");
-  const ctx=` [Seçili: ${S.sel.sym} ${selCur}${selPrice?.toFixed(2)} (${selChg>=0?"+":""}${selChg?.toFixed(2)}%), BTC:$${btc||0}, BIST(${bistTop}), Saat:${fmt.time()}, Zaman dilimi:${S.tf}]`;
   S.botHist.push({role:"user",content:msg+ctx});
   try{
     const r=await fetch(PROXY,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({system:BOT_SYS,messages:S.botHist,apiKey:key})});
@@ -1865,7 +2069,7 @@ function renderSigHistory(){
   if(!S.sigHistory.length){el.innerHTML=`<div class="empty-state">Henüz sinyal yok.</div>`;return;}
   const sCls={buy:"badge-buy",sell:"badge-sell",hold:"badge-hold",watch:"badge-watch"};
   const sTxt={buy:"▲ AL",sell:"▼ SAT",hold:"— BEKLE",watch:"◎ İZLE"};
-  el.innerHTML=S.sigHistory.slice(0,10).map(s=>`<div class="pos-row"><div><div class="pos-sym">${s.sym}</div><div class="pos-sub">${new Date(s.time).toLocaleString("tr-TR")}</div></div><span class="badge ${sCls[s.sig]}" style="font-size:10px">${sTxt[s.sig]}</span><div style="text-align:right"><div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--gold)">${s.conf}/100</div><div style="font-size:10px;color:var(--text3)">Güven</div></div></div>`).join("");
+  el.innerHTML=S.sigHistory.slice(0,10).map(s=>`<div class="pos-row"><div><div class="pos-sym">${s.sym}</div><div class="pos-sub">${new Date(s.time).toLocaleString("tr-TR")}</div></div><span class="badge ${sCls[s.sig]}" style="font-size:10px">${sTxt[s.sig]}</span><div style="text-align:right"><div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--gold)">${s.conf}/100</div><div style="font-size:10px;color:var(--text3)">Güven</div></div></div>`).join("");
 }
 
 // NAV
@@ -2009,6 +2213,214 @@ async function init(){
     if(document.getElementById("page-scanner")?.classList.contains("on"))runScanner();
   },sec*1000);
   const nm=parseInt(localStorage.getItem("news-int")||"5");
+  setInterval(fetchNews,nm*60*1000);
+}
+init();
+
+// ═══════════════════════════════════════
+// THEME SYSTEM
+// ═══════════════════════════════════════
+function toggleTheme(){
+  const html=document.documentElement;
+  const current=html.getAttribute('data-theme');
+  const next=current==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀':'🌙';
+  localStorage.setItem('theme',next);
+}
+function loadTheme(){
+  const t=localStorage.getItem('theme')||'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  const btn=document.getElementById('theme-btn');
+  if(btn) btn.textContent=t==='dark'?'☀':'🌙';
+}
+
+// ═══════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════
+function goPage(name,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  // Desktop nav
+  document.querySelectorAll('[id^="nav-"]').forEach(b=>{
+    b.style.color='';b.style.background='';b.style.borderColor='';
+  });
+  // Mobile nav
+  document.querySelectorAll('.mn-item').forEach(b=>b.classList.remove('on'));
+  
+  const page=document.getElementById('page-'+name);
+  if(page) page.classList.add('active');
+  
+  // Active state desktop
+  const navBtn=document.getElementById('nav-'+name);
+  if(navBtn){navBtn.style.color='var(--primary)';navBtn.style.background='var(--tint-blue)';}
+  
+  // Active state mobile
+  const mnBtn=document.getElementById('mn-'+name);
+  if(mnBtn) mnBtn.classList.add('on');
+  
+  window.scrollTo(0,0);
+  if(name==='scanner') runScanner();
+  if(name==='aibot') genSummary();
+  if(name==='portfolio') renderSigHistory();
+}
+
+// RIGHT SIDEBAR TABS
+function rsTab(name,btn){
+  ['portfolio','alerts','news'].forEach(t=>{
+    const el=document.getElementById('rs-'+t);
+    if(el) el.style.display=t===name?'block':'none';
+  });
+  document.querySelectorAll('.rs-tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  if(name==='news') renderRSNews();
+}
+
+function renderRSNews(){
+  const el=document.getElementById('rs-news-list');
+  if(!el||!S.newsData.length) return;
+  el.innerHTML=S.newsData.slice(0,8).map(n=>{
+    const s=n.sentiment||'neutral';
+    const t=n.created_at?new Date(n.created_at).toLocaleTimeString('tr-TR'):'';
+    return`<div class="news-item ${s==='positive'?'bull':s==='negative'?'bear':''}" onclick="window.open('${n.url||'#'}','_blank')"><div class="news-title">${n.title||''}</div><div class="news-meta"><span>${n.source?.title||''}</span><span>${t}</span></div></div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════
+// FAQ
+// ═══════════════════════════════════════
+function faqToggle(btn){
+  const item=btn.closest('.faq-item');
+  const icon=btn.querySelector('.faq-icon');
+  item.classList.toggle('open');
+  if(icon) icon.textContent=item.classList.contains('open')?'×':'+';
+}
+
+// ═══════════════════════════════════════
+// INDICATOR MENU
+// ═══════════════════════════════════════
+function toggleIndMenu(){
+  document.getElementById('ind-menu')?.classList.toggle('open');
+}
+document.addEventListener('click',e=>{
+  const menu=document.getElementById('ind-menu');
+  const btn=document.getElementById('ind-btn');
+  if(menu&&btn&&!menu.contains(e.target)&&!btn.contains(e.target)){
+    menu.classList.remove('open');
+  }
+});
+
+// ═══════════════════════════════════════
+// SHOPIER
+// ═══════════════════════════════════════
+function goProShopier(){
+  window.open('https://www.shopier.com/trdai-pro','_blank');
+}
+
+// ═══════════════════════════════════════
+// OTO TELEGRAM
+// ═══════════════════════════════════════
+let tgAutoConfig={enabled:false,minConf:65,sigType:'all',market:'all',cooldown:4};
+let tgLastSent={};
+function saveTGAuto(){
+  tgAutoConfig={
+    enabled:document.getElementById('tg-auto-enabled')?.checked||false,
+    minConf:parseInt(document.getElementById('tg-min-conf')?.value)||65,
+    sigType:document.getElementById('tg-sig-type')?.value||'all',
+    market:document.getElementById('tg-market')?.value||'all',
+    cooldown:parseInt(document.getElementById('tg-cooldown')?.value)||4,
+  };
+  localStorage.setItem('tg_auto',JSON.stringify(tgAutoConfig));
+  alert('✅ Oto sinyal ayarları kaydedildi! Aktif: '+(tgAutoConfig.enabled?'EVET':'HAYIR'));
+}
+function loadTGAuto(){
+  try{const s=localStorage.getItem('tg_auto');if(s)Object.assign(tgAutoConfig,JSON.parse(s));}catch(e){}
+  const fields=['tg-auto-enabled','tg-min-conf','tg-sig-type','tg-market','tg-cooldown'];
+  const vals=[tgAutoConfig.enabled,tgAutoConfig.minConf,tgAutoConfig.sigType,tgAutoConfig.market,tgAutoConfig.cooldown];
+  fields.forEach((f,i)=>{const el=document.getElementById(f);if(el)el[el.type==='checkbox'?'checked':'value']=vals[i];});
+}
+function checkAutoSignal(asset,res){
+  if(!tgAutoConfig.enabled)return;
+  const tk=localStorage.getItem('tg_token'),ch=localStorage.getItem('tg_chat');
+  if(!tk||!ch)return;
+  if(res.conf<tgAutoConfig.minConf)return;
+  if(tgAutoConfig.sigType==='buy'&&res.sig!=='buy')return;
+  if(tgAutoConfig.sigType==='buysell'&&res.sig!=='buy'&&res.sig!=='sell')return;
+  if(res.sig==='hold')return;
+  if(tgAutoConfig.market==='crypto'&&asset.type!=='crypto')return;
+  if(tgAutoConfig.market==='stock'&&asset.type!=='stock')return;
+  const lastKey=asset.id+'_'+res.sig;
+  const lastTime=tgLastSent[lastKey]||0;
+  if(Date.now()-lastTime<tgAutoConfig.cooldown*3600000)return;
+  tgLastSent[lastKey]=Date.now();
+  const price=S.coinData[asset.id]?.usd||S.bistData[asset.id]?.price||0;
+  const cur=asset.type==='stock'?'TRY':'USD';
+  sendTG(buildSigMsg(asset,res,price,cur));
+}
+function testAutoSignal(){
+  const tk=localStorage.getItem('tg_token'),ch=localStorage.getItem('tg_chat');
+  if(!tk||!ch){alert('Önce Ayarlar sekmesinden Telegram bot token ve chat ID gir!');return;}
+  sendTG('🧪 *TRDAI Test Sinyali*\n\n*BTC/USDT* · 4H\n\n📊 Güven: `78/100`\n💰 Entry: `$68.500`\n🛑 Stop: `$67.100`\n🎯 TP1: `$71.000`\n⚖️ R/R: `1:2.4`\n\n_TRDAI oto sinyal sistemi aktif._\n⚠️ Yatırım tavsiyesi değildir.');
+  alert('Test sinyali gönderildi!');
+}
+
+// ═══════════════════════════════════════
+// BINANCE
+// ═══════════════════════════════════════
+function saveBinance(){localStorage.setItem('bn_key',document.getElementById('bn-key').value);localStorage.setItem('bn_secret',document.getElementById('bn-secret').value);alert('Binance API kaydedildi!');}
+async function testBinance(){
+  const key=localStorage.getItem('bn_key')||document.getElementById('bn-key').value;
+  const secret=localStorage.getItem('bn_secret')||document.getElementById('bn-secret').value;
+  if(!key||!secret){alert('Önce API key gir!');return;}
+  try{
+    const r=await fetch(PROXY+'/binance/balance',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({apiKey:key,apiSecret:secret})});
+    const d=await r.json();
+    if(d.code)throw new Error(d.msg||JSON.stringify(d));
+    const balances=(d.balances||[]).filter(b=>parseFloat(b.free)>0||parseFloat(b.locked)>0);
+    const el=document.getElementById('bn-balance'),ct=document.getElementById('bn-balance-content');
+    el.style.display='block';
+    ct.innerHTML=balances.slice(0,10).map(b=>`<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border)"><span style="color:var(--gold);font-weight:600">${b.asset}</span><span class="t-mono">${parseFloat(b.free).toFixed(6)}</span></div>`).join('')||'<span class="t-small">Bakiye bulunamadı</span>';
+    alert('✅ Bağlantı başarılı!');
+  }catch(e){alert('❌ Hata: '+e.message);}
+}
+async function placeOrder(side){
+  const key=localStorage.getItem('bn_key'),secret=localStorage.getItem('bn_secret');
+  if(!key||!secret){alert('Önce Binance API key gir!');return;}
+  const sym=document.getElementById('ord-sym').value||'BTCUSDT';
+  const qty=parseFloat(document.getElementById('ord-qty').value||'0');
+  if(!qty||qty<=0){alert('Miktar gir!');return;}
+  if(!window.confirm(`${side} emri: ${sym} - ${qty} USDT\nDevam edilsin mi?`))return;
+  const el=document.getElementById('ord-result');
+  el.style.display='block';el.textContent='Emir gönderiliyor...';el.style.color='var(--tx2)';
+  try{
+    const r=await fetch(PROXY+'/binance/order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({apiKey:key,apiSecret:secret,symbol:sym,side,quantity:qty,type:'MARKET'})});
+    const d=await r.json();
+    if(d.code)throw new Error(d.msg||JSON.stringify(d));
+    el.style.color='var(--accent)';
+    el.innerHTML=`✅ ${side} emri başarılı!<br>OrderId: ${d.orderId}<br>Miktar: ${d.executedQty}<br>Durum: ${d.status}`;
+    sendTG(`✅ *TRDAI EMİR*\n${side} ${sym}\nMiktar: ${d.executedQty}\nOrderId: ${d.orderId}`);
+  }catch(e){el.style.color='var(--danger)';el.textContent='❌ Hata: '+e.message;}
+}
+
+// INIT
+async function init(){
+  loadTheme();
+  loadSettings();
+  loadTGAuto();
+  startClock();
+  renderSB();
+  await Promise.allSettled([fetchCrypto(),fetchBIST(),fetchGold(),fetchNews()]);
+  updateTicker();
+  renderSB();
+  loadTV('BTC','crypto','240');
+  runAnalysis();
+  const sec=parseInt(localStorage.getItem('crypto-int')||'60');
+  setInterval(async()=>{
+    await Promise.allSettled([fetchCrypto(),fetchBIST(),fetchGold()]);
+    updateTicker();renderSB();
+    if(document.getElementById('page-markets')?.classList.contains('active'))runAnalysis();
+    if(document.getElementById('page-scanner')?.classList.contains('active'))runScanner();
+  },sec*1000);
+  const nm=parseInt(localStorage.getItem('news-int')||'5');
   setInterval(fetchNews,nm*60*1000);
 }
 init();
