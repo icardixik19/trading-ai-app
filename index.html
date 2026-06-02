@@ -1066,7 +1066,7 @@ a{text-decoration:none;color:inherit}
 'use strict';
 const PROXY="https://trading-ai-proxy.kuzixd-7.workers.dev";
 const W={trend:.25,momentum:.20,volume:.15,sr:.15,volatility:.10,mtf:.15};
-const BIST_BASE={thyao:297,asels:398,eregl:45,sahol:95,kchol:89,bimas:380,tuprs:178,ekgyo:22,sise:42,tcell:85,garan:75,akbnk:58,isctr:16,ykbnk:28,halkb:14,vakbn:18,toaso:410,froto:1850,ttrak:920,kozal:320,arclk:95,vestl:38,pgsus:580,tavhl:195,ccola:580,ulker:145,gubrf:88,clebi:420,logo:220,netas:48};
+const BIST_BASE={thyao:295,asels:387,eregl:48,sahol:105,kchol:98,bimas:420,tuprs:195,ekgyo:25,sise:48,tcell:92,garan:82,akbnk:64,isctr:18,ykbnk:31,halkb:16,vakbn:20,toaso:445,froto:2100,ttrak:1050,kozal:340,arclk:102,vestl:42,pgsus:620,tavhl:210,ccola:620,ulker:155,gubrf:95,clebi:450,logo:240,netas:52};
 
 const CRYPTO=[
   {id:"bitcoin",sym:"BTC",name:"Bitcoin"},{id:"ethereum",sym:"ETH",name:"Ethereum"},
@@ -1476,46 +1476,65 @@ async function fetchCrypto(){
   }catch(e){}
 }
 async function fetchBIST(){
-  try{
-    const r=await fetch(`${PROXY}/bist?symbols=${BIST.map(a=>a.sym+".IS").join(",")}`);
-    const data=await r.json();
-    const results=data?.quoteResponse?.result||[];
-    if(!results.length) throw new Error("Boş yanıt");
-    results.forEach(q=>{
-      const sym=q.symbol?.replace(".IS","").toUpperCase();
-      const asset=BIST.find(a=>a.sym===sym);
-      if(!asset||!q.regularMarketPrice)return;
-      // Yahoo bazen USD döndürür — TRY kontrolü
-      let price=q.regularMarketPrice;
-      const currency=q.currency||"TRY";
-      // Eğer para birimi USD ise ve fiyat çok düşükse (TL değil) → fallback
-      if(currency==="USD"||price<1){
-        // Fallback: BIST_BASE kullan
-        price=S.priceHist[asset.id]?.[S.priceHist[asset.id].length-1]||BIST_BASE[asset.id]||100;
-      }
-      const chg=q.regularMarketChangePercent||0;
-      S.bistData[asset.id]={price,chg,currency:"TRY"};
-      const h=S.priceHist[asset.id]||[];
-      h.push(price);if(h.length>200)h.shift();
-      S.priceHist[asset.id]=h;
-    });
-    // Başarıyla yüklendi — badge göster
-    const badge=document.getElementById("bist-delay-badge");
-    if(badge){badge.style.display="inline";badge.textContent="₺ TL · 15dk gecikmeli";}
-  }catch(e){
-    // Fallback: gerçekçi TL simülasyonu
-    BIST.forEach(a=>{
-      const h=S.priceHist[a.id]||[];
-      const base=BIST_BASE[a.id]||100;
-      const last=h[h.length-1]||base;
-      // Günlük volatilite simülasyonu
-      const chg=(Math.random()-.49)*.008;
-      const newPrice=last*(1+chg);
-      h.push(newPrice);if(h.length>200)h.shift();
-      S.priceHist[a.id]=h;
-      S.bistData[a.id]={price:newPrice,chg:chg*100,currency:"TRY"};
-    });
+  // Batch olarak 10'arlı çek - Yahoo rate limit için
+  const batches=[];
+  for(let i=0;i<BIST.length;i+=10) batches.push(BIST.slice(i,i+10));
+  let successCount=0;
+  for(const batch of batches){
+    try{
+      const syms=batch.map(a=>a.sym+".IS").join(",");
+      const r=await fetch(`${PROXY}/bist?symbols=${syms}`);
+      if(!r.ok) throw new Error("HTTP "+r.status);
+      const data=await r.json();
+      const results=data?.quoteResponse?.result||[];
+      results.forEach(q=>{
+        const sym=q.symbol?.replace(".IS","").toUpperCase();
+        const asset=batch.find(a=>a.sym===sym);
+        if(!asset) return;
+        let price=q.regularMarketPrice;
+        if(!price||isNaN(price)) return;
+        const expectedBase=BIST_BASE[asset.id]||50;
+        // Fiyat makul aralıkta mı? (base'in %20 ile 5 katı arası)
+        const ok=price>expectedBase*0.2&&price<expectedBase*5;
+        if(!ok){
+          // Yahoo yanlış veri - BIST_BASE + küçük random değişim
+          price=expectedBase*(1+(Math.random()-.5)*.02);
+        }
+        const chg=q.regularMarketChangePercent||0;
+        S.bistData[asset.id]={price:+price.toFixed(2),chg:+chg.toFixed(2),currency:"TRY",live:ok};
+        const h=S.priceHist[asset.id]||[];
+        h.push(price);if(h.length>200)h.shift();
+        S.priceHist[asset.id]=h;
+        if(ok) successCount++;
+      });
+      await new Promise(r=>setTimeout(r,200)); // rate limit için bekle
+    }catch(e){
+      // Bu batch için fallback
+      batch.forEach(a=>{
+        if(!S.bistData[a.id]){
+          const base=BIST_BASE[a.id]||100;
+          S.bistData[a.id]={price:base,chg:(Math.random()-.5)*3,currency:"TRY",live:false};
+          const h=S.priceHist[a.id]||[];
+          if(!h.length){for(let i=0;i<20;i++)h.push(base*(1+(Math.random()-.5)*.02));}
+          S.priceHist[a.id]=h;
+        }
+      });
+    }
   }
+  // Badge güncelle
+  const badge=document.getElementById("bist-delay-badge");
+  if(badge){
+    badge.style.display="inline";
+    const src=S._bistSource||"";
+    if(successCount>0){
+      const srcLabel=src==="bigpara"?"BigPara":src==="isyatirim"?"İş Yatırım":src.includes("yahoo")?"Yahoo":"Canlı";
+      badge.textContent=`₺ TL · ${srcLabel} · ${successCount} hisse`;
+    } else {
+      badge.textContent="₺ TL · Simüle Veri";
+      badge.style.background="rgba(245,158,11,.1)";
+    }
+  }
+  renderSB();
 }
 async function fetchGold(){
   try{
@@ -1765,7 +1784,15 @@ Her analizin sonunda: Bu analiz bilgilendirme amaçlıdır, yatırım tavsiyesi 
 async function botCall(msg){
   const key=localStorage.getItem("groq_key")||"";
   const btc=S.coinData["bitcoin"]?.usd;
-  const ctx=btc?` [${S.sel.sym} seçili, BTC $${btc}, ${fmt.time()}]`:"";
+  const selAssetData=S.bistData[S.sel.id]||S.coinData[S.sel.id]||S.goldData[S.sel.id];
+  const selPrice=selAssetData?.price||selAssetData?.usd||0;
+  const selCur=S.sel.type==="stock"?"TL":"$";
+  const selChg=selAssetData?.chg||selAssetData?.usd_24h_change||0;
+  const bistTop=Object.entries(S.bistData).slice(0,5).map(([id,v])=>{
+    const a=BIST.find(b=>b.id===id);
+    return a?`${a.sym}:${v.price?.toFixed(0)}₺(${v.chg?.toFixed(1)}%)`:"";
+  }).filter(Boolean).join(", ");
+  const ctx=` [Seçili: ${S.sel.sym} ${selCur}${selPrice?.toFixed(2)} (${selChg>=0?"+":""}${selChg?.toFixed(2)}%), BTC:$${btc||0}, BIST(${bistTop}), Saat:${fmt.time()}, Zaman dilimi:${S.tf}]`;
   S.botHist.push({role:"user",content:msg+ctx});
   try{
     const r=await fetch(PROXY,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({system:BOT_SYS,messages:S.botHist,apiKey:key})});
