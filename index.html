@@ -410,8 +410,10 @@ img{max-width:100%}
 .divider{border:none;border-top:1px solid var(--border);margin:12px 0}
 
 /* PAGE SYSTEM */
-.page{display:none;flex:1}
-.page.active{display:flex;flex-direction:column}
+.page{display:none}
+.page.on{display:flex;flex-direction:column}
+#page-aibot.on{display:grid;grid-template-columns:1fr 360px}
+@media(max-width:900px){#page-aibot.on{display:flex;flex-direction:column}}
 
 /* MOBILE BOTTOM NAV */
 .mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:600;background:var(--surface);border-top:1px solid var(--border);padding:6px 0 env(safe-area-inset-bottom,6px)}
@@ -612,10 +614,7 @@ img{max-width:100%}
 .chart-expanded .analysis-grid{display:none}
 .chart-expanded .tv-wrap{height:calc(100vh - 116px)!important}
 
-.page.active[style*="overflow-y:auto"]{display:block!important}
-#page-aibot.active{display:grid!important;grid-template-columns:1fr 360px}
-@media(max-width:900px){#page-aibot.active{display:flex!important;flex-direction:column}}
-#page-markets.active{display:flex!important;flex-direction:column}
+
 /* SCROLLBAR in sidebar */
 .asset-list::-webkit-scrollbar,.chat-messages::-webkit-scrollbar,.rs-content::-webkit-scrollbar,.ai-summaries::-webkit-scrollbar{width:3px}
 </style>
@@ -636,18 +635,18 @@ img{max-width:100%}
   </div>
   <div class="tb-divider"></div>
   <nav style="display:flex;gap:1px" aria-label="Ana navigasyon">
-    <button class="tb-btn" id="nav-landing" onclick="goPage('landing',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Ana Sayfa</button>
-    <button class="tb-btn" id="nav-markets" onclick="goPage('markets',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Piyasalar</button>
-    <button class="tb-btn" id="nav-scanner" onclick="goPage('scanner',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Tarayıcı</button>
-    <button class="tb-btn" id="nav-portfolio" onclick="goPage('portfolio',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Portföy</button>
-    <button class="tb-btn" id="nav-auto" onclick="goPage('auto',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Oto Trading</button>
-    <button class="tb-btn" id="nav-aibot" onclick="goPage('aibot',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">AI Asistan</button>
-    <button class="tb-btn" id="nav-settings" onclick="goPage('settings',this)" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Ayarlar</button>
+    <button class="tb-btn" id="nav-landing" onclick=\"goPage('landing')\" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Ana Sayfa</button>
+    <button class="tb-btn" id="nav-markets" onclick=\"goPage('markets')\" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Piyasalar</button>
+    <button class="tb-btn" id="nav-scanner" onclick=\"goPage('scanner')\" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Tarayıcı</button>
+    <button class="tb-btn" id="nav-portfolio" onclick=\"goPage('portfolio')\" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Portföy</button>
+    <button class="tb-btn" id="nav-auto" onclick=\"goPage('auto')\" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Oto Trading</button>
+    <button class="tb-btn" id="nav-aibot" onclick=\"goPage('aibot')\" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">AI Asistan</button>
+    <button class="tb-btn" id="nav-settings" onclick=\"goPage('settings')\" style="width:auto;padding:0 10px;font-size:11px;font-weight:600;color:var(--tx2)">Ayarlar</button>
   </nav>
   <div class="tb-right">
     <span class="t-mono" style="font-size:11px;color:var(--tx3)" id="clock">--:--:--</span>
     <button class="tb-btn" onclick="toggleTheme()" id="theme-btn" title="Tema Değiştir" aria-label="Tema değiştir">☀</button>
-    <div class="tb-btn tb-notif" title="Bildirimler" onclick="goPage('portfolio')"><span>🔔</span><div class="notif-dot" id="notif-dot"></div></div>
+    <div class="tb-btn tb-notif" title="Bildirimler" onclick=\"goPage('portfolio')\"><span>🔔</span><div class="notif-dot" id="notif-dot"></div></div>
     <div class="plan-badge" id="plan-badge" onclick="togglePremium()"><span>⭐</span><span>FREE</span></div>
   </div>
 </header>
@@ -660,13 +659,13 @@ img{max-width:100%}
 </div>
 
 <!-- PAGE: LANDING -->
-<div id="page-landing" class="page active" style="overflow-y:auto;flex-direction:column">
+<div id="page-landing" class="page on" style="overflow-y:auto;flex-direction:column">
   <section class="lp-hero" role="main">
     <div class="lp-badge"><div class="live-dot"></div>Canlı · AI Destekli Platform</div>
     <h1 class="lp-h1 t-h1">Trading kararlarını<br><em>yapay zekaya bırak.</em></h1>
     <p class="lp-sub">TRDAI, kripto, BIST ve altın piyasaları için kurumsal kalitede teknik analiz ve sinyal üretir. Her sinyal açıklanabilir, her seviye gerekçeli.</p>
     <div class="lp-ctas">
-      <button class="btn btn-primary" style="font-size:14px;padding:12px 26px" onclick="goPage('markets')">Analizi Başlat →</button>
+      <button class="btn btn-primary" style="font-size:14px;padding:12px 26px" onclick=\"goPage('markets')\">Analizi Başlat →</button>
       <button class="btn btn-outline" style="font-size:14px;padding:12px 22px" onclick="document.getElementById('how-section').scrollIntoView({behavior:'smooth'})">Nasıl Çalışır</button>
       <a href="game.html" target="_blank" class="btn btn-outline" style="font-size:13px;padding:12px 18px;border-color:var(--gold-b);color:var(--gold)">🎮 CryptoBlast</a>
     </div>
@@ -743,7 +742,7 @@ img{max-width:100%}
             <div class="price-feat"><span class="pf-no">—</span><span style="color:var(--tx3)">Backtest özeti</span></div>
             <div class="price-feat"><span class="pf-no">—</span><span style="color:var(--tx3)">Kişisel watchlist</span></div>
           </div>
-          <button class="btn btn-outline" style="width:100%;justify-content:center" onclick="goPage('markets')">Hemen Başla</button>
+          <button class="btn btn-outline" style="width:100%;justify-content:center" onclick=\"goPage('markets')\">Hemen Başla</button>
         </div>
         <div class="price-card featured">
           <div class="price-featured-badge">EN POPÜLER</div>
@@ -814,7 +813,7 @@ img{max-width:100%}
   <div class="cta-section">
     <h2 class="cta-h">Piyasayı takip etmeyi<br><em>AI'ya bırak.</em></h2>
     <p style="font-size:13px;color:var(--tx2);margin-bottom:24px">Ücretsiz başla. Kayıt gerektirmez.</p>
-    <button class="btn btn-primary" style="font-size:14px;padding:12px 28px" onclick="goPage('markets')">Hemen Başla →</button>
+    <button class="btn btn-primary" style="font-size:14px;padding:12px 28px" onclick=\"goPage('markets')\">Hemen Başla →</button>
   </div>
 
   <footer class="lp-footer">
@@ -1274,12 +1273,12 @@ img{max-width:100%}
 
 <!-- MOBILE NAV -->
 <nav class="mobile-nav" role="navigation" aria-label="Mobil navigasyon">
-  <div class="mn-item on" id="mn-landing" onclick="goPage('landing',this)"><div class="mn-icon">⌂</div>Ana</div>
-  <div class="mn-item" id="mn-markets" onclick="goPage('markets',this)"><div class="mn-icon">◈</div>Piyasa</div>
-  <div class="mn-item" id="mn-scanner" onclick="goPage('scanner',this)"><div class="mn-icon">◉</div>Tara</div>
-  <div class="mn-item" id="mn-aibot" onclick="goPage('aibot',this)"><div class="mn-icon">△</div>AI Bot</div>
-  <div class="mn-item" id="mn-auto" onclick="goPage('auto',this)"><div class="mn-icon">⚡</div>Oto</div>
-  <div class="mn-item" id="mn-settings" onclick="goPage('settings',this)"><div class="mn-icon">⚙</div>Ayar</div>
+  <div class="mn-item on" id="mn-landing" onclick=\"goPage('landing')\"><div class="mn-icon">⌂</div>Ana</div>
+  <div class="mn-item" id="mn-markets" onclick=\"goPage('markets')\"><div class="mn-icon">◈</div>Piyasa</div>
+  <div class="mn-item" id="mn-scanner" onclick=\"goPage('scanner')\"><div class="mn-icon">◉</div>Tara</div>
+  <div class="mn-item" id="mn-aibot" onclick=\"goPage('aibot')\"><div class="mn-icon">△</div>AI Bot</div>
+  <div class="mn-item" id="mn-auto" onclick=\"goPage('auto')\"><div class="mn-icon">⚡</div>Oto</div>
+  <div class="mn-item" id="mn-settings" onclick=\"goPage('settings')\"><div class="mn-icon">⚙</div>Ayar</div>
 </nav>
 
 <script src="https://s3.tradingview.com/tv.js"></script>
@@ -1939,7 +1938,7 @@ async function genSummary(){
     {id:"sum-news",p:`Haberleri özetle, piyasa etkisini belirt (2-3 cümle, Türkçe): ${news||"Haberler yükleniyor"}`},
   ];
   if(!key){
-    sections.forEach(s=>{const el=document.getElementById(s.id);if(el)el.innerHTML=`<span style="color:var(--text3);font-size:11px">⚠️ AI özeti için <a href="#" onclick="goPage('settings')" style="color:var(--gold)">Ayarlar</a>'dan Groq API key girin.</span>`;});
+    sections.forEach(s=>{const el=document.getElementById(s.id);if(el)el.innerHTML=`<span style="color:var(--text3);font-size:11px">⚠️ AI özeti için <a href="#" onclick=\"goPage('settings')\" style="color:var(--gold)">Ayarlar</a>'dan Groq API key girin.</span>`;});
     const ne=document.getElementById("sum-news");if(ne&&S.newsData.length)ne.innerHTML=S.newsData.slice(0,5).map(n=>`<div style="padding:4px 0;border-bottom:1px solid rgba(201,168,76,.06);font-size:11px;color:var(--text2)">${n.sentiment==="positive"?"▲":"▼"} ${n.title}</div>`).join("");
     return;
   }
@@ -2054,6 +2053,14 @@ Kesinlikle kullanma: kesin çıkar, garanti, şimdi al, fırsat kaçacak, uçaca
 Türkçe birincil. Özgüvenli ama kibar. Net ve direkt. Neden sorusunu açıkla.
 
 Her analizin sonunda: Bu analiz bilgilendirme amaçlıdır, yatırım tavsiyesi değildir.`
+async function botCall(msg){
+  const key=localStorage.getItem("groq_key")||"";
+  const btc=S.coinData["bitcoin"]?.usd;
+  const selAssetData=S.bistData[S.sel.id]||S.coinData[S.sel.id]||S.goldData[S.sel.id];
+  const selPrice=selAssetData?.price||selAssetData?.usd||0;
+  const selCur=S.sel.type==="stock"?"TL":"$";
+  const selChg=selAssetData?.chg||selAssetData?.usd_24h_change||0;
+  const ctx=` [Seçili: ${S.sel.sym} ${selCur}${selPrice?.toFixed(2)} (${selChg>=0?"+":""}${selChg?.toFixed(2)}%), BTC:$${btc||0}, Saat:${fmt.time()}, Timeframe:${S.tf}]`;
   S.botHist.push({role:"user",content:msg+ctx});
   try{
     const r=await fetch(PROXY,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({system:BOT_SYS,messages:S.botHist,apiKey:key})});
@@ -2083,15 +2090,19 @@ function renderSigHistory(){
 
 // NAV
 function goPage(name,btn){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));
-  document.querySelectorAll(".ntab").forEach(b=>b.classList.remove("on"));
-  const page=document.getElementById("page-"+name);if(page)page.classList.add("on");
-  if(btn)btn.classList.add("on");
-  else document.querySelectorAll(".ntab").forEach(b=>{if(b.getAttribute("onclick")?.includes("'"+name+"'"))b.classList.add("on");});
-  if(name==="scanner")runScanner();
-  if(name==="aibot")genSummary();
-  if(name==="portfolio")renderSigHistory();
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll("[id^='nav-']").forEach(function(b){b.style.color='';b.style.background='';});
+  document.querySelectorAll('.mn-item').forEach(function(b){b.classList.remove('on');});
+  var pg=document.getElementById('page-'+name);
+  if(pg) pg.classList.add('on');
+  var nb=document.getElementById('nav-'+name);
+  if(nb){nb.style.color='var(--primary)';nb.style.background='rgba(59,130,246,0.12)';}
+  var mb=document.getElementById('mn-'+name);
+  if(mb) mb.classList.add('on');
   window.scrollTo(0,0);
+  if(name==='scanner') setTimeout(runScanner,100);
+  if(name==='aibot') setTimeout(genSummary,100);
+  if(name==='portfolio') setTimeout(renderSigHistory,100);
 }
 // ── SHOPIER PRO ──
 function goProShopier(){
@@ -2247,52 +2258,7 @@ function loadTheme(){
 // ═══════════════════════════════════════
 // NAVIGATION
 // ═══════════════════════════════════════
-function goPage(name,btn){
-  // Tüm sayfaları kapat
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  
-  // Desktop nav reset
-  document.querySelectorAll('[id^="nav-"]').forEach(b=>{
-    b.style.color='';b.style.background='';b.style.borderColor='';
-  });
-  
-  // Mobile nav reset
-  document.querySelectorAll('.mn-item').forEach(b=>b.classList.remove('on'));
-  
-  // Sayfayı aç
-  const page=document.getElementById('page-'+name);
-  if(page){
-    page.classList.add('active');
-  } else {
-    console.warn('Sayfa bulunamadı: page-'+name);
-    return;
-  }
-  
-  // Desktop aktif buton
-  const navBtn=document.getElementById('nav-'+name);
-  if(navBtn){
-    navBtn.style.color='var(--primary)';
-    navBtn.style.background='rgba(59,130,246,0.12)';
-    navBtn.style.borderColor='rgba(59,130,246,0.25)';
-  }
-  
-  // Mobile aktif
-  const mnBtn=document.getElementById('mn-'+name);
-  if(mnBtn) mnBtn.classList.add('on');
-  
-  window.scrollTo(0,0);
-  
-  // Sayfa özel aksiyonlar
-  if(name==='scanner') setTimeout(runScanner,100);
-  if(name==='aibot') setTimeout(genSummary,100);
-  if(name==='portfolio') setTimeout(renderSigHistory,100);
-  if(name==='markets'){
-    setTimeout(()=>{
-      renderSB();
-      if(!S.analyses[S.sel.id]) runAnalysis();
-    },100);
-  }
-}
+
 
 // RIGHT SIDEBAR TABS
 function rsTab(name,btn){
